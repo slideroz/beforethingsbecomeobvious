@@ -1,33 +1,14 @@
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/inter/Inter-400.woff2") format("woff2"),
-       url("./assets/fonts/inter/Inter-400.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/inter/Inter-600.woff2") format("woff2"),
-       url("./assets/fonts/inter/Inter-600.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./assets/fonts/inter/Inter-700.woff2") format("woff2"),
-       url("./assets/fonts/inter/Inter-700.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --text: #111;
-  --muted: #777;
+  --muted: #535353;
+  --font-saved: "Source Sans 3", sans-serif;
+  --font-compare: "IBM Plex Sans", sans-serif;
+  --font-current: var(--font-saved);
+  --sky-base: #fbf6ee;
+  --sky-mist: rgba(255, 218, 182, 0.26);
+  --sky-sun: rgba(244, 162, 132, 0.24);
+  --sky-aura: rgba(196, 172, 236, 0.2);
+  --sky-depth: rgba(150, 173, 224, 0.16);
 
   --left: 150px;     /* required left offset */
   --top: 80px;       /* fixed header top offset so gap stays constant on resize */
@@ -35,7 +16,7 @@
   --safe-right: env(safe-area-inset-right, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
-  --body-size: clamp(18px, min(calc(3.5vh - 8px), calc(2.2vw + 8px)), 26px);
+  --body-size: clamp(18px, min(calc(3.5vh - 8px), calc(2.2vw + 8px)), 25px);
   --section-gap: clamp(180px, 25vh, 320px);
   --section-top: calc(var(--top) + var(--safe-top) + var(--section-gap));
 }
@@ -46,12 +27,38 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-current);
   color: var(--text);
-  background: #fff;
+  background:
+    radial-gradient(120% 95% at 14% 12%, var(--sky-mist) 0%, transparent 60%),
+    radial-gradient(95% 88% at 86% 14%, var(--sky-sun) 0%, transparent 62%),
+    radial-gradient(120% 100% at 18% 88%, var(--sky-aura) 0%, transparent 58%),
+    radial-gradient(140% 110% at 86% 80%, var(--sky-depth) 0%, transparent 66%),
+    linear-gradient(160deg, #fffaf0 0%, var(--sky-base) 44%, #f0f2ff 100%);
+  background-size: 100% 100%, 100% 100%, 120% 120%, 120% 120%, 100% 100%;
+  animation: atmospheric-drift 24s ease-in-out infinite alternate;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   overflow-anchor: none;
   overflow: hidden;
   -webkit-text-size-adjust: 100%;
+}
+
+body.font-saved {
+  --font-current: var(--font-saved);
+}
+
+body.font-compare {
+  --font-current: var(--font-compare);
+}
+
+@keyframes atmospheric-drift {
+  0% {
+    background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+  100% {
+    background-position: 4% -3%, -4% 2%, 3% 4%, -3% -2%, 0% 0%;
+  }
 }
 
 .page {
@@ -108,13 +115,14 @@ html, body {
 
 /* Title */
 .brand {
-  font-weight: 700;          /* Bold */
-  font-size: 24px;           /* required */
-  line-height: 1.05;
+  font-weight: 700;
+  font-size: clamp(20px, 2.5vw, 32px);
+  line-height: 1;
+  letter-spacing: -0.015em;
   text-decoration: none;
   color: var(--text);
   display: inline-block;
-  padding: 10px 0;
+  padding: 6px 0;
   min-height: 44px;
 }
 
@@ -125,10 +133,12 @@ html, body {
 
 /* Subtitle */
 .subtitle {
-  font-weight: 700;          /* Bold */
-  font-size: 16px;           /* required */
+  font-weight: 400;
+  font-size: clamp(12px, 1.1vw, 15px);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
   color: var(--muted);
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 /* Content aligned exactly with header left edge */
@@ -183,21 +193,22 @@ html, body {
 .section p,
 .section li {
   font-size: calc(var(--body-size) * var(--section-scale));
-  font-weight: 400;          /* Regular */
+  font-weight: 200;
   line-height: 1.5;
 }
 
 /* Home page main text */
 .section .home-text {
-  font-size: calc(var(--body-size) * 1.285 * var(--section-scale));
-  font-weight: 400;          /* Regular */
-  line-height: 1.4;
+  font-size: calc(var(--body-size) * 1.8 * var(--section-scale));
+  font-weight: 200;
+  line-height: 1.24;
+  letter-spacing: -0.015em;
   margin: 0;
-  max-width: 900px;
+  max-width: 980px;
 }
 
 .section#home .type-cursor {
-  font-size: calc(var(--body-size) * 1.285 * var(--section-scale));
+  font-size: calc(var(--body-size) * 1.8 * var(--section-scale));
 }
 
 .section p {
@@ -205,7 +216,7 @@ html, body {
 }
 
 .section strong {
-  font-weight: 600;          /* SemiBold required for bold sentences */
+  font-weight: 700;
   font-size: inherit;
 }
 
@@ -220,7 +231,7 @@ html, body {
 .link a {
   text-decoration: none;
   color: var(--text);
-  font-weight: 600;
+  font-weight: 700;
   font-size: calc(var(--body-size) * var(--section-scale));
   display: inline-block;
   padding: 6px 10px;
@@ -274,7 +285,7 @@ html, body {
 
 .close-contact a {
   color: var(--text);
-  font-weight: 400;
+  font-weight: 200;
   text-decoration: underline;
 }
 
@@ -308,8 +319,8 @@ html, body {
   :root { --left: 60px; }
   .section { padding: var(--section-top) 24px 0 0; }
   .content { margin-right: 24px; }
-  .brand { font-size: 24px; }
-  .subtitle { font-size: 16px; }
+  .brand { font-size: clamp(19px, 4vw, 28px); }
+  .subtitle { font-size: 12px; }
 
   #contexts .content {
     grid-template-columns: 1fr;
@@ -326,8 +337,8 @@ html, body {
   :root { --left: calc(30px * 1.15); }
   .section { padding: var(--section-top) 16px 0 0; }
   .content { margin-right: 16px; }
-  .brand { font-size: 20px; }
-  .subtitle { font-size: 14px; }
+  .brand { font-size: clamp(18px, 5.8vw, 24px); }
+  .subtitle { font-size: 11px; }
   .bo { font-size: 16px; }
   .link a { padding: 10px 12px; line-height: 1; }
 }

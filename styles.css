@@ -193,14 +193,14 @@ body.font-compare {
 .section p,
 .section li {
   font-size: calc(var(--body-size) * var(--section-scale));
-  font-weight: 200;
+  font-weight: 300;
   line-height: 1.5;
 }
 
 /* Home page main text */
 .section .home-text {
   font-size: calc(var(--body-size) * 1.8 * var(--section-scale));
-  font-weight: 200;
+  font-weight: 300;
   line-height: 1.24;
   letter-spacing: -0.015em;
   margin: 0;
@@ -216,7 +216,7 @@ body.font-compare {
 }
 
 .section strong {
-  font-weight: 700;
+  font-weight: 600;
   font-size: inherit;
 }
 
@@ -285,7 +285,7 @@ body.font-compare {
 
 .close-contact a {
   color: var(--text);
-  font-weight: 200;
+  font-weight: 400;
   text-decoration: underline;
 }
 

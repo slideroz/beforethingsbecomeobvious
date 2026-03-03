@@ -220,6 +220,23 @@ body.font-compare {
   font-size: inherit;
 }
 
+.section h2 {
+  font-size: calc(var(--body-size) * var(--section-scale));
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0 0 calc(22px * var(--section-scale)) 0;
+}
+
+.section ul {
+  margin: 0 0 calc(22px * var(--section-scale)) 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.section li + li {
+  margin-top: calc(10px * var(--section-scale));
+}
+
 /* Contexts section layout */
 #contexts .content p {
   margin: 0;
@@ -289,6 +306,21 @@ body.font-compare {
   text-decoration: underline;
 }
 
+/* Section counter */
+.section-counter {
+  position: fixed;
+  bottom: calc(36px + var(--safe-bottom));
+  left: calc(var(--left) + var(--safe-left));
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  z-index: 10;
+  user-select: none;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
 /* BO mark */
 .bo {
   position: fixed;
@@ -348,6 +380,7 @@ body.font-compare {
   opacity: 1;
   pointer-events: auto;
 }
+.is-too-small .section-counter { opacity: 0; }
 
 @media (max-width: 375px), (max-height: 667px) {
   :root {

@@ -399,6 +399,11 @@
     }, 800);
   };
 
+  const counterEl = document.querySelector(".counter-current");
+  const totalEl = document.querySelector(".counter-total");
+  const pad = (n) => String(n).padStart(2, "0");
+  if (totalEl) totalEl.textContent = pad(sections.length);
+
   const setActive = (index) => {
     currentIndex = clamp(index, 0, sections.length - 1);
     sections.forEach((section, i) => {
@@ -414,6 +419,8 @@
         clearContent(content);
       }
     });
+
+    if (counterEl) counterEl.textContent = pad(currentIndex + 1);
 
     fitAllSections();
     updateViewportState();

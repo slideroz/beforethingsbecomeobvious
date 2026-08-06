@@ -1,157 +1,1460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Before Things Become Obvious | Product & UX Design</title>
-  <meta name="description" content="Product and UX design for complex digital platforms and services — most effective before solutions feel inevitable, in environments where governance, alignment, and early framing matter." />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="canonical" href="https://www.beforethingsbecomeobvious.com/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.beforethingsbecomeobvious.com/" />
-  <meta property="og:title" content="Before Things Become Obvious | Product & UX Design" />
-  <meta property="og:description" content="Product and UX design for complex digital platforms and services — most effective before solutions feel inevitable, in environments where governance, alignment, and early framing matter." />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Before Things Become Obvious | Product & UX Design" />
-  <meta name="twitter:description" content="Product and UX design for complex digital platforms and services — most effective before solutions feel inevitable." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&family=Source+Sans+3:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8">
+<title>Oussama Benbila — Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Oussama Benbila — design for public services, brand and product. Work with Environment and Climate Change Canada, the Canada School of Public Service, PCPO, ESDC and 2M TV.">
+<link rel="icon" href="./favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oussama Benbila">
+<meta property="og:title" content="Before Things Become Obvious">
+<meta property="og:description" content="Oussama Benbila — design for public services, brand and product.">
+<meta property="og:image" content="./assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Before Things Become Obvious — Oussama Benbila">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Before Things Become Obvious">
+<meta name="twitter:description" content="Oussama Benbila — design for public services, brand and product.">
+<meta name="twitter:image" content="./assets/og.png">
+<script src="./support.js"></script>
 </head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(0.968 0.003 260); --fg: oklch(0.2 0.008 270);
+      --muted: oklch(0.45 0.008 270); --muted2: oklch(0.5 0.008 270);
+      --dim: oklch(0.55 0.008 270); --dim2: oklch(0.62 0.008 270);
+      --rule: oklch(0.9 0.004 260); --rule2: oklch(0.86 0.006 260);
+      --hatch-a: oklch(0.925 0.004 260); --hatch-b: oklch(0.955 0.003 260);
+      --plate: transparent; --panel: var(--bg);
+    }
+    html[data-theme="dark"] {
+      --bg: oklch(0.175 0.006 265); --fg: oklch(0.945 0.004 260);
+      --muted: oklch(0.73 0.006 265); --muted2: oklch(0.68 0.006 265);
+      --dim: oklch(0.62 0.006 265); --dim2: oklch(0.56 0.006 265);
+      --rule: oklch(0.31 0.007 265); --rule2: oklch(0.36 0.007 265);
+      --hatch-a: oklch(0.235 0.007 265); --hatch-b: oklch(0.205 0.006 265);
+      --plate: oklch(0.97 0.003 260);
+    }
+    body { margin: 0; background: var(--bg); }
+    ::selection { background: oklch(0.585 0.245 28 / 0.24); }
+    a { color: var(--fg); }
+    a:hover { color: oklch(0.585 0.245 28); }
+    .snap::-webkit-scrollbar { width: 0; }
+    /* a section never grows past the viewport — it scrolls inside itself instead,
+       so a short window can always reach the whole grid */
+    .snap > section { height: 100vh; max-height: 100vh; overflow-y: auto; scrollbar-width: none; justify-content: safe center !important; }
+    .snap > section::-webkit-scrollbar { width: 0; }
+    @media (max-width: 1000px) { .shots { grid-template-columns: minmax(0, 1fr) !important; } }
+    @media (max-width: 1200px) {
+      .snap > section { padding-right: 132px !important; }
+      /* three across keeps the set to two rows at every tablet and small-laptop size */
+      .workgrid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: clamp(14px,2vw,26px) !important; }
+    }
+    /* narrow: the set reads as a list — one project per row, rule above, client right-aligned */
+    /* the signature drops to initials where the header runs out of room */
+    .sig-short { display: none; }
+    .head-theme { display: none; }
+    @media (max-width: 760px) {
+      .sig-full { display: none; }
+      .sig-short { display: inline; }
 
-<body class="font-saved">
-  <header class="header">
-    <a href="#home" id="brandHomeLink" class="brand" aria-label="Back to top">
-      Before <span class="shuffle-word" data-text="Things">Things</span><br>Become Obvious
-    </a>
-    <div class="subtitle">Product & UX Design</div>
+      .snap > section { padding-right: clamp(24px,8vw,140px) !important; }
+      .workgrid { grid-template-columns: minmax(0, 1fr) !important; gap: 0 !important; }
+      .workitem { gap: 10px !important; padding: 12px 0 14px !important; }
+      .workitem-txt { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+      .workitem-org { margin-top: 0 !important; text-align: left; flex: none; }
+      .work-hint { display: none; }
+      /* phones: pin the header to the glass and let only the section rail move.
+         dvh keeps a section exactly one screen tall as the URL bar collapses */
+      .pagehead { position: fixed !important; padding: 18px 22px !important; }
+      /* the rail is hidden here, so the light/dark control moves into the header */
+      .head-theme { display: grid !important; }
+      .snap > section { height: 100dvh; max-height: 100dvh; padding-bottom: 52px !important; }
+    }
+    html, body { overflow: hidden; overscroll-behavior: none; }
+
+    @media (max-width: 760px) {
+      .f-index { display: none !important; }
+      .proj-panel { padding: 34px 22px 0 22px !important; }
+      .proj-head { margin-right: 0 !important; gap: 14px !important; margin-bottom: 14px !important; }
+      /* titles hold non-breaking spaces to control their line breaks on wide screens;
+         at phone width those runs have to be allowed to break or they slide under the cross */
+      .proj-title { max-width: none !important; overflow-wrap: anywhere; }
+      .proj-head button { width: 30px !important; height: 30px !important; }
+      .proj-head button > span { top: 14px !important; width: 30px !important; }
+      .proj-shots { margin-top: 34px !important; }
+      /* the caption sits under its image and the shadow lightens on a small, bright screen */
+      .shot { grid-template-columns: minmax(0, 1fr) !important; gap: 12px !important; width: 100% !important; margin-left: 0 !important; margin-top: 34px !important; margin-bottom: 0 !important; }
+      /* the group label joins the flow instead of hanging above, where the tightened
+         margin would drop it onto the previous image */
+      .shot:has(.shot-group) { margin-top: 46px !important; }
+      .shot-group { position: static !important; grid-row: 1 !important; grid-column: 1 !important; margin-bottom: 2px; white-space: normal !important; }
+      .shot-img { grid-row: 2 !important; grid-column: 1 !important; box-shadow: 0 6px 16px rgba(0,0,0,0.10) !important; }
+      .shot-cap { grid-row: 3 !important; grid-column: 1 !important; padding-bottom: 0 !important; }
+      .turn { max-width: none !important; margin-bottom: 30px !important; }
+      .proj-panel .art-clear { max-width: 100% !important; }
+    }
+    @keyframes slabDropNear { from { transform: translateY(-52px); } to { transform: none; } }
+    @keyframes slabDropFar { from { transform: translateY(-96px); } to { transform: none; } }
+    @media (max-width: 1150px) { .iso-art { display: none; } }
+    @media (min-width: 1151px) { .art-clear { max-width: 64%; } }
+    @keyframes caretBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+    /* clips that carry their own shadow don't get a second one */
+    .shot-img.shot-flat { box-shadow: none !important; }
+    :focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+    section:focus-visible { outline: 1px dashed var(--rule2); outline-offset: -10px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</helmet>
+
+<div style="position:relative; height:100vh; background:var(--bg); color:var(--fg); font-family:'Geist','Helvetica Neue',Helvetica,Arial,sans-serif; overflow:hidden;">
+
+  <header class="pagehead" style="position:absolute; top:0; left:0; right:0; z-index:20; display:flex; align-items:baseline; justify-content:space-between; padding:26px 40px; pointer-events:none;">
+    <button type="button" onClick="{{ goHome }}" aria-label="Back to top" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:pointer; flex:1 1 auto; min-width:0; font-size:13px; font-weight:700; letter-spacing:-0.01em; pointer-events:auto;"><span aria-hidden="true">Before <span style="color:{{ wordColor }};">{{ miniWord }}</span> Become Obvious</span></button>
+    <div style="display:flex; align-items:center; gap:12px; flex:none;">
+      <div style="font-size:13px; font-weight:700; letter-spacing:-0.01em; color:var(--muted); white-space:nowrap;"><span class="sig-full">Oussama Benbila</span><span class="sig-short" aria-hidden="true">OBB</span></div>
+      <button type="button" class="head-theme" onClick="{{ toggleTheme }}" aria-label="Toggle dark mode" aria-pressed="{{ isDark }}" style="padding:0; border:none; background:none; width:44px; height:44px; margin:-14px -14px -14px -14px; place-items:center; align-self:center; cursor:pointer; pointer-events:auto; flex:none;"><span style="display:block; width:15px; height:15px; border-radius:50%; border:1.5px solid var(--fg); box-sizing:border-box; background:linear-gradient(90deg, var(--fg) 0 50%, transparent 50% 100%); opacity:0.5;"></span></button>
+    </div>
   </header>
 
-  <div class="bo" id="boToggle" tabindex="0" aria-label="Reveal name">BO</div>
-  <div class="section-counter" aria-live="polite" aria-atomic="true">
-    <span class="counter-current">01</span><span class="counter-sep"> / </span><span class="counter-total">07</span>
-  </div>
+  <main style="display:contents;"><div class="snap" ref="{{ scrollRef }}" onScroll="{{ onScroll }}" style="height:100vh; overflow:hidden; scrollbar-width:none;">
 
-  <main class="page">
-    <div class="height-warning" aria-live="polite">expecting something?</div>
-
-    <!-- HOME -->
-    <section class="section hero" id="home">
-      <div class="content">
-        <p class="home-text">
-          Most of what I do happens before solutions feel inevitable — when the problem
-          is still fuzzy, constraints are real, and decisions matter more than artefacts.
-        </p>
+    <!-- 1: hero -->
+    <section data-screen-label="Hero" aria-label="Hero" tabIndex="0" ref="{{ secRef0 }}" style="position:relative; min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 clamp(56px,9vw,170px) 0 clamp(24px,8vw,140px);">
+      <h1 style="font-weight: 700; font-size: min(8.2vw, 130px); line-height: 0.92; letter-spacing: -0.035em; margin: 0 0 0 -0.055em; max-width: 18ch"><span style="display:block; white-space:nowrap;">Before <button type="button" tabIndex="-1" aria-hidden="true" onClick="{{ wordClick }}" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:pointer; position:relative; display:inline-block; color:{{ wordColor }}; letter-spacing:inherit; vertical-align:baseline;"><span style="visibility:hidden;">{{ heroPlain }}</span><span style="position:absolute; left:0; top:0; white-space:nowrap; display:flex;"><sc-for list="{{ heroChars }}" as="c" hint-placeholder-count="6"><span style="color:{{ c.color }}; filter:blur({{ c.blur }}px); opacity:{{ c.op }}; transform:translateY({{ c.dy }}px); display:inline-block; transition:color 55ms linear; white-space:pre;">{{ c.ch }}</span></sc-for></span></button></span>Become Obvious</h1>
+      <div style="display:flex; flex-direction:column; gap:clamp(18px,2.4vh,26px); margin-top:clamp(28px,5vh,60px); max-width:72ch;">
+        <p style="font-size: clamp(20px,2.15vw,33px); line-height: 1.25; letter-spacing: -0.012em; color: var(--fg); margin: 0; font-weight: 400; text-wrap: pretty;">I design and build digital products, from framing what gets made to the thing that ships. Brand and broadcast came first — they taught me to make things that hold up under a close look.</p>
+        <a href="./assets/nng-certificate.pdf" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:14px; text-decoration:none; color:inherit; align-self:flex-start; margin-top:clamp(6px,1.4vh,14px);">
+          <span style="display:inline-flex; padding:4px 7px; background:var(--plate); border-radius:2px;"><img src="./assets/nng.png" alt="Nielsen Norman Group" style="height:22px; width:auto; display:block;"></span>
+          <span style="font-size:13px; line-height:1.4; color:var(--muted2);">UX certified</span>
+        </a>
+        <div style="display:flex; flex-direction:column; gap:12px; margin-top:clamp(14px,3vh,34px);">
+          <span style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted2);">Worked with</span>
+          <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 26px; font-size:14px; line-height:1.5; color:var(--muted); max-width:60ch;">
+            <span>Samsung</span>
+            <span>Philips</span>
+            <span>IKEA</span>
+            <span>Pfizer</span>
+            <span>Volkswagen</span>
+            <span>Renault</span>
+            <span>Capgemini</span>
+            <span>USAID</span>
+            <span>GIZ</span>
+            <span>Sofitel</span>
+            <span>Carana Corporation</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- THINKING -->
-    <section class="section" id="thinking">
-      <div class="content">
-        <h2>I work best when clarity doesn't come for free.</h2>
-        <p>
-          That usually means competing priorities, multiple stakeholders, and real
-          constraints around governance, accessibility, and delivery. I use product
-          design, UX, and service design to make sense of complexity, align
-          people, and help teams move forward with intent — not momentum.
-        </p>
+    <!-- 2 -->
+    <section data-screen-label="Clarity" aria-label="Clarity" tabIndex="0" ref="{{ secRef1 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 clamp(80px,9vw,170px) 0 clamp(24px,8vw,140px);">
 
-        <p>
-          I'm comfortable slowing things down early so they can move faster later.
-        </p>
+      <div style="filter:blur({{ s2Blur }}px); opacity:{{ s2Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
+        <h2 style="font-weight:700; font-size:clamp(32px,5.4vw,76px); line-height:1; letter-spacing:-0.03em; margin:0 0 28px; max-width:22ch;" aria-label="Clarity doesn't come for free.">{{ tw.s2.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s2.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s2.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s2.tail }}</span></h2>
       </div>
+      <p style="font-size: clamp(18px,1.65vw,26px); line-height: 1.6; color: var(--muted); max-width: 52ch; margin: 0; filter: blur({{ s2Blur }}px); opacity: {{ s2Op }}; transition: filter 0.12s linear, opacity 0.12s linear">I've never been handed a clear brief. Teams rarely lack momentum; what's missing is agreement about what they're building, and momentum makes that gap expensive. Clarity is what's left after the research, the arguments, and the three versions I threw away.</p>
     </section>
 
-    <!-- CRAFT -->
-    <section class="section" id="craft">
-      <div class="content">
-        <h2>Craft is part of how I think, not just how I finish.</h2>
-        <p>
-          I'm hands-on across the full range of design resolution — from product architecture
-          and information structure through to interaction detail, interface design, and visual
-          craft. The visual dimension isn't separate from the systems work: it's how the systems
-          work becomes visible and usable.
-        </p>
+    <!-- 3 -->
+    <section data-screen-label="Craft" aria-label="Craft" tabIndex="0" ref="{{ secRef2 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 clamp(80px,9vw,170px) 0 clamp(24px,8vw,140px);">
 
-        <p>
-          Years working across brand design, digital communications, and product contexts built
-          a standard for how things should look, feel, and hold together that I carry into every
-          engagement. I care about typography, hierarchy, spacing, and interaction detail —
-          especially in content-heavy, enterprise, or brand-sensitive environments.
-        </p>
-
-        <p>
-          For me, design quality is about reducing friction, making decisions legible, and
-          helping people trust what they see.
-        </p>
-      </div>
+      <h2 style="font-weight:700; font-size:clamp(32px,5.4vw,76px); line-height:1; letter-spacing:-0.03em; margin:0 0 28px; max-width:22ch; filter:blur({{ s3Blur }}px); opacity:{{ s3Op }}; transition:filter 0.12s linear, opacity 0.12s linear;" aria-label="Craft is the thinking, not the finish.">{{ tw.s3.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s3.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s3.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s3.tail }}</span></h2>
+      <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:52ch; margin:0; filter:blur({{ s3Blur }}px); opacity:{{ s3Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">Craft is attention to the parts nobody names — continuity, rhythm, the detail that makes something feel intuitive instead of explained. Mostly it's invisible until it's missing. I still build things with my own hands, which keeps me honest about what's actually possible.</p>
     </section>
 
-    <!-- PROBLEMS -->
-    <section class="section" id="problems">
-      <div class="content">
-        <h2>I'm most useful when teams need to turn complexity into something usable.</h2>
-        <p>
-          I'm drawn to early, ambiguous problem spaces — platforms where content, structure,
-          and systems intersect; work that balances usability with accessibility, policy, and operational
-          reality.
-        </p>
+    <!-- 4 -->
+    <section data-screen-label="Scrutiny" aria-label="Scrutiny" tabIndex="0" ref="{{ secRef3 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 clamp(80px,9vw,170px) 0 clamp(24px,8vw,140px);">
 
-        <p>
-          I help bring shape to complexity before it hardens into decisions that are difficult to undo.
-        </p>
-      </div>
+      <h2 style="font-weight:700; font-size:clamp(32px,5.4vw,76px); line-height:1; letter-spacing:-0.03em; margin:0 0 28px; max-width:22ch; filter:blur({{ s4Blur }}px); opacity:{{ s4Op }}; transition:filter 0.12s linear, opacity 0.12s linear;" aria-label="I design for the person looking for the flaw.">{{ tw.s4.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s4.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s4.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s4.tail }}</span></h2>
+      <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:52ch; margin:0; filter:blur({{ s4Blur }}px); opacity:{{ s4Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">Most of my work is deciding — what to build, what to leave out, what the interface is allowed to imply. In regulated work those decisions get read back to me by legal, privacy, security and the people who have to live with them. So I design them to hold up when they're read.</p>
     </section>
 
-    <!-- PRESENCE -->
-    <section class="section" id="presence">
-      <div class="content">
-        <h2>How I show up depends on what the work needs.</h2>
-        <p>
-          Sometimes the priority is early framing — defining the problem clearly before
-          the solution space opens up. Sometimes it's deep in the interface, working
-          through the details until things feel precise and right. Sometimes it's both,
-          across the same project.
-        </p>
-
-        <p>
-          What stays consistent: I work as a practitioner. I'm in the work, not above it.
-        </p>
+    <!-- 5: work -->
+    <section data-screen-label="Work" aria-label="Work" tabIndex="0" ref="{{ secRef4 }}" style="position:relative; min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 clamp(80px,9vw,170px) 0 clamp(24px,8vw,140px);">
+      <div style="opacity:{{ gridOp }}; transform:translateY({{ gridShift }}px); transition:opacity 0.26s cubic-bezier(0.33,0,0.2,1), transform 0.26s cubic-bezier(0.33,0,0.2,1); pointer-events:{{ gridEvents }};">
+        <div style="display:flex; align-items:baseline; gap:20px; margin-bottom:clamp(18px,2.6vh,26px); filter:blur({{ s5Blur }}px); opacity:{{ s5Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
+          <h2 style="font-weight:700; font-size:clamp(32px,5.4vw,76px); line-height:1; letter-spacing:-0.03em; margin:0;" aria-label="Selected work">{{ tw.s5.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s5.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s5.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s5.tail }}</span></h2>
+        </div>
+        <p class="work-hint" style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:52ch; margin:0 0 clamp(24px,4vh,44px); filter:blur({{ s5Blur }}px); opacity:{{ s5Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">What everyone assumed, and what was actually true.</p>
+        <div class="workgrid" style="display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:clamp(16px,2vw,32px); filter:blur({{ s5Blur }}px); opacity:{{ s5Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
+          <sc-for list="{{ works }}" as="w" hint-placeholder-count="5">
+            <button type="button" onMouseEnter="{{ w.onEnter }}" onMouseLeave="{{ w.onLeave }}" onClick="{{ w.onOpen }}" aria-label="{{ w.openLabel }}" class="workitem" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:14px; transform:translateY({{ w.lift }}px); transition:transform 0.12s linear;">
+              <div style="height:1px; background:{{ w.rule }}; transition:background-color 0.12s linear;"></div>
+              <div class="workitem-txt">
+                <div style="font-size:19px; font-weight:700; letter-spacing:-0.02em; line-height:1.2; color:{{ w.color }}; transition:color 0.12s linear;">{{ w.title }}</div>
+                <div class="workitem-org" style="display:none;"></div>
+              </div>
+            </button>
+          </sc-for>
+        </div>
       </div>
+
     </section>
 
-    <!-- CONTEXTS -->
-    <section class="section" id="contexts">
-      <div class="content">
-        <h2>The kinds of work I do:</h2>
-        <ul>
-          <li>Product design and UX strategy across complex digital platforms and services.</li>
-          <li>Information architecture and content-heavy interface design.</li>
-          <li>Interaction design, visual systems, and design patterns.</li>
-          <li>Privacy-aware and governance-aligned product decisions.</li>
-          <li>Service design and early problem framing in multi-stakeholder environments.</li>
+    <!-- 6 -->
+    <section data-screen-label="Practice" aria-label="Practice" tabIndex="0" ref="{{ secRef5 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 clamp(80px,9vw,170px) 0 clamp(24px,8vw,140px);">
+      <h2 style="font-weight:700; font-size:clamp(32px,5.4vw,76px); line-height:1; letter-spacing:-0.03em; margin:0 0 28px; max-width:22ch; filter:blur({{ s6Blur }}px); opacity:{{ s6Op }}; transition:filter 0.12s linear, opacity 0.12s linear;" aria-label="I make what I design.">{{ tw.s6.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s6.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s6.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s6.tail }}</span></h2>
+      <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:52ch; margin:0; text-wrap:pretty; filter:blur({{ s6Blur }}px); opacity:{{ s6Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">I came to design from electronic engineering — two years in, then out, because the logic underneath things was more interesting than the circuits. Twenty years later that's still the job: frame the problem, refine the interface, write enough code to find out whether it works.</p>
+      <div style="display:flex; flex-direction:column; gap:12px; margin-top:clamp(28px,5vh,56px); filter:blur({{ s6Blur }}px); opacity:{{ s6Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
+        <span style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted2);">Recognition</span>
+        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; font-size:14px; line-height:1.5; color:var(--muted); max-width:64ch;">
+          <li>1st prize, UNESCO photography</li>
+          <li>1st prize, UNESCO logo competition, from 110 entries</li>
+          <li>1st prize, Golden Web Awards, Architecture category</li>
+          <li>Recognition Prize, International Wildlife and Environment Film Festival</li>
+          <li>Solo exhibition, <em style="font-style:italic;">Ferrouj Attitude</em>, Théâtre National Mohammed V</li>
         </ul>
       </div>
     </section>
 
-    <!-- CLOSE -->
-    <section class="section" id="close">
-      <div class="content">
-        <h2>This work lives before things become obvious.</h2>
-        <p>
-          That's where I'm most effective — helping teams see clearly, decide deliberately,
-          and build with intention.
-        </p>
-
-        <p class="close-contact no-typewriter">
-          <a href="mailto:oussama.benbila@gmail.com" id="selectedWork">oussama.benbila@gmail.com</a>
-        </p>
+    <!-- 7: closing -->
+    <section data-screen-label="Closing" aria-label="Closing" tabIndex="0" ref="{{ secRef6 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 clamp(80px,9vw,170px) 0 clamp(24px,8vw,140px);">
+      <h2 style="font-weight:700; font-size:clamp(38px,8vw,120px); line-height:0.94; letter-spacing:-0.035em; margin:0 0 32px; max-width:16ch; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">Before <span style="color:{{ wordColor }};">Things</span> Become Obvious</h2>
+      <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:46ch; margin:0 0 36px; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">The best time to bring me in is while the problem is still unclear. If that's where you are, write to me.</p>
+      <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:14px 38px; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
+        <a href="mailto:oussama.benbila@gmail.com" style="font-size:clamp(18px,2.2vw,30px); font-weight:700; letter-spacing:-0.02em; text-decoration:none; color:var(--fg); border-bottom:3px solid {{ wordColor }}; padding-bottom:2px;" style-hover="color:{{ wordColor }};">oussama.benbila@gmail.com</a>
+        <a href="https://www.linkedin.com/in/obenbila/" target="_blank" rel="noopener" style="font-size:clamp(15px,1.35vw,19px); font-weight:700; letter-spacing:-0.01em; text-decoration:none; color:var(--muted2); border-bottom:2px solid var(--rule2); padding-bottom:2px;" style-hover="color:{{ wordColor }};">LinkedIn</a>
+        <a href="https://www.instagram.com/oussamabenbila/" target="_blank" rel="noopener" style="font-size:clamp(15px,1.35vw,19px); font-weight:700; letter-spacing:-0.01em; text-decoration:none; color:var(--muted2); border-bottom:2px solid var(--rule2); padding-bottom:2px;" style-hover="color:{{ wordColor }};">Instagram</a>
       </div>
     </section>
 
-  </main>
+  </div></main>
 
-  <script src="app.js"></script>
+  <nav class="f-index" aria-label="Sections" style="position:absolute; right:40px; top:50%; transform:translateY(-50%); z-index:20; display:flex; flex-direction:column; gap:14px; align-items:flex-end;">
+    <sc-for list="{{ ticks }}" as="t" hint-placeholder-count="7">
+      <button type="button" onClick="{{ t.onClick }}" aria-label="{{ t.aria }}" aria-current="{{ t.current }}" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:pointer; font-size:{{ t.size }}px; font-weight:700; color:{{ t.color }}; opacity:{{ t.opacity }}; font-variant-numeric:tabular-nums; line-height:1; transition:font-size 0.25s ease, color 0.25s ease, opacity 0.25s ease;">{{ t.label }}</button>
+    </sc-for>
+    <div style="width:14px; height:1px; background:var(--rule); margin:5px 0;"></div>
+    <button type="button" onClick="{{ toggleTheme }}" aria-label="Toggle dark mode" aria-pressed="{{ isDark }}" style="padding:0; width:13px; height:13px; border-radius:50%; border:1.5px solid var(--fg); background:linear-gradient(90deg, var(--fg) 0 50%, transparent 50% 100%); opacity:0.35; cursor:pointer; transition:opacity 0.25s ease;" style-hover="opacity:0.95;"></button>
+  </nav>
+
+  <sc-if value="{{ isOpen }}">
+    <div style="position:fixed; inset:0; z-index:28; background:var(--panel); opacity:{{ panelOp }}; transition:opacity 0.2s linear; transform:translateZ(0);"></div>
+<sc-if value="{{ openHasArt }}">
+      <div class="iso-art" style="position:fixed; z-index:29; pointer-events:none; opacity:{{ panelOp }}; transition:opacity 0.2s linear; top:178px; bottom:0; left:calc(64% - 120px); right:calc(4% + 120px); overflow:hidden;">
+        <svg class="iso" viewBox="0 -130 623 2494" width="85%" style="display:block; margin-left:auto;" fill="none" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="{{ wordColor }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <path d="M70 2322.7 L139 2362.7"></path>
+        <path d="M139 2362.7 L208 2322.7"></path>
+        <path d="M139 1082.7 L139 2362.7"></path>
+        <path d="M70 1042.7 L70 2322.7"></path>
+        <path d="M208 2322.7 L208 1042.7"></path>
+        <path d="M139 1002.7 L208 1042.7"></path>
+        <path d="M208 1042.7 L139 1082.7"></path>
+        <path d="M139 1082.7 L70 1042.7"></path>
+        <path d="M70 1042.7 L139 1002.7"></path>
+        <path d="M70 961.2 L70 2210.2"></path>
+        <path d="M208 961.2 L208 2239.2"></path>
+        <path d="M70 881.2 L139 921.2"></path>
+        <path d="M139 921.2 L208 881.2"></path>
+        <path d="M208 881.2 L277 921.2"></path>
+        <path d="M277 921.2 L208 961.2"></path>
+        <path d="M208 961.2 L139 921.2"></path>
+        <path d="M208 442.7 L208 582.7"></path>
+        <path d="M208 505.7 L208 582.7"></path>
+        <path d="M277 465.7 L346 505.7"></path>
+        <path d="M346 505.7 L277 545.7"></path>
+        <path d="M277 545.7 L208 505.7"></path>
+        <path d="M208 505.7 L277 465.7"></path>
+        <path d="M208 661.7 L208 882.2"></path>
+        <path d="M208 882.2 L208 799.7"></path>
+        <path d="M208 799.7 L208 882.2"></path>
+        <path d="M208 2239.2 L277 2199.2"></path>
+        <path d="M1 921.2 L1 2170.2"></path>
+        <path d="M139 921.2 L70 961.2"></path>
+        <path d="M70 961.2 L1 921.2"></path>
+        <path d="M1 921.2 L70 881.2"></path>
+        <path d="M1 2170.2 L70 2210.2"></path>
+        <path d="M139 759.7 L208 799.7"></path>
+        <path d="M208 799.7 L277 759.7"></path>
+        <path d="M277 2199.2 L277 921.2"></path>
+        <path d="M70 799.7 L70 882.2"></path>
+        <path d="M208 799.7 L139 839.7"></path>
+        <path d="M139 839.7 L70 799.7"></path>
+        <path d="M70 799.7 L139 759.7"></path>
+        <path d="M277 839.7 L277 2116.7"></path>
+        <path d="M346 2076.7 L346 799.7"></path>
+        <path d="M277 759.7 L346 799.7"></path>
+        <path d="M346 799.7 L277 839.7"></path>
+        <path d="M277 839.7 L208 799.7"></path>
+        <path d="M277 326.7 L277 466.7"></path>
+        <path d="M277 466.7 L277 402.7"></path>
+        <path d="M277 231 L277 467"></path>
+        <path d="M415 306 L415 231"></path>
+        <path d="M346 191 L415 231"></path>
+        <path d="M415 231 L346 271"></path>
+        <path d="M346 271 L277 231"></path>
+        <path d="M277 231 L346 191"></path>
+        <path d="M277 545.7 L277 760.7"></path>
+        <path d="M277 760.7 L277 621.7"></path>
+        <path d="M276.7 681.9 L276.7 760.8"></path>
+        <path d="M277 2116.7 L346 2076.7"></path>
+        <path d="M345.7 721.9 L345.7 1985.9"></path>
+        <path d="M414.7 1945.9 L414.7 681.9"></path>
+        <path d="M345.7 641.9 L414.7 681.9"></path>
+        <path d="M414.7 681.9 L345.7 721.9"></path>
+        <path d="M345.7 721.9 L276.7 681.9"></path>
+        <path d="M276.7 681.9 L345.7 641.9"></path>
+        <path d="M483.7 497 L483.7 1721"></path>
+        <path d="M346 271 L346 643"></path>
+        <path d="M414.7 384.9 L414.7 532.3"></path>
+        <path d="M345.7 344.9 L345.7 643.2"></path>
+        <path d="M414.7 304.9 L483.7 344.9"></path>
+        <path d="M483.7 344.9 L414.7 384.9"></path>
+        <path d="M414.7 384.9 L345.7 344.9"></path>
+        <path d="M345.7 344.9 L414.7 304.9"></path>
+        <path d="M414.7 457 L414.7 532"></path>
+        <path d="M345.7 571 L345.7 643"></path>
+        <path d="M346 643.2 L346 505.7"></path>
+        <path d="M345.7 1985.9 L414.7 1945.9"></path>
+        <path d="M483.7 1835 L483.7 571"></path>
+        <path d="M414.7 611 L414.7 1875"></path>
+        <path d="M414.7 531 L483.7 571"></path>
+        <path d="M483.7 571 L414.7 611"></path>
+        <path d="M414.7 611 L345.7 571"></path>
+        <path d="M345.7 571 L414.7 531"></path>
+        <path d="M552.7 1681 L552.7 457"></path>
+        <path d="M483.7 417 L552.7 457"></path>
+        <path d="M552.7 457 L483.7 497"></path>
+        <path d="M483.7 497 L414.7 457"></path>
+        <path d="M414.7 457 L483.7 417"></path>
+        <path d="M414.7 1875 L483.7 1835"></path>
+        <path d="M553 190.7 L553 1540.7"></path>
+        <path d="M484 150.7 L484 418.2"></path>
+        <path d="M622 1500.7 L622 150.7"></path>
+        <path d="M484 150.7 L553 110.7"></path>
+        <path d="M553 110.7 L622 150.7"></path>
+        <path d="M622 150.7 L553 190.7"></path>
+        <path d="M553 190.7 L484 150.7"></path>
+        <path d="M483.7 418.3 L483.7 344.9"></path>
+        <path d="M483.7 1721 L552.7 1681"></path>
+        <path d="M553 1540.7 L622 1500.7"></path>
+        <path d="M139 402.7 L139 760.7"></path>
+        <path d="M208 362.7 L277 402.7"></path>
+        <path d="M277 402.7 L208 442.7"></path>
+        <path d="M208 442.7 L139 402.7"></path>
+        <path d="M139 402.7 L208 362.7"></path>
+        <path d="M139 621.7 L139 760.7"></path>
+        <path d="M139 839.7 L139 1003.7"></path>
+        <path d="M139 1003.7 L139 921.2"></path>
+        <path d="M139 921.2 L139 1003.7"></path>
+        <path d="M208 286.7 L208 363.7"></path>
+        <path d="M277 326.7 L208 286.7"></path>
+        <path d="M208 286.7 L277 246.7"></path>
+        <path d="M208 581.7 L277 621.7"></path>
+        <path d="M277 621.7 L208 661.7"></path>
+        <path d="M208 661.7 L139 621.7"></path>
+        <path d="M139 621.7 L208 581.7"></path>
+                    <g style="animation:slabDropNear 0.7s cubic-bezier(0.33,0,0.2,1) 260ms both">
+          <path d="M484 91 L553 131 L553 150 L484 110 Z" fill="var(--panel)" stroke="none"></path>
+          <path d="M622 91 L553 131 L553 150 L622 110 Z" fill="var(--panel)" stroke="none"></path>
+          <path d="M553 51 L622 91 L553 131 L484 91 Z" fill="var(--panel)" stroke="none"></path>
+          <path d="M484 91 L553 51" stroke-dasharray="3 3"></path>
+          <path d="M553 51 L622 91" stroke-dasharray="3 3"></path>
+          <path d="M622 91 L553 131" stroke-dasharray="3 3"></path>
+          <path d="M553 131 L484 91" stroke-dasharray="3 3"></path>
+          <path d="M484 91 L484 110" stroke-dasharray="3 3"></path>
+          <path d="M622 91 L622 110" stroke-dasharray="3 3"></path>
+          <path d="M553 131 L553 150" stroke-dasharray="3 3"></path>
+          <path d="M484 110 L553 150" stroke-dasharray="3 3"></path>
+          <path d="M553 150 L622 110" stroke-dasharray="3 3"></path>
+        </g>
+        <g style="animation:slabDropFar 0.75s cubic-bezier(0.33,0,0.2,1) 380ms both">
+          <path d="M484 41 L553 81 L553 100 L484 60 Z" fill="var(--panel)" stroke="none"></path>
+          <path d="M622 41 L553 81 L553 100 L622 60 Z" fill="var(--panel)" stroke="none"></path>
+          <path d="M553 1 L622 41 L553 81 L484 41 Z" fill="var(--panel)" stroke="none"></path>
+          <path d="M484 41 L553 1"></path>
+          <path d="M553 1 L622 41"></path>
+          <path d="M622 41 L553 81"></path>
+          <path d="M553 81 L484 41"></path>
+          <path d="M484 41 L484 60"></path>
+          <path d="M622 41 L622 60"></path>
+          <path d="M553 81 L553 100"></path>
+          <path d="M484 60 L553 100"></path>
+          <path d="M553 100 L622 60"></path>
+        </g>
+      </g>
+    </svg>
+      </div>
+              </sc-if>
+    <div class="proj-panel" role="dialog" aria-modal="true" aria-label="{{ openTitle }}" style="position: fixed; inset: 0; z-index: 30; display: flex; flex-direction: column; box-sizing: border-box; padding: 56px clamp(80px,9vw,170px) 0 clamp(24px,8vw,140px); opacity:{{ panelOp }}; transition:opacity 0.2s linear; transform:translateZ(0); overflow-y: auto; overflow-x: hidden; overflow-anchor: none; scrollbar-width: none; top: 0px">
+      <div style="position:relative; z-index:1; padding-bottom:clamp(20px,4vh,40px); opacity:{{ contentOp }}; transform:translate3d(0,{{ contentY }}px,0); transition:opacity 0.24s ease-out 0.05s, transform 0.28s cubic-bezier(0.33,0,0.2,1) 0.05s;">
+        <div class="proj-head" style="display:flex; align-items:flex-start; gap:clamp(20px,4vw,60px); margin:0 calc(40px - clamp(80px,9vw,170px)) 12px 0;">
+        <blockquote class="art-clear turn" style="position:relative; font-size:clamp(26px,3.6vw,52px); line-height:1.05; font-weight:700; letter-spacing:-0.03em; max-width:20ch; margin:0; flex:1 1 auto; min-width:0; padding-left:clamp(22px,2.6vw,44px); text-wrap:pretty;"><span aria-hidden="true" style="position:absolute; left:0; top:0; font-size:1em; line-height:1.05; color:{{ wordColor }};">“</span><del style="display:block; color:{{ wordColor }}; text-decoration:none; margin-bottom:10px;"><span style="position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap;">Everyone assumed: </span><span style="text-decoration:line-through; text-decoration-color:{{ wordColor }}; text-decoration-thickness:3px;">{{ openAssumed }}</span>”</del><span style="color:var(--fg);"><span style="position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap;"> What was actually true: </span>{{ openFound }}</span></blockquote>
+          <button type="button" onClick="{{ closeWork }}" aria-label="Close project" style="flex:0 0 auto; margin-left:auto; background:none; border-radius:50%; position:relative; width:39px; height:39px; border:none; padding:0; cursor:pointer; transition:transform 0.35s cubic-bezier(0.33,0,0.2,1)" style-hover="transform:rotate(90deg) scale(1.15);">
+            <span style="position:absolute; left:0; top:19px; width:39px; height:2px; background:{{ wordColor }}; transform:rotate(45deg);"></span>
+            <span style="position:absolute; left:0; top:19px; width:39px; height:2px; background:{{ wordColor }}; transform:rotate(-45deg);"></span>
+          </button>
+        </div>
+        <div class="proj-meta" style="display:flex; flex-direction:column; gap:3px; margin:0 0 34px; padding-left:clamp(22px,2.6vw,44px); color:var(--muted2);">
+          <span style="font-size:15px; font-weight:700; letter-spacing:-0.01em;">{{ openRole }}</span>
+          <span style="font-size:14px;">{{ openOrg }}</span>
+        </div>
+        <h3 class="proj-title" style="display: none" aria-label="{{ openTitle }}">{{ pw.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ pw.caret }}; transition:opacity 0.45s ease-out; animation:{{ pw.anim }};"></span></span><span style="visibility:hidden;">{{ pw.tail }}</span></h3>
+        <p class="art-clear" style="font-size: 20px; line-height: 1.5; color: var(--muted); max-width: 72ch; margin: 0 0 52px; text-wrap: pretty">{{ openLine }}</p>
+
+        <div class="art-clear" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:34px 48px; max-width:1060px;">
+          <sc-for list="{{ openDid }}" as="d">
+            <div style="font-size:clamp(17px,1.4vw,21px); font-weight:700; letter-spacing:-0.02em; line-height:1.4; text-wrap:pretty;">
+              <sc-if value="{{ d.hasN }}" hint-placeholder-val="{{ true }}">
+                <span style="font-variant-numeric:tabular-nums; color:{{ wordColor }}; margin-right:0.28em;">{{ d.n }}</span>
+              </sc-if>
+              <sc-if value="{{ d.noN }}" hint-placeholder-val="{{ true }}">
+                <span style="display:inline-block; width:22px; height:2px; vertical-align:0.3em; background:{{ wordColor }}; margin-right:0.5em;"></span>
+              </sc-if>{{ d.label }}
+            </div>
+          </sc-for>
+        </div>
+
+        <div class="art-clear" style="display:{{ scaleShow }}; flex-wrap:wrap; gap:16px 44px; margin-top:52px; align-items:baseline; max-width:1060px;">
+          <sc-for list="{{ openScale }}" as="m">
+            <div style="display:flex; align-items:baseline; gap:9px;">
+              <span style="font-size:clamp(19px,1.7vw,26px); font-weight:700; letter-spacing:-0.03em; font-variant-numeric:tabular-nums; color:{{ wordColor }};">{{ m.n }}</span>
+              <span style="font-size:15px; color:var(--muted);">{{ m.l }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div class="shots proj-shots" style="display:flex; flex-direction:column; align-items:flex-start; margin-top:clamp(96px,14vh,168px);">
+          <sc-for list="{{ openShots }}" as="s">
+            <figure class="shot" ref="{{ s.ref }}" style="margin:0; display:grid; grid-template-columns:{{ s.cols }}; gap:clamp(18px,2.4vw,40px); align-items:end; width:{{ s.max }}; margin-left:{{ s.ml }}; margin-top:{{ s.mt }}; margin-bottom:{{ s.mb }}; position:relative; z-index:{{ s.z }}; transform-origin:{{ s.origin }}; ">
+              <sc-if value="{{ s.hasGroup }}" hint-placeholder-val="{{ false }}">
+                <div class="shot-group" style="position:absolute; left:0; top:-38px; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted2); white-space:nowrap;">{{ s.groupLabel }}</div>
+              </sc-if>
+              <div class="shot-img {{ s.flatCls }}" style="grid-column:{{ s.imgCol }}; position:relative; aspect-ratio:{{ s.ar }}; overflow:hidden; background:repeating-linear-gradient(45deg, var(--hatch-a), var(--hatch-a) 10px, var(--hatch-b) 10px, var(--hatch-b) 20px); box-shadow:{{ s.shadow }}; filter:blur({{ s.blur }}px); opacity:{{ s.op }}; transform:translateY({{ s.dy }}px); transition:filter 0.95s cubic-bezier(0.22,0.61,0.36,1), opacity 0.95s ease-out, transform 0.95s cubic-bezier(0.22,0.61,0.36,1); transition-delay:{{ s.delay }};">
+                <sc-if value="{{ s.notVideo }}" hint-placeholder-val="{{ true }}">
+                  <div style="position:absolute; inset:-1px; background-image:{{ s.bg }}; background-size:100% 100%; background-repeat:no-repeat;"></div>
+                </sc-if>
+                <sc-if value="{{ s.isVideo }}" hint-placeholder-val="{{ false }}">
+                  <video ref="{{ s.vidRef }}" src="{{ s.vidSrc }}" autoPlay="autoplay" loop="loop" playsInline="playsinline" preload="auto" style="position:absolute; inset:-1px; width:calc(100% + 2px); height:calc(100% + 2px); object-fit:cover; display:block;"></video>
+                </sc-if>
+              </div>
+              <sc-if value="{{ s.hasCap }}" hint-placeholder-val="{{ true }}">
+              <figcaption class="shot-cap" style="grid-row:1; grid-column:{{ s.capCol }}; font-size:13px; line-height:1.4; color:var(--muted2); padding-bottom:4px; opacity:{{ s.op }}; transition:opacity 0.95s ease-out;"><span style="display:block; font-variant-numeric:tabular-nums; color:{{ wordColor }}; margin-bottom:6px;">{{ s.num }}</span>{{ s.label }}</figcaption>
+              </sc-if>
+            </figure>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:clamp(48px,7vh,84px); padding-top:26px; border-top:1px solid var(--rule);">
+          <button type="button" onClick="{{ goNext }}" aria-label="{{ nextLabel }}" onMouseEnter="{{ nextOn }}" onMouseLeave="{{ nextOff }}" onFocus="{{ nextOn }}" onBlur="{{ nextOff }}" style="background:none; border:none; padding:0; margin:0; font:inherit; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:6px; max-width:34ch;">
+            <span style="font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted2);">Next project</span>
+            <span style="font-size:clamp(17px,1.5vw,22px); font-weight:700; letter-spacing:-0.02em; line-height:1.2; color:{{ nextHoverColor }}; transition:color 0.12s linear;">{{ nextFound }}</span>
+            <span style="font-size:14px; color:var(--muted2);">{{ nextOrg }}</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;landDuration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:150,&quot;max&quot;:1200,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;easing&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;snappy&quot;,&quot;options&quot;:[&quot;soft&quot;,&quot;snappy&quot;,&quot;glide&quot;,&quot;steady&quot;,&quot;overshoot&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;cooldown&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:400,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;triggerForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:8,&quot;max&quot;:300,&quot;step&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;directionLock&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:600,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:40,&quot;max&quot;:600,&quot;step&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:60,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;maxBlur&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:0,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Focus&quot;}}">
+class Component extends DCLogic {
+  state = { m: Array(7).fill({ blur: 0, opacity: 1 }), activeIndex: 0, revealed: 0, tick: 0, wordIndex: 0, workHover: null, theme: 'light', workOpen: null, panelIn: false, nextHover: false };
+
+  secEls = [];
+  secRefs = [0,1,2,3,4,5,6].map(i => (el) => { this.secEls[i] = el; });
+  scrollEl = null;
+  scrollRef = (el) => { this.scrollEl = el; };
+  fstops = ['1.4','2','2.8','4','5.6','8','11'];
+  // shuffle within each hue group, then round-robin across groups in a random
+  // group order per lap, so no two consecutive words share a colour
+  // words are shuffled within their hue group, then emitted by walking the hue
+  // wheel to its nearest neighbour and back (serpentine), so every colour change
+  // is a short step — emerald to blue to violet to magenta to red, then home
+  hueWalk = [155, 262, 295, 350, 25];
+  shuffleTail = () => {
+    const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    const pool = {};
+    for (const h of this.hueWalk) pool[h] = shuffle(this.wordGroups[h].filter(w => w !== 'Things'));
+    const out = [];
+    let dir = -1, i = this.hueWalk.length - 1;   // 'Things' is red, so walk down from it
+    while (this.hueWalk.some(h => pool[h].length)) {
+      const h = this.hueWalk[i];
+      if (pool[h].length) out.push(pool[h].shift());
+      const next = i + dir;
+      if (next < 0 || next >= this.hueWalk.length) { dir = -dir; i += dir; } else { i = next; }
+    }
+    this.words = ['Things', ...out];
+  };
+  words = ['Things'];
+  get word() { return this.words[this.state.wordIndex % this.words.length]; }
+  glyphs = '#$?(*%&@!/§±=+';
+  workItems = [
+    {
+      org: 'Environment and Climate Change Canada · Government of Canada',
+      orgShort: 'Government of Canada',
+      accent: 'oklch(0.575 0.19 255)',
+      cover: './assets/eccc.jpg',
+      ground: '#232337',
+      kind: 'Product design, research & build',
+      title: 'One tracker, then a tracking engine',
+      assumed: 'The spreadsheet was the problem.',
+      found: 'Nobody owned a row in it.',
+      short: 'Nobody owned a row',
+      line: 'Every quarter, the department has to report all of its public consultations to the Privy Council Office. It was doing that by emailing spreadsheets around 15 branches and 68 directorates, then merging them by hand. I designed and shipped the replacement: teams keep their own records as they go, each one is signed off by a named approver, and the report builds itself. It is bilingual and accessible to WCAG 2.1 AA. Other teams then asked for trackers of their own, so I am building the engine underneath — a new tracker is now a setup, not a new app.',
+      did: [
+        { n: '5 min', label: 'Quarterly submission, down from 2–3 weeks' },
+        { n: '+190', label: 'Leads maintaining their own records' },
+        { n: '+400', label: 'Consultations on one live bilingual record' }
+      ],
+      shots: [
+        { img: './assets/tracker2-list.png', img1x: './assets/tracker2-list-1x.png', iw: 2872, ih: 1668, wp: 68, side: 'l', group: 'The tracker' },
+        { img: './assets/tracker2-entry.png', img1x: './assets/tracker2-entry-1x.png', iw: 2880, ih: 1612, wp: 68.5, side: 'r', gapBefore: 3.5 },
+        { img: './assets/pbi3-overview.png', img1x: './assets/pbi3-overview-1x.png', iw: 2560, ih: 1548, wp: 62, side: 'l', gapBefore: 14, group: 'The reporting dashboard' },
+        { img: './assets/pbi3-timeline.png', img1x: './assets/pbi3-timeline-1x.png', iw: 2558, ih: 754, wp: 62, side: 'r', gapBefore: 3.5 },
+        { img: './assets/pbi3-volume.png', img1x: './assets/pbi3-volume-1x.png', iw: 2556, ih: 2134, wp: 62, side: 'l', gapBefore: 3.5 },
+        { img: './assets/pbi3-insights.png', img1x: './assets/pbi3-insights-1x.png', iw: 2552, ih: 2770, wp: 62, side: 'r', gapBefore: 3.5 }
+      ],
+      scale: []
+    },
+    {
+      org: 'Canada School of Public Service · Digital Accelerator',
+      orgShort: 'Government of Canada',
+      accent: 'oklch(0.55 0.19 295)',
+      cover: './assets/csps.jpg',
+      ground: '#2E2142',
+      kind: 'Workshop design & user research',
+      title: 'Teaching the government to do this work',
+      assumed: 'The material was too advanced.',
+      found: 'It never touched the project on their own desk.',
+      short: 'It never touched their work',
+      line: 'The school that trains the federal public service hired me to lead its workshop series on user research and design. Halfway through the cycle, attendance was slipping. The material was fine; the delivery was not — expectations were unclear, onboarding lost people, and the pace ignored what teams were actually working on. So I treated the program as a research project of its own, mapped what participants went through week by week, and rebuilt the delivery around it. Five of the courses are now in the national catalogue.',
+      did: [
+        { n: '94', label: 'Participants coached through the cycle' },
+        { n: '11', label: 'Teams now running their own research' },
+        { n: '+5', label: 'Courses in the national catalogue' }
+      ],
+      shots: [
+        { img: './assets/csps2-fidelity.png', img1x: './assets/csps2-fidelity-1x.png', iw: 3836, ih: 2156, wp: 76, side: 'l', group: 'The workshop system' },
+        { img: './assets/csps2-activity.png', img1x: './assets/csps2-activity-1x.png', iw: 3272, ih: 2154, wp: 76, side: 'r', gapBefore: 3.5 },
+        { img: './assets/csps2-attendance.png', img1x: './assets/csps2-attendance-1x.png', iw: 3616, ih: 1652, wp: 76, side: 'l', gapBefore: 3.5 }
+      ],
+      scale: []
+    },
+    {
+      org: 'Policy Community Partnerships Office · Government of Canada',
+      orgShort: 'Government of Canada',
+      accent: 'oklch(0.575 0.222 22)',
+      cover: './assets/pcpo.jpg',
+      ground: '#27262F',
+      kind: 'Community experience & service design',
+      title: 'Building\u00A0policy\u00A0capacity, in\u00A0public',
+      assumed: 'The community needed a platform.',
+      found: 'It needed to survive its own office moving.',
+      short: 'It had to outlive its office',
+      line: 'Canada\u2019s top public servant asked ten thousand policy professionals, spread across thirty departments, to start working as one community. The office running that has no mandate of its own: the departments it serves pay for it, it lives as a guest inside one of them, and it has moved five times in eight years. So everything I designed had to do two things — convince the executives who renew the funding, and survive the next move without me. Most of it is still in use.',
+      did: [
+        { n: '10,855', label: 'Practitioners served by the community' },
+        { n: '30', label: 'Departments working off one blueprint' },
+        { n: '5', label: 'Host moves the system survived intact' }
+      ],
+      shots: [
+        { img: './assets/pcpo/vision-cover.png', img1x: './assets/pcpo/vision-cover-1x.png', iw: 1242, ih: 1757, wp: 50, side: 'l', group: 'The strategic vision' },
+        { img: './assets/pcpo/poster-p.png', img1x: './assets/pcpo/poster-p-1x.png', iw: 2484, ih: 3514, wp: 50, side: 'r', alignTo: 0, nudge: 9 },
+        { img: './assets/pcpo/brand-cover.png', img1x: './assets/pcpo/brand-cover-1x.png', iw: 3840, ih: 2160, wp: 76, side: 'l', gapBefore: 14, group: 'The brand' },
+        { img: './assets/pcpo/brand-contrast.png', img1x: './assets/pcpo/brand-contrast-1x.png', iw: 3840, ih: 2160, wp: 76, side: 'r', gapBefore: 3.5 },
+        { img: './assets/pcpo/brand-designs.png', img1x: './assets/pcpo/brand-designs-1x.png', iw: 3840, ih: 2160, wp: 76, side: 'l', gapBefore: 3.5 },
+        { img: './assets/pcpo/brand-background.png', img1x: './assets/pcpo/brand-background-1x.png', iw: 3840, ih: 2160, wp: 76, side: 'r', gapBefore: 3.5 },
+        { img: './assets/pcpo/roadmap.png', img1x: './assets/pcpo/roadmap-1x.png', iw: 6982, ih: 4090, wp: 85, side: 'l', gapBefore: 14, group: 'The roadmap' },
+        { img: './assets/pcpo/okr-pyramid.png', img1x: './assets/pcpo/okr-pyramid-1x.png', iw: 6478, ih: 3387, wp: 85, side: 'r', gapBefore: 3.5 }
+      ],
+      scale: []
+    },
+    {
+      org: '2M TV · Morocco',
+      orgShort: '2M TV',
+      accent: 'oklch(0.872 0.178 92.6)',
+      accentLight: 'oklch(0.653 0.203 24.7)',
+      ground: '#101012',
+      kind: 'Brand identity, motion & art direction',
+      title: 'A brand that couldn\u2019t say its own name',
+      assumed: 'The channel needed to look younger.',
+      found: 'It needed to not say its own name.',
+      short: 'It couldn\u2019t say its name',
+      line: 'Morocco\u2019s most-watched network wanted a digital audience, but millennials had written it off as their parents\u2019 channel. The new brand had to win them over without naming its parent. That became the idea: \u062C\u0648\u062C — Moroccan Arabic for \u201Ctwo\u201D — with the numeral 2 hidden inside the letter \u062C. It reads in both scripts and still works at phone size, which is where people decide. I also designed the studio it is filmed in, built around cameras the network already owned, and fit seven shooting sets into a room meant for three. Then I directed what came out of it: a live music series and a season campaign that gave a dozen radio shows a personality each in ten seconds.',
+      did: [
+        { n: '+210K', label: 'Followers on Instagram' },
+        { n: '+28.7K', label: 'Subscribers on YouTube' },
+        { n: '7', label: 'Shooting sets in a room built for three' }
+      ],
+      shots: [
+        { img: './assets/jooj2-originals.png', img1x: './assets/jooj2-originals-1x.png', iw: 1920, ih: 1080, wp: 76, side: 'l', group: 'The identity' },
+        { img: './assets/jooj2-reveal.png', img1x: './assets/jooj2-reveal-1x.png', iw: 3840, ih: 2160, wp: 76, side: 'r', gapBefore: 3.5 },
+        { img: './assets/jooj2-mask.png', img1x: './assets/jooj2-mask-1x.png', iw: 3840, ih: 2160, wp: 76, side: 'l', gapBefore: 3.5 },
+        { img: './assets/jooj2-covers.png', img1x: './assets/jooj2-covers-1x.png', iw: 4200, ih: 2800, wp: 76, side: 'r', gapBefore: 5, group: 'In the world' },
+        { img: './assets/jooj2-golden-dark.png', img1x: './assets/jooj2-golden-dark-1x.png', iw: 3293, ih: 2329, wp: 76, side: 'l', gapBefore: 3.5 },
+        { vid: './assets/jooj2-campaign.mp4', iw: 1080, ih: 1080, wp: 68, capPx: 1080, side: 'l', gapBefore: 14, group: 'The campaign' },
+        { vid: './assets/jooj2-campaign2.mp4', iw: 1920, ih: 1080, wp: 76, side: 'r', gapBefore: 3.5 },
+        { img: './assets/jooj2-fb.jpg', img1x: './assets/jooj2-fb-1x.png', iw: 3200, ih: 1800, wp: 76, side: 'l', gapBefore: 3.5 },
+        { img: './assets/jooj2-sq1.jpg', img1x: './assets/jooj2-sq1-1x.png', iw: 2160, ih: 2160, wp: 46, side: 'l', inset: 2, gapBefore: 3.5 },
+        { img: './assets/jooj2-sq2.jpg', img1x: './assets/jooj2-sq2-1x.png', iw: 2160, ih: 2160, wp: 46, side: 'r', inset: 2, alignTo: 8 },
+        { img: './assets/jooj2-sq3.jpg', img1x: './assets/jooj2-sq3-1x.png', iw: 2160, ih: 2160, wp: 46, side: 'l', inset: 2, gapBefore: 3.5 },
+        { img: './assets/jooj2-sq4.jpg', img1x: './assets/jooj2-sq4-1x.png', iw: 2160, ih: 2160, wp: 46, side: 'r', inset: 2, alignTo: 10 },
+        { vid: './assets/2m-loop.mp4', iw: 1920, ih: 1080, wp: 76, side: 'l', gapBefore: 14, group: 'The direction' },
+        { vid: './assets/2m-loop2.mp4', iw: 1280, ih: 720, wp: 76, side: 'r', gapBefore: 3.5 }
+      ],
+      scale: []
+    },
+    {
+      org: 'ESDC Innovation Lab · Government of Canada',
+      orgShort: 'Government of Canada',
+      accent: '#FF0500',
+      ground: '#1A1A1A',
+      kind: 'Information design & report production',
+      title: 'A report on accessibility, made accessible',
+      assumed: 'The report was too long to be read.',
+      found: 'It was too hard to find your way into.',
+      short: 'No way into it',
+      line: 'The Lab spent two years developing guidance for the Accessible Canada Act alongside persons with disabilities and industry, and came out with ten prototypes and a great deal of hard-won material. I did not do that research — I designed the report that had to carry it. A document arguing for accessible practice has no excuse for being hard to read, so sections are found by letter instead of page number, readers pick the background that suits them, printing drops the colour on its own, and every visual works for someone using assistive technology.',
+      did: [
+        { n: '148', label: 'Pages, in both official languages' },
+        { n: '10', label: 'Prototypes documented for reuse' },
+        { label: 'An interactive, accessible PDF' }
+      ],
+      shots: [
+        { img: './assets/aca-cover.png', img1x: './assets/aca-cover-1x.png', iw: 3216, ih: 2276, wp: 76, side: 'l', group: 'The report' },
+        { vid: './assets/aca-toc.mp4', iw: 3034, ih: 2148, wp: 76, side: 'r', flat: true, gapBefore: 14, group: 'Finding your way in' },
+        { vidLight: './assets/aca-controls-light.mp4', vidDark: './assets/aca-controls-dark.mp4', iw: 2898, ih: 2108, wp: 76, side: 'l', flat: true, gapBefore: 14, group: 'Reading controls' },
+        { img: './assets/aca-dignity.png', img1x: './assets/aca-dignity-1x.png', iw: 3184, ih: 2252, wp: 76, side: 'r', gapBefore: 14, group: 'Inside the report' },
+        { img: './assets/aca-o.png', img1x: './assets/aca-o-1x.png', iw: 3214, ih: 2272, wp: 76, side: 'l', gapBefore: 3.5 },
+        { img: './assets/aca-culture.png', img1x: './assets/aca-culture-1x.png', iw: 4868, ih: 1718, wp: 85, side: 'r', gapBefore: 3.5 },
+        { img: './assets/aca-journey.png', img1x: './assets/aca-journey-1x.png', iw: 4866, ih: 1714, wp: 85, side: 'l', gapBefore: 3.5 },
+        { img: './assets/aca-complexity-a.png', img1x: './assets/aca-complexity-a-1x.png', iw: 3502, ih: 2422, wp: 76, side: 'r', gapBefore: 3.5 },
+        { img: './assets/aca-complexity-b.png', img1x: './assets/aca-complexity-b-1x.png', iw: 3502, ih: 2420, wp: 76, side: 'l', gapBefore: 3.5 },
+        { img: './assets/aca-tango-b.png', img1x: './assets/aca-tango-b-1x.png', iw: 3502, ih: 2418, wp: 76, side: 'r', gapBefore: 3.5 }
+      ],
+      scale: []
+    },
+  ];
+  slugs = ['tracker', 'workshops', 'policy-community', 'jooj', 'accessible-report'];
+  secSlugs = ['top', 'clarity', 'craft', 'scrutiny', 'work', 'practice', 'contact'];
+  hashIndex = 0;
+  // a project is a real location: opening pushes a hash, closing pops it, and a
+  // pasted link opens straight into the panel
+  openFromHash = (initial) => {
+    const s = ((initial === true ? this.initialHash : location.hash) || '').replace(/^#/, '');
+    const i = this.slugs.indexOf(s);
+    if (i !== -1) {
+      if (initial === true) {
+        this.hashIndex = 4;
+        this.goTo(4, 0, true);
+        if (location.hash !== '#' + s) history.replaceState(history.state, '', '#' + s);
+        setTimeout(() => { this.suppressHash = false; }, 500);
+      }
+      if (this.state.workOpen !== i) this.showWork(i);
+      return;
+    }
+    if (this.state.workOpen != null) this.hideWork();
+    const sec = s === '' ? 0 : this.secSlugs.indexOf(s);
+    if (sec >= 0 && (initial === true || sec !== this.state.activeIndex)) {
+      this.hashIndex = sec;
+      this.goTo(sec, initial === true ? 0 : undefined, true);
+      if (location.hash !== '#' + s) history.replaceState(history.state, '', '#' + s);
+      setTimeout(() => { this.suppressHash = false; }, 600);
+    } else if (initial === true) {
+      this.suppressHash = false;
+    }
+  };
+  vidRef = (el) => {
+    if (!el) return;
+    el.muted = true;
+    el.setAttribute('muted', '');
+    el.playsInline = true;
+    const go = () => { const p = el.play(); if (p && p.catch) p.catch(() => {}); };
+    // the src swaps when the theme changes, which pauses the element — replay on every load
+    if (!el.__wired) { el.__wired = true; el.addEventListener('loadeddata', go); }
+    if (el.readyState >= 2) go();
+  };
+  shotEls = {};
+  shotRef = (i) => (el) => {
+    if (!el) { delete this.shotEls[i]; return; }
+    this.shotEls[i] = el;
+    if (this.shotObs) this.shotObs.observe(el);
+  };
+  // geometry for a project's shots: widths, gaps and column pulls are derived
+  // from each image's own proportions, so spacing breathes with the artwork
+  layoutShots = (list) => {
+    const seenMap = this.state.shotsSeen || {};
+    const S = list.map(s => (typeof s === 'string' ? { label: s } : s));
+    const geo = S.map(o => {
+      const wp = o.wp || 0;
+      const iw = o.iw || 16, ih = o.ih || 10;
+      return { wp: wp, h: wp ? wp * ih / iw : 62 };
+    });
+    const y = [], mt = [];
+    for (let i = 0; i < S.length; i++) {
+      if (i === 0) { y[0] = 0; mt[0] = 0; continue; }
+      const g = S[i].gapBefore != null ? S[i].gapBefore : (S[i].wp ? 1.2 : 5.2);
+      const flow = y[i - 1] + geo[i - 1].h + g;
+      y[i] = S[i].alignTo != null ? y[S[i].alignTo] + (S[i].nudge || 0) : flow;
+      mt[i] = y[i] - (y[i - 1] + geo[i - 1].h);
+    }
+    const bottoms = y.map((v, i) => v + geo[i].h);
+    const maxB = bottoms.reduce((a, b) => Math.max(a, b), 0);
+    const lastB = bottoms[bottoms.length - 1];
+    return S.map((o, i) => {
+      const seen = seenMap[i];
+      const inset = o.inset || 0;
+      const right = o.side === 'r';
+      return {
+        label: o.label,
+        num: String(i + 1).padStart(2, '0'),
+        bg: o.img ? (o.img1x ? "image-set(url('" + o.img1x + "') 1x, url('" + o.img + "') 2x)" : "url('" + o.img + "')") : 'none',
+        src: o.img || '',
+        isVideo: !!(o.vid || o.vidLight),
+        notVideo: !(o.vid || o.vidLight),
+        vidSrc: o.vidLight ? (this.dark ? o.vidDark : o.vidLight) : (o.vid || ''),
+        poster: o.img1x || o.img || '',
+        vidRef: this.vidRef,
+        ref: this.shotRef(i),
+        cols: !o.label ? 'minmax(0,1fr)' : (i % 2 === 0 ? 'minmax(0,1fr) 15ch' : '15ch minmax(0,1fr)'),
+        imgCol: !o.label ? '1' : (i % 2 === 0 ? '1' : '2'),
+        capCol: !o.label ? '1' : (i % 2 === 0 ? '2' : '1'),
+        hasCap: !!o.label,
+        hasGroup: !!o.group,
+        groupLabel: o.group || '',
+        max: o.wp ? (o.capPx ? 'min(' + o.capPx + 'px, ' + o.wp + '%)' : o.wp + '%') : 'min(900px, 100%)',
+        ml: o.wp ? (right ? (100 - o.wp - inset) : inset) + '%' : '0px',
+        mt: i === 0 ? '0px' : mt[i].toFixed(2) + '%',
+        mb: i === S.length - 1 ? Math.max(0, maxB - lastB).toFixed(2) + '%' : '0px',
+        origin: right ? 'right top' : 'left top',
+        flatCls: o.flat ? 'shot-flat' : '',
+        shadow: o.flat ? 'none' : (function (d) {
+          // bigger panels sit nearer: deeper, softer shadow; small ones recede
+          const near = Math.max(0, Math.min(1, (d - 30) / 22));
+          const y = (12 + 24 * near).toFixed(0), b = (30 + 52 * near).toFixed(0), a = (0.14 + 0.18 * near).toFixed(3);
+          const y2 = (2 + 2 * near).toFixed(0), b2 = (6 + 6 * near).toFixed(0), a2 = (0.07 + 0.08 * near).toFixed(3);
+          return '0 ' + y + 'px ' + b + 'px rgba(0,0,0,' + a + '), 0 ' + y2 + 'px ' + b2 + 'px rgba(0,0,0,' + a2 + ')';
+        })(o.wp || 40),
+        z: i + 1,
+        ar: o.iw ? o.iw + ' / ' + o.ih : '16 / 10',
+        delay: seen ? (i % 2) * 220 + 'ms' : '0ms',
+        blur: seen ? 0 : 14,
+        op: seen ? 1 : 0,
+        dy: seen ? 0 : 26
+      };
+    });
+  };
+
+  startShotWatch = () => {
+    if (this.shotObs) this.shotObs.disconnect();
+    this.setState({ shotsSeen: {} });
+    const root = document.querySelector('.proj-panel');
+    if (!root || !window.IntersectionObserver) { const all = {}; for (let i = 0; i < 12; i++) all[i] = 1; this.setState({ shotsSeen: all }); return; }
+    this.shotObs = new IntersectionObserver((entries) => {
+      let next = null;
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const idx = Object.keys(this.shotEls).find(k => this.shotEls[k] === e.target);
+        if (idx == null) return;
+        next = next || Object.assign({}, this.state.shotsSeen);
+        next[idx] = 1;
+      });
+      if (next) this.setState({ shotsSeen: next });
+    }, { root: root, rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+    Object.values(this.shotEls).forEach(el => this.shotObs.observe(el));
+  };
+  workEnter = (i) => () => this.setState({ workHover: i });
+  workLeave = () => this.setState({ workHover: null });
+  openWork = (i) => () => {
+    const url = '#' + this.slugs[i];
+    if (location.hash !== url) { history.pushState({ work: i }, '', url); this.workDepth = (this.workDepth || 0) + 1; }
+    this.showWork(i);
+  };
+  showWork = (i) => {
+    clearTimeout(this.closeT);
+    setTimeout(this.startShotWatch, 420);
+    this.tintFor(i);
+    this.lastTrigger = document.activeElement;
+    this.openedByPointer = this.pointerInput;
+    clearTimeout(this.panelTimer); this.panelTimer = null;
+    this.panelTyped = 0; this.panelStop = false; this.panelOff = false;
+    this.needsPanelFocus = true;
+    this.setState({ workOpen: i, workHover: null, panelIn: false });
+    const p = document.querySelector('.proj-panel');
+    if (p) p.scrollTop = 0;
+    // one tick at opacity 0, then transition in — a transition on a mounted,
+    // already-composited layer can't restart or fill like a keyframe animation
+    setTimeout(() => { if (this.state.workOpen != null) this.setState({ panelIn: true }); }, 20);
+  };
+  panelTyped = 0;
+  typePanel = () => {
+    const i = this.state.workOpen;
+    if (i == null) return;
+    const text = this.workItems[i].title;
+    if (this.panelTimer || this.panelTyped >= text.length) return;
+    if (this.reduceMotion) { this.panelTyped = text.length; this.panelStop = true; this.panelOff = true; this.forceUpdate(); return; }
+    const step = () => {
+      this.panelTyped++;
+      if (text[this.panelTyped - 1] === ' ') this.panelTyped++;
+      this.forceUpdate();
+      if (this.panelTyped >= text.length) {
+        this.panelTimer = null;
+        setTimeout(() => {
+          this.panelStop = true; this.forceUpdate();
+          requestAnimationFrame(() => requestAnimationFrame(() => { this.panelOff = true; this.forceUpdate(); }));
+        }, 2000);
+        return;
+      }
+      const p = this.panelTyped / text.length;
+      this.panelTimer = setTimeout(step, 7 + 80 * Math.pow(p, 5));
+    };
+    this.panelTimer = setTimeout(step, 120);
+  };
+  closeWork = () => {
+    if (this.state.workOpen == null) return;
+    if (this.workDepth && this.slugs.indexOf((location.hash || '').replace(/^#/, '')) !== -1) { const n = this.workDepth; this.workDepth = 0; history.go(-n); return; }
+    if (this.slugs.indexOf((location.hash || '').replace(/^#/, '')) !== -1) history.replaceState(history.state, '', '#work');
+    this.hideWork();
+  };
+  hideWork = () => {
+    if (this.state.workOpen == null) return;
+    this.workDepth = 0;
+    this.needsTriggerFocus = true;
+    this.setState({ panelIn: false });
+    this.closeT = setTimeout(() => this.setState({ workOpen: null }), 200);
+  };
+
+  componentDidMount() {
+    let saved = null;
+    try { saved = localStorage.getItem('ob-theme'); } catch (e) {}
+    // the site always opens light; dark is opt-in via the toggle and only remembered after that
+    const theme = saved || 'light';
+    document.documentElement.dataset.theme = theme;
+    window.addEventListener('popstate', this.openFromHash);
+    this.initialHash = location.hash;
+    if (this.initialHash) {
+      this.suppressHash = true;
+      setTimeout(() => this.openFromHash(true), 60);
+    }
+    if (theme !== this.state.theme) this.setState({ theme: theme });
+
+    this.compute();
+    this.shuffleTail();
+    this.t0 = Date.now();
+    this.plan(this.word.length);
+    this.timer = setInterval(() => {
+      if (this.state.workOpen != null) return;
+      this.stepHue();
+      const len = this.word.length;
+      const el = Date.now() - this.t0;
+      const revealed = Math.max(0, Math.min(len, Math.round(len * this.landProgress(el))));
+      if (el > this.settleAt + (this.hold || 4000)) {
+        this.t0 = Date.now();
+        this.hold = 2200 + Math.random() * 9000;
+        if ((this.state.wordIndex + 1) % this.words.length === 0) this.shuffleTail();
+        this.setState(s => ({ tick: s.tick + 1, revealed: 0, wordIndex: s.wordIndex + 1 }), () => this.plan(this.word.length));
+      } else {
+        this.setState(s => ({ tick: s.tick + 1, revealed }));
+      }
+    }, 18);
+
+    window.addEventListener('resize', this.onScroll);
+    window.addEventListener('keydown', this.onKey);
+    window.addEventListener('pointerdown', this.notePointer, true);
+    if (this.scrollEl) {
+      this.scrollEl.addEventListener('wheel', this.onWheel, { passive: false });
+      this.scrollEl.addEventListener('focusin', this.onFocusIn);
+      this.scrollEl.addEventListener('touchstart', this.onTouchStart, { passive: true });
+      this.scrollEl.addEventListener('touchend', this.onTouchEnd, { passive: true });
+    }
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    clearTimeout(this.closeT);
+    window.removeEventListener('popstate', this.openFromHash);
+    if (this.shotObs) this.shotObs.disconnect();
+    clearTimeout(this.panelTimer);
+    Object.keys(this.typeTimers).forEach(k => clearTimeout(this.typeTimers[k]));
+    cancelAnimationFrame(this.animRaf);
+    cancelAnimationFrame(this.wheelRaf);
+    window.removeEventListener('resize', this.onScroll);
+    window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('pointerdown', this.notePointer, true);
+    if (this.scrollEl) {
+      this.scrollEl.removeEventListener('wheel', this.onWheel);
+      this.scrollEl.removeEventListener('focusin', this.onFocusIn);
+      this.scrollEl.removeEventListener('touchstart', this.onTouchStart);
+      this.scrollEl.removeEventListener('touchend', this.onTouchEnd);
+    }
+  }
+
+  bucket = 0;
+  smoothV = 0;
+  lockDir = 0;
+
+  // deltas are normalised, coalesced per frame, low-passed and direction-locked,
+  // so encoder jitter and inertia tails can't trigger a move
+  onWheel = (e) => {
+    if (this.state.workOpen != null) return;   // let the open project scroll itself
+    // narrow windows let a section grow taller than the viewport: scroll inside it
+    // first, and only hand the wheel back to section-to-section once it's at the end
+    const sec = this.secEls && this.secEls[this.state.activeIndex];
+    if (sec && sec.scrollHeight - sec.clientHeight > 2) {
+      const d = e.deltaY;
+      const room = d > 0 ? sec.scrollHeight - sec.clientHeight - sec.scrollTop : sec.scrollTop;
+      if (room > 2) return;
+    }
+    e.preventDefault();
+    let d = e.deltaY;
+    if (e.deltaMode === 1) d *= 16;          // lines -> px
+    else if (e.deltaMode === 2) d *= this.scrollEl ? this.scrollEl.clientHeight : 800;
+    if (Math.abs(d) < 3) return;             // noise floor
+    d = Math.max(-240, Math.min(240, d));    // spike cap
+    this.bucket += d;
+    if (!this.wheelRaf) this.wheelRaf = requestAnimationFrame(this.flushWheel);
+  };
+
+  flushWheel = () => {
+    this.wheelRaf = null;
+    const sum = this.bucket;
+    this.bucket = 0;
+    const now = performance.now();
+    this.smoothV = this.smoothV * 0.7 + Math.abs(sum) * 0.3;
+    // while a move is in flight, bleed the accumulator instead of building it.
+    // otherwise a free wheel's inertia tail banks force during the animation and
+    // either fires a second move unprompted or outweighs a deliberate reversal
+    if (now < (this.until || 0)) { this.force = 0; return; }
+    // a genuine reversal discards force left over from the previous direction
+    if (this.force && sum && (sum > 0) !== (this.force > 0)) this.force = 0;
+    // leaky accumulator: slow noise decays away, a real push survives
+    this.force = (this.force || 0) * 0.86 + sum;
+    const dir = this.force > 0 ? 1 : -1;
+    // direction lock: spurious reverse ticks are ignored for a moment after a move
+    if (this.lockDir && dir !== this.lockDir && now < (this.lockUntil || 0)) return;
+    if (Math.abs(this.force) < (this.props.triggerForce ?? 40)) return;
+    this.force = 0;
+    this.lockDir = dir;
+    this.lockUntil = now + (this.props.directionLock ?? 220);
+    const fast = this.smoothV >= (this.props.fastForce ?? 140);
+    this.goTo(this.nearestIndex() + dir, fast ? (this.props.fastPass ?? 60) : null);
+  };
+
+  notePointer = () => { this.pointerInput = true; };
+  onKey = (e) => {
+    this.pointerInput = false;
+    if (this.state.workOpen != null) {
+      if (e.key === 'Escape') this.closeWork();
+      else if (e.key === 'Tab') this.trapTab(e);
+      return;
+    }
+    // in Selected work, left/right steps through the projects
+    if (this.state.activeIndex === 4 && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+      e.preventDefault();
+      const dir = e.key === 'ArrowRight' ? 1 : -1;
+      const cards = [...document.querySelectorAll('.workgrid button')];
+      if (!cards.length) return;
+      const at = cards.indexOf(document.activeElement);
+      const from = at >= 0 ? at : (this.state.workHover ?? -dir);
+      const next = (from + dir + cards.length) % cards.length;
+      cards[next].focus();
+      this.setState({ workHover: next });
+      return;
+    }
+    const map = { ArrowDown: 1, PageDown: 1, ' ': 1, ArrowUp: -1, PageUp: -1 };
+    if (e.key in map) { e.preventDefault(); this.goTo(this.state.activeIndex + map[e.key]); }
+    else if (e.key === 'Home') { e.preventDefault(); this.goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); this.goTo(6); }
+  };
+
+  trapTab = (e) => {
+    const panel = document.querySelector('.proj-panel');
+    if (!panel) return;
+    const items = [...panel.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+      .filter(el => !el.disabled && el.offsetParent !== null);
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  };
+
+  onFocusIn = (e) => {
+    if (this.state.workOpen != null) return;
+    const i = this.secEls.findIndex(el => el && el.contains(e.target));
+    if (i >= 0 && i !== this.nearestIndex()) this.goTo(i);
+  };
+
+  onTouchStart = (e) => { this.touchY = e.touches[0].clientY; };
+  onTouchEnd = (e) => {
+    if (this.touchY == null) return;
+    const dy = this.touchY - e.changedTouches[0].clientY;
+    if (Math.abs(dy) > 40) this.goTo(this.state.activeIndex + (dy > 0 ? 1 : -1));
+    this.touchY = null;
+  };
+
+  animateTo = (target, override) => {
+    const c = this.scrollEl;
+    if (!c) return;
+    cancelAnimationFrame(this.animRaf);
+    const start = c.scrollTop;
+    const dist = target - start;
+    if (Math.abs(dist) < 1) { this.suppressHash = false; this.compute(); return; }
+    const one = c.clientHeight || 1;
+    const base = override ?? (this.props.landDuration ?? 420);
+    const dur = base * Math.min(2.2, Math.max(1, Math.sqrt(Math.abs(dist) / one)));
+    const kind = this.props.easing ?? 'soft';
+    const ease = (p) => {
+      if (kind === 'snappy') return p === 1 ? 1 : 1 - Math.pow(2, -9 * p);
+      if (kind === 'glide') return 1 - Math.pow(1 - p, 5);
+      if (kind === 'steady') return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      if (kind === 'overshoot') { const k = 1.70158; return 1 + (k + 1) * Math.pow(p - 1, 3) + k * Math.pow(p - 1, 2); }
+      return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+    };
+    const t0 = performance.now();
+    this.until = t0 + dur + (override ? 0 : (this.props.cooldown ?? 90));
+    const step = (now) => {
+      const p = Math.min((now - t0) / dur, 1);
+      c.scrollTop = start + dist * ease(p);
+      this.compute();
+      if (p < 1) this.animRaf = requestAnimationFrame(step);
+      else { c.scrollTop = target; this.suppressHash = false; this.compute(); }
+    };
+    this.animRaf = requestAnimationFrame(step);
+  };
+
+  onScroll = () => {
+    if (this.raf) return;
+    this.raf = requestAnimationFrame(() => { this.raf = null; this.compute(); });
+  };
+
+  compute = () => {
+    const c = this.scrollEl;
+    if (!c) return;
+    const h = c.clientHeight;
+    const maxB = this.props.maxBlur ?? 9;
+    const cRect = c.getBoundingClientRect();
+    let m = [], active = 0, minDist = Infinity;
+    this.secEls.forEach((el, i) => {
+      if (!el) { m.push({ blur: 0, opacity: 1 }); return; }
+      const r = el.getBoundingClientRect();
+      const dist = Math.abs(r.top - cRect.top);
+      if (dist < minDist) { minDist = dist; active = i; }
+      const norm = Math.min(dist / (h * 0.55), 1);
+      m.push({ blur: +(norm * norm * maxB).toFixed(2), opacity: +(1 - norm * 0.7).toFixed(2) });
+    });
+    this.setState({ m, activeIndex: active });
+    // each section a reader settles on becomes a history entry, so Back walks the page
+    // in reverse; the delay keeps a fast scroll from stacking six entries
+    if (this.state.workOpen == null && !this.suppressHash && active !== this.hashIndex) {
+      clearTimeout(this.hashT);
+      this.hashT = setTimeout(() => {
+        if (this.state.workOpen != null || this.suppressHash) return;
+        const now = this.state.activeIndex;
+        if (now === this.hashIndex) return;
+        this.hashIndex = now;
+        const want = now === 0 ? location.pathname + location.search : '#' + this.secSlugs[now];
+        if (this.hashIndex === 0 && !location.hash) return;
+        history.pushState({ sec: now }, '', want);
+      }, 420);
+    }
+  };
+
+  // section nearest the current (possibly mid-flight) scroll position
+  nearestIndex = () => {
+    const c = this.scrollEl;
+    if (!c) return this.state.activeIndex;
+    let best = 0, min = Infinity;
+    this.secEls.forEach((el, i) => {
+      if (!el) return;
+      const d = Math.abs(el.offsetTop - c.scrollTop);
+      if (d < min) { min = d; best = i; }
+    });
+    return best;
+  };
+
+  goHome = () => {
+    if (this.state.workOpen != null) this.closeWork();
+    this.goTo(0);
+  };
+
+  goTo = (i, dur, silent) => {
+    const idx = Math.max(0, Math.min(this.secEls.length - 1, i));
+    const el = this.secEls[idx];
+    if (!el || !this.scrollEl) return;
+    if (!silent && this.state.workOpen == null && idx !== this.hashIndex) {
+      clearTimeout(this.hashT);
+      this.hashIndex = idx;
+      history.pushState({ sec: idx }, '', idx === 0 ? location.pathname + location.search : '#' + this.secSlugs[idx]);
+    }
+    this.suppressHash = true;
+    this.animateTo(el.offsetTop, dur);
+  };
+
+
+  wordClick = () => {
+    this.t0 = Date.now();
+    this.hold = 2200 + Math.random() * 9000;
+    this.setState(s => {
+      const next = s.wordIndex + 1;
+      if (next % this.words.length === 0) this.shuffleTail();
+      return { wordIndex: next, revealed: 0, tick: s.tick + 1 };
+    }, () => this.plan(this.word.length));
+  };
+
+  // hue carries the word's meaning: friction=red, tension=magenta, judgment=violet, order=blue, resolution=emerald
+  wordGroups = {
+    25:  ['Things', 'Deadlines', 'Blockers', 'Budgets', 'Risks', 'Gaps', 'Delays', 'Bugs', 'Rewrites'],
+    350: ['Meetings', 'Opinions', 'Roadmaps', 'Reviews', 'Requests', 'Notes', 'Threads', 'Slides'],
+    295: ['Decisions', 'Standards', 'Trade-offs', 'Criteria', 'Priorities', 'Limits', 'Constraints'],
+    262: ['Systems', 'Workflows', 'Models', 'Handoffs', 'Specs', 'Flows', 'Templates'],
+    155: ['Answers', 'Patterns', 'Signals', 'Outcomes', 'Details', 'Fixes', 'Ideas']
+  };
+  get wordHues() {
+    if (!this._hueMap) {
+      this._hueMap = {};
+      for (const h of Object.keys(this.wordGroups)) for (const w of this.wordGroups[h]) this._hueMap[w] = Number(h);
+    }
+    return this._hueMap;
+  }
+  get hue() { return this.wordHues[this.word] || 25; }
+  // the accent hue eases from the previous word's to the current one's along the
+  // shorter arc, so every highlight on the page fades rather than flips
+  hueFade = 1100;
+  animHue = 25;
+  hueFrom = 25;
+  hueT0 = 0;
+  stepHue = () => {
+    const target = this.hue;
+    if (this.hueTarget !== target) { this.hueFrom = this.animHue; this.hueTarget = target; this.hueT0 = Date.now(); }
+    const p = Math.min(1, (Date.now() - this.hueT0) / this.hueFade);
+    const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+    let d = ((target - this.hueFrom + 540) % 360) - 180;   // shorter arc
+    this.animHue = (((this.hueFrom + d * e) % 360) + 360) % 360;
+    // lightness and chroma travel with the hue so intensity never dips mid-fade
+    const a = this.hueTune[Math.round(this.hueFrom)] || [0.575, 0.235];
+    const b = this.hueTune[target] || [0.575, 0.235];
+    this.animL = a[0] + (b[0] - a[0]) * e;
+    this.animC = a[1] + (b[1] - a[1]) * e;
+  };
+  get dark() { return this.state.theme === 'dark'; }
+  // the five hues sit near L 0.575 to clear contrast on paper; on a dark ground
+  // that reads as neon, so lift lightness and pull a little chroma back out
+  adapt = (c) => {
+    const m = /oklch\(([\d.]+) ([\d.]+) ([\d.]+)\)/.exec(c);
+    if (!m) return c;
+    // 2M's brand yellow is far too light to hold type on the pale ground
+    if (!this.dark) return +m[1] <= 0.72 ? c : 'oklch(0.78 ' + (+m[2] * 1.02).toFixed(3) + ' ' + m[3] + ')';
+    return 'oklch(' + Math.max(+m[1], Math.min(0.82, +m[1] + 0.105)).toFixed(3) + ' ' + (+m[2] * 0.88).toFixed(3) + ' ' + m[3] + ')';
+  };
+  // dark only: the open project's accent becomes the ground it sits on, taken
+  // right down in lightness and chroma so body copy still clears contrast
+  // relative luminance, for deciding whether a brand ground wants light or dark type
+  lum = (hex) => {
+    const h = hex.replace('#', '');
+    const v = [0, 2, 4].map(i => parseInt(h.substr(i, 2), 16) / 255)
+      .map(c => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+    return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+  };
+  // a saturated brand ground (Jooj's coral) needs the panel's neutrals rebuilt on
+  // white rather than the theme's near-black, and the accent can't sit on itself
+  paintOn = (ground) => {
+    if (this.paintedOn === (ground || null)) return;
+    this.paintedOn = ground || null;
+    const r = document.documentElement.style;
+    const keys = ['--fg', '--muted', '--muted2', '--dim', '--dim2', '--rule', '--rule2', '--hatch-a', '--hatch-b'];
+    if (!ground || this.lum(ground) < 0.22) { keys.forEach(k => r.removeProperty(k)); this.onBrand = null; return; }
+    const w = (a) => 'rgba(255,255,255,' + a + ')';
+    const vals = [w(1), w(0.86), w(0.8), w(0.72), w(0.62), w(0.26), w(0.34), w(0.13), w(0.08)];
+    keys.forEach((k, i) => r.setProperty(k, vals[i]));
+    this.onBrand = true;
+  };
+  tintFor = (open) => {
+    const own = open != null && this.dark ? this.workItems[open].ground : null;
+    if (own) {
+      if (this.panelPainted !== own) {
+        this.panelPainted = own;
+        document.documentElement.style.setProperty('--panel', own);
+      }
+      this.paintOn(own);
+      return;
+    }
+    this.paintOn(null);
+    const raw = open != null ? this.workItems[open].accent : null;
+    const m = raw && this.dark ? /oklch\(([\d.]+) ([\d.]+) ([\d.]+)\)/.exec(raw) : null;
+    const panel = m ? 'oklch(0.208 ' + Math.min(+m[2] * 0.34, 0.058).toFixed(3) + ' ' + m[3] + ')' : 'var(--bg)';
+    if (this.panelPainted !== panel) {
+      this.panelPainted = panel;
+      document.documentElement.style.setProperty('--panel', panel);
+    }
+  };
+  syncPanelTint = () => { this.tintFor(this.state.workOpen); };
+  componentDidUpdate() {
+    this.syncPanelTint();
+    this.syncType();
+    this.typePanel();
+    const closeBtn = this.needsPanelFocus && document.querySelector('.proj-panel [aria-label="Close project"]');
+    if (closeBtn) { this.needsPanelFocus = false; closeBtn.focus({ preventScroll: true }); }
+    const open = this.state.workOpen != null;
+    ['main', 'header', 'nav.f-index'].forEach(sel => {
+      const el = document.querySelector(sel);
+      if (el) el.inert = open;
+    });
+    // focus can only go home once the page behind the dialog is no longer inert
+    if (!open && this.needsTriggerFocus) {
+      this.needsTriggerFocus = false;
+      if (!this.openedByPointer && this.lastTrigger && this.lastTrigger.focus) {
+        this.lastTrigger.focus({ preventScroll: true });
+      }
+    }
+  }
+  // section index -> heading text typed out when that section first becomes active
+  typeTexts = {
+    1: "Clarity doesn't come for free.",
+    2: 'Craft is the thinking, not the finish.',
+    3: 'I design for the person looking for the flaw.',
+    4: 'Selected work',
+    5: 'I make what I design.'
+  };
+  typed = {}; caretStop = {}; caretOff = {}; typeTimers = {};
+  get reduceMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+  syncType = () => {
+    const i = this.state.activeIndex;
+    const text = this.typeTexts[i];
+    if (!text || this.typeTimers[i] || (this.typed[i] || 0) >= text.length) return;
+    if (this.reduceMotion) { this.typed[i] = text.length; this.caretStop[i] = true; this.caretOff[i] = true; this.forceUpdate(); return; }
+    const step = () => {
+      this.typed[i] = (this.typed[i] || 0) + 1;
+      // reveal a space together with the letter after it: a lone trailing space has
+      // no advance at a line end, so the caret would sit still and then leap a line
+      if (text[this.typed[i] - 1] === ' ') this.typed[i]++;
+      this.forceUpdate();
+      if (this.typed[i] >= text.length) {
+        this.typeTimers[i] = null;
+        setTimeout(() => {
+          // stop the blink first, then fade on the next frame — a property still
+          // driven by an animation won't transition
+          this.caretStop[i] = true; this.forceUpdate();
+          requestAnimationFrame(() => requestAnimationFrame(() => { this.caretOff[i] = true; this.forceUpdate(); }));
+        }, 2000);
+        return;
+      }
+      // fast out of the gate, easing to a stop on the last few characters
+      const p = this.typed[i] / text.length;
+      this.typeTimers[i] = setTimeout(step, 7 + 80 * Math.pow(p, 5));
+    };
+    this.typeTimers[i] = setTimeout(step, 7);
+  };
+  get tw() {
+    const o = {};
+    for (const k of Object.keys(this.typeTexts)) {
+      const t = this.typeTexts[k], n = this.typed[k] || 0;
+      o['s' + (Number(k) + 1)] = {
+        head: t.slice(0, n),
+        tail: t.slice(n),
+        caret: this.caretOff[k] ? 0 : 1,
+        anim: this.caretStop[k] ? 'none' : 'caretBlink 1s steps(1,end) infinite'
+      };
+    }
+    return o;
+  }
+  toggleTheme = () => {
+    const next = this.dark ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('ob-theme', next); } catch (e) {}
+    this.setState({ theme: next });
+  };
+  // a thumbnail hovers into its own project's colour, not the page's cycling accent
+  itemAccent = (i) => {
+    const w = this.workItems[i];
+    return this.adapt(!this.dark && w.accentLight ? w.accentLight : w.accent);
+  };
+  get accent() {
+    const open = this.state.workOpen;
+    if (open != null && this.workItems[open].accent) {
+      // on a brand-coloured ground the accent would vanish into it
+      if (this.onBrand) return '#FFFFFF';
+      const w = this.workItems[open];
+      return this.adapt(!this.dark && w.accentLight ? w.accentLight : w.accent);
+    }
+    const L = this.animL || 0.585, C = this.animC || 0.245;
+    return this.adapt('oklch(' + L.toFixed(3) + ' ' + C.toFixed(3) + ' ' + this.animHue.toFixed(1) + ')');
+  }
+  hueTune = { 25: [0.585, 0.245], 350: [0.605, 0.265], 295: [0.555, 0.275], 262: [0.555, 0.245], 155: [0.552, 0.20] };
+  // mid-scramble churn can run hotter — it's transient
+  churnColor = (h) => {
+    const hue = (((h % 360) + 360) % 360);
+    const warm = Math.cos((hue - 90) * Math.PI / 180);
+    const L = 0.60 + warm * 0.05;
+    return this.adapt('oklch(' + L.toFixed(3) + ' 0.28 ' + hue + ')');
+  };
+
+  // each letter gets its own start, duration, churn rate and drift direction, so
+  // the word lands as a ragged focus-pull rather than a metronomic typewriter
+  plan = (len) => {
+    const stag = 34 + Math.random() * 22;
+    const lead = 90 + Math.random() * 90;
+    this.chars = Array.from({ length: len }, (_, i) => ({
+      start: lead + i * stag + (Math.random() - 0.5) * stag * 1.4,
+      dur: 170 + Math.random() * 190,
+      rate: 0.9 + Math.random() * 1.5,
+      dir: Math.random() < 0.5 ? -1 : 1,
+      lift: 5 + Math.random() * 9
+    }));
+    this.chars.forEach(c => { if (c.start < 0) c.start = 0; });
+    this.settleAt = this.chars.reduce((m, c) => Math.max(m, c.start + c.dur), 300);
+    this.breathAt = 0;
+  };
+  ease = (p) => 1 - Math.pow(1 - p, 3);
+  landProgress = (el) => {
+    if (!this.chars || !this.chars.length) return 0;
+    const done = this.chars.filter(c => el >= c.start + c.dur).length;
+    return done / this.chars.length;
+  };
+  // once settled the word keeps a slow pulse: one letter slips out of focus and
+  // snaps back, so it never reads as a static frame
+  breath = (el) => {
+    if (el < this.settleAt + 400) return null;
+    if (!this.breathAt || el > this.breathAt + 620) {
+      this.breathAt = el + 900 + Math.random() * 2400;
+      this.breathIdx = Math.floor(Math.random() * Math.max(1, this.word.length));
+      return null;
+    }
+    const d = el - this.breathAt;
+    if (d < 0 || d > 260) return null;
+    return { i: this.breathIdx, k: 1 - Math.abs(d - 130) / 130 };
+  };
+  heroChars = (el) => {
+    const base = this.hue;
+    const t = this.state.tick;
+    const word = this.word;
+    const chars = this.chars || [];
+    const prog = this.landProgress(el);
+    const spread = 30 * (1 - prog);
+    const br = this.breath(el);
+    return word.split('').map((real, i) => {
+      const c = chars[i] || { start: 0, dur: 250, rate: 1, dir: 1, lift: 6 };
+      const p = Math.max(0, Math.min(1, (el - c.start) / c.dur));
+      const e = this.ease(p);
+      const settled = p >= 1;
+      const g = (n) => { const h = (Math.floor(t * c.rate) + i * 7 + n) * 2654435761 % 4294967296; return this.glyphs[Math.abs(h >> 5) % this.glyphs.length]; };
+      let blur = (1 - e) * 2.6, dy = c.dir * c.lift * (1 - e), op = 0.42 + 0.58 * e, ch = p > 0.72 ? real : g(0);
+      if (settled && br && br.i === i) { blur = 1.5 * br.k; dy = c.dir * 3 * br.k; op = 1 - 0.35 * br.k; if (br.k > 0.5) ch = g(3); }
+      return {
+        ch: ch,
+        blur: blur.toFixed(2),
+        dy: dy.toFixed(2),
+        op: op.toFixed(2),
+        color: settled && !(br && br.i === i) ? this.accent
+          : this.churnColor(base + (i * spread) - t * 18 * (1 - prog))
+      };
+    });
+  };
+
+  scrambled = (revealCount) => {
+    const t = this.state.tick;
+    let out = '';
+    for (let i = 0; i < this.word.length; i++) {
+      if (i < revealCount) out += this.word[i];
+      else { const h = (t + i * 7) * 2654435761 % 4294967296; out += this.glyphs[Math.abs(h >> 5) % this.glyphs.length]; }
+    }
+    return out;
+  };
+
+  renderVals() {
+    const m = this.state.m;
+    const active = this.state.activeIndex;
+    const revealed = this.state.revealed;
+    const open = this.state.workOpen;
+    const shown = this.state.panelIn;
+    const ticks = this.fstops.map((f, i) => ({
+      label: f,
+      size: i === active ? 22 : 13,
+      color: i === active ? this.accent : 'var(--fg)',
+      opacity: i === active ? 1 : 0.35,
+      aria: 'Go to section ' + (i + 1) + ' of 7',
+      current: i === active ? 'true' : 'false',
+      onClick: () => this.goTo(i)
+    }));
+    return {
+      s2Blur: m[1].blur, s2Op: m[1].opacity,
+      tw: this.tw,
+      s3Blur: m[2].blur, s3Op: m[2].opacity,
+      s4Blur: m[3].blur, s4Op: m[3].opacity,
+      s5Blur: m[4].blur, s5Op: m[4].opacity,
+      s6Blur: m[5].blur, s6Op: m[5].opacity,
+      s7Blur: m[6].blur, s7Op: m[6].opacity,
+      heroChars: this.heroChars(Date.now() - this.t0),
+      works: this.workItems.map((w, i) => {
+        const on = this.state.workHover === i;
+        const own = on ? this.itemAccent(i) : null;
+        return {
+          orgShort: w.orgShort, title: w.short || w.found, kind: w.kind, arrow: this.state.workHover === i ? 4 : 0, coverBg: w.cover ? "url('" + w.cover + "')" : 'none',
+          openLabel: 'Open project: ' + w.title,
+          onEnter: this.workEnter(i),
+          onLeave: this.workLeave,
+          onOpen: this.openWork(i),
+          color: on ? own : 'var(--fg)',
+          rule: on ? own : 'var(--dim2)',
+          lift: on ? -4 : 0
+        };
+      }),
+      isOpen: open != null,
+      openHasArt: open != null && !!this.workItems[open].art,
+      panelOp: shown ? 1 : 0,
+      contentOp: shown ? 1 : 0,
+      contentY: shown ? 0 : 12,
+      isDark: this.dark ? 'true' : 'false',
+      openOrg: open != null ? this.workItems[open].org : '',
+      openTitle: open != null ? this.workItems[open].title : '',
+      pw: (() => {
+        const t = open != null ? this.workItems[open].title : '';
+        const n = this.state.workOpen != null ? this.panelTyped : t.length;
+        return {
+          head: t.slice(0, n), tail: t.slice(n),
+          caret: this.panelOff || this.state.workOpen == null ? 0 : 1,
+          anim: this.panelStop ? 'none' : 'caretBlink 1s steps(1,end) infinite'
+        };
+      })(),
+      openLine: open != null ? this.workItems[open].line : '',
+      nextFound: open != null ? this.workItems[(open + 1) % this.workItems.length].found : '',
+      nextOrg: open != null ? this.workItems[(open + 1) % this.workItems.length].orgShort : '',
+      nextHoverColor: open != null && this.state.nextHover ? this.itemAccent((open + 1) % this.workItems.length) : 'var(--fg)',
+      nextOn: () => this.setState({ nextHover: true }),
+      nextOff: () => this.setState({ nextHover: false }),
+      nextLabel: open != null ? 'Next project: ' + this.workItems[(open + 1) % this.workItems.length].title : '',
+      goNext: open != null ? this.openWork((open + 1) % this.workItems.length) : null,
+      openAssumed: open != null ? this.workItems[open].assumed : '',
+      openFound: open != null ? this.workItems[open].found : '',
+      openDid: open != null ? this.workItems[open].did.map(d => ({ label: d.label, n: d.n || '', hasN: !!d.n, noN: !d.n })) : [],
+      openRole: open != null ? this.workItems[open].kind : '',
+      openScale: open != null ? this.workItems[open].scale.map(m => ({ n: m.n, l: m.l })) : [],
+      scaleShow: open != null && this.workItems[open].scale.length ? 'flex' : 'none',
+      openShots: open != null ? this.layoutShots(this.workItems[open].shots) : [],
+      closeWork: this.closeWork,
+      gridOp: this.state.workOpen != null ? 0 : 1,
+      gridShift: this.state.workOpen != null ? -24 : 0,
+      gridEvents: this.state.workOpen != null ? 'none' : 'auto',
+      goHome: this.goHome,
+      toggleTheme: this.toggleTheme,
+      wordColor: this.accent,
+      heroPlain: this.word,
+      miniWord: this.scrambled(revealed),
+      wordClick: this.wordClick,
+      ticks,
+      scrollRef: this.scrollRef,
+      onScroll: this.onScroll,
+      secRef0: this.secRefs[0], secRef1: this.secRefs[1], secRef2: this.secRefs[2],
+      secRef3: this.secRefs[3], secRef4: this.secRefs[4], secRef5: this.secRefs[5], secRef6: this.secRefs[6]
+    };
+  }
+}
+</script>
 </body>
 </html>

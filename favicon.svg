@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#fbf6ee"/>
-  <text x="4" y="24" font-size="22" font-family="sans-serif" font-weight="700" fill="#111">BO</text>
+  
+  <rect class="ground" width="32" height="32"></rect>
+  <text class="mark" x="16" y="24" text-anchor="middle" font-size="27" font-weight="700" font-family="Geist, Helvetica, Arial, sans-serif">O</text>
+  <rect x="4" y="26.5" width="24" height="2.5" fill="#D6003C"></rect>
 </svg>

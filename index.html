@@ -1571,13 +1571,15 @@ class Component extends DCLogic {
   // tweakables, all with the shipped values as defaults
   get flick() {
     const p = this.props || {};
+    // reduced motion slows the cadence and drops the slip rather than killing the flick
+    const calm = this.reduceMotion ? 2.2 : 1;
     return {
-      hold: p.glimpseHold ?? 70,
-      beat: p.portraitBeat ?? 30,
-      gap: p.burstGap ?? 2000,
+      hold: (p.glimpseHold ?? 70) * calm,
+      beat: (p.portraitBeat ?? 30) * calm,
+      gap: (p.burstGap ?? 2000) * calm,
       steps: p.burstSteps ?? 3,
       fade: p.flickFade ?? 100,
-      slip: p.flickSlip ?? 10,
+      slip: this.reduceMotion ? 0 : (p.flickSlip ?? 10),
       mirror: (p.mirrorChance ?? 15) / 100,
       scale: p.portraitScale ?? 1.14
     };
@@ -1603,14 +1605,27 @@ class Component extends DCLogic {
     });
   };
 
+  // iOS decodes lazily: a frame swapped in before its bitmap is ready shows nothing,
+  // which reads as "the flick isn't working". Decode once, then start.
+  primeFaces = () => {
+    if (this.facesPrimed) return Promise.resolve();
+    this.facesPrimed = true;
+    const stack = this.stackEl || document.querySelector('.sig-stack');
+    if (!stack) return Promise.resolve();
+    const jobs = [...stack.children].map(el => (el.decode ? el.decode().catch(() => {}) : Promise.resolve()));
+    return Promise.race([Promise.all(jobs), new Promise(r => setTimeout(r, 1200))]);
+  };
+
   startFlick = () => {
-    if (this.flickOn || this.reduceMotion) return;
+    if (this.flickOn) return;
     this.flickOn = true;
     // one studio portrait holds for the whole visit — the flick never swaps between them
     this.faceIdx = Math.floor(Math.random() * this.faceCount);
     this.faceFlip = Math.random() < this.flick.mirror;
     this.showFace(this.faceIdx, this.faceIdx, 0, '', this.faceFlip);
-    this.flickT = setTimeout(this.burst, this.flick.gap * 0.3);
+    this.primeFaces().then(() => {
+      if (this.flickOn) this.flickT = setTimeout(this.burst, this.flick.gap * 0.3);
+    });
   };
 
   // a burst alternates: the held portrait, a personal photograph, the portrait again

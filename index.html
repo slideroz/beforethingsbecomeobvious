@@ -425,6 +425,21 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     /* the signature drops to initials where the header runs out of room */
     .sig-short { display: none; }
     .head-theme { display: none; }
+    @keyframes sigdrift { 0%, 100% { transform: translate3d(0, -5px, 0); } 50% { transform: translate3d(-4px, 6px, 0); } }
+    .sig-drift { animation: sigdrift 9s ease-in-out infinite; will-change: transform; }
+    @media (prefers-reduced-motion: reduce) { .sig-drift { animation: none; } }
+    @media (max-width: 520px) { .sig-portrait { width: 132px !important; } }
+    /* placeholder frames — replaced by real photographs as they arrive */
+    .offduty::-webkit-scrollbar { width: 0; }
+    .off-slot { background: oklch(0.205 0.008 265); position: relative; overflow: hidden; }
+    .off-slot::after { content: attr(data-slot); position: absolute; left: 12px; bottom: 10px; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.45 0.006 265); }
+    @media (max-width: 900px) {
+      .off-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+      .off-grid > .off-slot { grid-column: span 1 !important; aspect-ratio: 1 !important; overflow: hidden; }
+      .off-pad { gap: 54px !important; padding: 24px 0 80px !important; }
+      .off-head { padding: 0 22px !important; }
+      .off-pad section > div:first-child { padding: 0 22px !important; }
+    }
     @media (max-width: 760px) {
       .sig-full { display: none; }
       .sig-short { display: inline; }
@@ -440,6 +455,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       .pagehead { position: fixed !important; padding: 18px 22px !important; }
       /* the rail is hidden here, so the light/dark control moves into the header */
       .head-theme { display: grid !important; }
+      /* the rail is hidden at this width, so the circle returns to the signature's edge */
+      .sig-portrait { position: fixed !important; top: 60px !important; right: 22px !important; width: 152px; }
       .snap > section { height: 100dvh; max-height: 100dvh; padding-bottom: 52px !important; }
     }
     html, body { overflow: hidden; overscroll-behavior: none; }
@@ -486,14 +503,96 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 <div style="position:relative; height:100vh; background:var(--bg); color:var(--fg); font-family:'Geist','Helvetica Neue',Helvetica,Arial,sans-serif; overflow:hidden;">
 
   <header class="pagehead" style="position:absolute; top:0; left:0; right:0; z-index:20; display:flex; align-items:baseline; justify-content:space-between; padding:26px 40px; pointer-events:none;">
-    <button type="button" onClick="{{ goHome }}" aria-label="Back to top" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:pointer; flex:1 1 auto; min-width:0; font-size:13px; font-weight:700; letter-spacing:-0.01em; pointer-events:auto;"><span aria-hidden="true">Before <span style="color:{{ wordColor }};">{{ miniWord }}</span> Become Obvious</span></button>
+    <button type="button" onClick="{{ goHome }}" disabled="{{ homeOff }}" aria-label="Back to top" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:{{ homeCursor }}; flex:1 1 auto; min-width:0; font-size:13px; font-weight:700; letter-spacing:-0.01em; pointer-events:auto;"><span aria-hidden="true">Before <span style="color:{{ wordColor }};">{{ miniWord }}</span> Become Obvious</span></button>
     <div style="display:flex; align-items:center; gap:12px; flex:none;">
-      <div style="font-size:13px; font-weight:700; letter-spacing:-0.01em; color:var(--muted); white-space:nowrap;"><span class="sig-full">Oussama Benbila</span><span class="sig-short" aria-hidden="true">OBB</span></div>
+      <button type="button" class="sig-name" onClick="{{ toggleSig }}" aria-expanded="{{ sigOpen }}" aria-label="Portrait of Oussama Benbila" style="background:none; border:none; padding:0; margin:0; font:inherit; font-size:13px; font-weight:700; letter-spacing:-0.01em; color:var(--muted); white-space:nowrap; cursor:pointer; pointer-events:auto;" style-hover="color:var(--fg);"><span class="sig-full">Oussama Benbila</span><span class="sig-short" aria-hidden="true">OBB</span></button>
       <button type="button" class="head-theme" onClick="{{ toggleTheme }}" aria-label="Toggle dark mode" aria-pressed="{{ isDark }}" style="padding:0; border:none; background:none; width:44px; height:44px; margin:-14px -14px -14px -14px; place-items:center; align-self:center; cursor:pointer; pointer-events:auto; flex:none;"><span style="display:block; width:15px; height:15px; border-radius:50%; border:1.5px solid var(--fg); box-sizing:border-box; background:linear-gradient(90deg, var(--fg) 0 50%, transparent 50% 100%); opacity:0.5;"></span></button>
     </div>
   </header>
 
-  <main style="display:contents;"><div class="snap" ref="{{ scrollRef }}" onScroll="{{ onScroll }}" style="height:100vh; overflow:hidden; scrollbar-width:none;">
+  <!-- clicking the signature: the portrait arrives out of focus, pulls sharp, and drifts -->
+  <div class="sig-portrait" aria-hidden="{{ sigHidden }}" style="position:absolute; top:74px; right:96px; z-index:19; width:196px; opacity:{{ sigOp }}; transform:translateY({{ sigY }}px); pointer-events:{{ sigEvents }}; transition:opacity 460ms cubic-bezier(.22,.61,.36,1), transform 680ms cubic-bezier(.22,.61,.36,1);">
+    <div class="sig-drift" style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+      <div style="width:100%; filter:drop-shadow(0 20px 26px rgba(0,0,0,0.26)) drop-shadow(0 3px 6px rgba(0,0,0,0.10));">
+        <button type="button" onClick="{{ openOff }}" aria-label="Open off duty" style="display:block; width:100%; aspect-ratio:1; padding:0; border:none; border-radius:50%; background:var(--hatch-a); cursor:pointer; position:relative; overflow:hidden;">
+          <div class="sig-stack" ref="{{ stackRef }}" style="position:absolute; inset:0; filter:blur({{ sigBlur }}px); transform:scale({{ sigScale }}); transition:filter 760ms cubic-bezier(.16,.84,.32,1), transform 980ms cubic-bezier(.16,.84,.32,1);">
+            <img src="./assets/face-1.jpg" alt="Oussama Benbila" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); z-index:1; transform:scale(1.14);">
+            <img src="./assets/face-2.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); opacity:0;">
+            <img src="./assets/face-3.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); opacity:0;">
+            <img src="./assets/glim-1.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); opacity:0;">
+            <img src="./assets/glim-2.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); opacity:0;">
+            <img src="./assets/glim-3.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); opacity:0;">
+            <img src="./assets/glim-4.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); opacity:0;">
+            <img src="./assets/glim-5.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); opacity:0;">
+            <img src="./assets/glim-6.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); opacity:0;">
+          </div>
+        </button>
+      </div>
+      <button type="button" onClick="{{ openOff }}" style="display:flex; align-items:center; gap:7px; background:none; border:none; padding:2px 0; font:inherit; font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--dim); cursor:pointer;" style-hover="color:var(--fg);">Off duty<span aria-hidden="true" style="display:block; width:14px; height:1px; background:currentColor;"></span></button>
+    </div>
+  </div>
+
+  <!-- the personal room: dark ground, image-led, deliberately not in the register of the client work -->
+  <div class="offduty" role="dialog" aria-label="Off duty" aria-hidden="{{ offHidden }}" style="position:fixed; inset:0; z-index:30; overflow-y:auto; scrollbar-width:none; background:oklch(0.155 0.008 265); color:oklch(0.95 0.004 260); opacity:{{ offOp }}; pointer-events:{{ offEvents }}; transition:opacity 520ms cubic-bezier(.22,.61,.36,1);">
+    <div class="off-pad" style="display:flex; flex-direction:column; gap:74px; padding:40px 0 110px;">
+
+      <div class="off-head" style="display:flex; align-items:flex-start; gap:40px; padding:0 40px;">
+        <div style="display:flex; flex-direction:column; gap:14px; flex:1 1 auto;">
+          <div style="font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:oklch(0.6 0.006 265);">Off duty</div>
+          <p style="margin:0; max-width:26ch; font-size:clamp(26px,3.4vw,46px); line-height:1.06; font-weight:700; letter-spacing:-0.03em; text-wrap:pretty;">What I point a camera at, and what I build with my hands.</p>
+        </div>
+        <button type="button" onClick="{{ closeOff }}" aria-label="Close off duty" style="flex:0 0 auto; margin-left:auto; background:none; border:none; border-radius:50%; position:relative; width:39px; height:39px; padding:0; cursor:pointer; transition:transform 0.35s cubic-bezier(0.33,0,0.2,1);" style-hover="transform:rotate(90deg) scale(1.15);">
+          <span style="position:absolute; left:0; top:19px; width:39px; height:2px; background:oklch(0.95 0.004 260); transform:rotate(45deg);"></span>
+          <span style="position:absolute; left:0; top:19px; width:39px; height:2px; background:oklch(0.95 0.004 260); transform:rotate(-45deg);"></span>
+        </button>
+      </div>
+
+      <section style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:baseline; gap:16px; padding:0 40px;">
+          <h2 style="margin:0; font-size:15px; font-weight:700; letter-spacing:-0.01em;">Photography</h2>
+          <span style="font-size:12px; color:oklch(0.6 0.006 265);">A loose set, kept over years.</span>
+        </div>
+        <!-- spans are paired so the two cells in each row resolve to the same height -->
+        <div class="off-grid" style="display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); gap:3px;">
+          <div class="off-slot" style="grid-column:span 4; aspect-ratio:3/4;"><img src="./assets/photo-1.jpg" alt="Adobe monument standing alone in the desert" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="off-slot" style="grid-column:span 8; aspect-ratio:3/2;"><img src="./assets/photo-2.jpg" alt="Sea wall and rooftops of El Jadida at low tide" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="off-slot" style="grid-column:span 8; aspect-ratio:4/3;"><img src="./assets/photo-4.jpg" alt="Desert range at dusk" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="off-slot" style="grid-column:span 4; aspect-ratio:2/3;"><img src="./assets/photo-3.jpg" alt="Switchback road through the Dades gorge" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="off-slot" style="grid-column:span 6; aspect-ratio:3/2;"><img src="./assets/photo-5.jpg" alt="Figure standing beside a lone acacia" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="off-slot" style="grid-column:span 6; aspect-ratio:3/2;"><img src="./assets/photo-6.jpg" alt="Whitewashed houses stacked up the Tetouan medina" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+        </div>
+      </section>
+
+      <section style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:baseline; gap:16px; padding:0 40px;">
+          <h2 style="margin:0; font-size:15px; font-weight:700; letter-spacing:-0.01em;">The deck</h2>
+          <span style="font-size:12px; color:oklch(0.6 0.006 265);">Rebuilt ours from the frame up.</span>
+        </div>
+        <div class="off-slot" data-slot="Deck — finished" style="aspect-ratio:21/9;"></div>
+        <div class="off-grid" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:3px;">
+          <div class="off-slot" data-slot="Before" style="aspect-ratio:4/3;"></div>
+          <div class="off-slot" data-slot="Framing" style="aspect-ratio:4/3;"></div>
+          <div class="off-slot" data-slot="Detail" style="aspect-ratio:4/3;"></div>
+        </div>
+      </section>
+
+      <section style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:baseline; gap:16px; padding:0 40px;">
+          <h2 style="margin:0; font-size:15px; font-weight:700; letter-spacing:-0.01em;">The backyard</h2>
+          <span style="font-size:12px; color:oklch(0.6 0.006 265);">Renovated over a summer.</span>
+        </div>
+        <div class="off-slot" data-slot="Backyard — finished" style="aspect-ratio:21/9;"></div>
+        <div class="off-grid" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:3px;">
+          <div class="off-slot" data-slot="Before" style="aspect-ratio:4/3;"></div>
+          <div class="off-slot" data-slot="In progress" style="aspect-ratio:4/3;"></div>
+          <div class="off-slot" data-slot="Planting" style="aspect-ratio:4/3;"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <main style="display:contents;"><div class="snap" ref="{{ scrollRef }}" onScroll="{{ onScroll }}" style="height:100vh; overflow:hidden; scrollbar-width:none; opacity:{{ pageOp }}; transition:opacity 620ms cubic-bezier(.22,.61,.36,1);">
 
     <!-- 1: hero -->
     <section data-screen-label="Hero" aria-label="Hero" tabIndex="0" ref="{{ secRef0 }}" style="position:relative; min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 clamp(56px,9vw,170px) 0 clamp(24px,8vw,140px);">
@@ -575,6 +674,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       <div style="display:flex; flex-direction:column; gap:12px; margin-top:clamp(28px,5vh,56px); filter:blur({{ s6Blur }}px); opacity:{{ s6Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
         <span style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted2);">Recognition</span>
         <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; font-size:14px; line-height:1.5; color:var(--muted); max-width:64ch;">
+          <li>Juror's Choice Award, Arteast Mosaic 2025, for <em style="font-style:italic;">Attitude</em> portraits</li>
           <li>1st prize, UNESCO photography</li>
           <li>1st prize, UNESCO logo competition, from 110 entries</li>
           <li>1st prize, Golden Web Awards, Architecture category</li>
@@ -1141,6 +1241,7 @@ class Component extends DCLogic {
     this.showWork(i);
   };
   showWork = (i) => {
+    this.closeSig();
     clearTimeout(this.closeT);
     setTimeout(this.startShotWatch, 420);
     this.tintFor(i);
@@ -1231,6 +1332,7 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.onScroll);
     window.addEventListener('keydown', this.onKey);
     window.addEventListener('pointerdown', this.notePointer, true);
+    document.addEventListener('pointerdown', this.onDocDown);
     if (this.scrollEl) {
       this.scrollEl.addEventListener('wheel', this.onWheel, { passive: false });
       this.scrollEl.addEventListener('focusin', this.onFocusIn);
@@ -1239,6 +1341,7 @@ class Component extends DCLogic {
     }
   }
   componentWillUnmount() {
+    this.flickOn = false; clearTimeout(this.flickT);
     clearInterval(this.timer);
     clearTimeout(this.closeT);
     window.removeEventListener('popstate', this.openFromHash);
@@ -1250,6 +1353,7 @@ class Component extends DCLogic {
     window.removeEventListener('resize', this.onScroll);
     window.removeEventListener('keydown', this.onKey);
     window.removeEventListener('pointerdown', this.notePointer, true);
+    document.removeEventListener('pointerdown', this.onDocDown);
     if (this.scrollEl) {
       this.scrollEl.removeEventListener('wheel', this.onWheel);
       this.scrollEl.removeEventListener('focusin', this.onFocusIn);
@@ -1312,6 +1416,8 @@ class Component extends DCLogic {
   notePointer = () => { this.pointerInput = true; };
   onKey = (e) => {
     this.pointerInput = false;
+    if (this.state.offOpen) { if (e.key === 'Escape') this.closeOff(); return; }
+    if (this.state.sigOpen && e.key === 'Escape') { this.closeSig(); return; }
     if (this.state.workOpen != null) {
       if (e.key === 'Escape') this.closeWork();
       else if (e.key === 'Tab') this.trapTab(e);
@@ -1441,6 +1547,117 @@ class Component extends DCLogic {
     return best;
   };
 
+  toggleSig = () => {
+    if (this.state.sigOpen) { this.setState({ sigOpen: false, sigSharp: false }); this.stopFlick(); return; }
+    this.setState({ sigOpen: true, sigSharp: false });
+    clearTimeout(this.sigT);
+    this.sigT = setTimeout(() => this.setState({ sigSharp: true }), 90);
+    this.startFlick();
+  };
+
+  closeSig = () => {
+    clearTimeout(this.sigT);
+    this.stopFlick();
+    if (this.state.sigOpen) this.setState({ sigOpen: false, sigSharp: false });
+  };
+
+  // the portrait doesn't cross-fade: it stutters between four frames in short bursts,
+  // then holds on whichever one it landed on
+  stackRef = (el) => { this.stackEl = el; };
+  faceIdx = 0;
+  faceCount = 3;   // the three studio portraits — the only frames it settles on
+  glimCount = 6;   // personal photographs, glimpsed mid-burst only
+
+  // tweakables, all with the shipped values as defaults
+  get flick() {
+    const p = this.props || {};
+    return {
+      hold: p.glimpseHold ?? 70,
+      beat: p.portraitBeat ?? 30,
+      gap: p.burstGap ?? 2000,
+      steps: p.burstSteps ?? 3,
+      fade: p.flickFade ?? 100,
+      slip: p.flickSlip ?? 10,
+      mirror: (p.mirrorChance ?? 15) / 100,
+      scale: p.portraitScale ?? 1.14
+    };
+  }
+
+  showFace = (base, flash, dx, band, flip, baseFlip) => {
+    const stack = this.stackEl || document.querySelector('.sig-stack');
+    if (!stack) return;
+    const f = this.flick;
+    [...stack.children].forEach((el, k) => {
+      el.style.transitionDuration = f.fade + 'ms';
+      if (k === base && k !== flash) {
+        el.style.opacity = '1'; el.style.zIndex = '1'; el.style.clipPath = 'none';
+        el.style.transform = 'scale(' + f.scale + ') scaleX(' + (baseFlip ? -1 : 1) + ')';
+      } else if (k === flash) {
+        el.style.opacity = '1'; el.style.zIndex = '2';
+        // the frames sit oversized so a horizontal slip never exposes an edge
+        el.style.transform = 'translate3d(' + (dx || 0) + 'px,0,0) scale(' + f.scale + ') scaleX(' + (flip ? -1 : 1) + ')';
+        el.style.clipPath = band || 'none';
+      } else {
+        el.style.opacity = '0'; el.style.zIndex = '0';
+      }
+    });
+  };
+
+  startFlick = () => {
+    if (this.flickOn || this.reduceMotion) return;
+    this.flickOn = true;
+    // one studio portrait holds for the whole visit — the flick never swaps between them
+    this.faceIdx = Math.floor(Math.random() * this.faceCount);
+    this.faceFlip = Math.random() < this.flick.mirror;
+    this.showFace(this.faceIdx, this.faceIdx, 0, '', this.faceFlip);
+    this.flickT = setTimeout(this.burst, this.flick.gap * 0.3);
+  };
+
+  // a burst alternates: the held portrait, a personal photograph, the portrait again
+  burst = () => {
+    if (!this.flickOn) return;
+    const f = this.flick;
+    const n = Math.max(2, Math.round(f.steps * (0.7 + Math.random() * 0.6)));
+    let step = 0;
+    const tick = () => {
+      if (!this.flickOn) return;
+      const g = this.flick;
+      if (step >= n) {
+        this.faceFlip = Math.random() < g.mirror;
+        this.showFace(this.faceIdx, this.faceIdx, 0, '', this.faceFlip);
+        this.flickT = setTimeout(this.burst, g.gap * (0.6 + Math.random() * 1.1));
+        return;
+      }
+      if (step % 2 === 1) {
+        this.showFace(this.faceIdx, this.faceIdx, 0, '', this.faceFlip);
+        step++;
+        this.flickT = setTimeout(tick, g.beat * (0.7 + Math.random() * 0.8));
+        return;
+      }
+      const flash = this.faceCount + Math.floor(Math.random() * this.glimCount);
+      // no clipped bands: a band's straight cut reads as a photo edge inside the circle
+      const dx = g.slip ? (Math.random() * g.slip * 2 - g.slip).toFixed(1) : 0;
+      this.showFace(this.faceIdx, flash, dx, '', Math.random() < g.mirror, this.faceFlip);
+      step++;
+      this.flickT = setTimeout(tick, g.hold * (0.7 + Math.random() * 0.85));
+    };
+    tick();
+  };
+
+  stopFlick = () => { this.flickOn = false; clearTimeout(this.flickT); this.showFace(this.faceIdx, this.faceIdx, 0, '', this.faceFlip); };
+
+  // a click anywhere off the portrait dismisses it; the signature handles its own toggle
+  onDocDown = (e) => {
+    if (!this.state.sigOpen || this.state.offOpen) return;
+    const t = e.target;
+    if (!t || !t.closest) return;
+    if (t.closest('.sig-portrait') || t.closest('.sig-name')) return;
+    this.closeSig();
+  };
+
+  openOff = () => { this.setState({ offOpen: true }); };
+  closeOff = () => { this.setState({ offOpen: false }); };
+
   goHome = () => {
     if (this.state.workOpen != null) this.closeWork();
     this.goTo(0);
@@ -1456,6 +1673,7 @@ class Component extends DCLogic {
       history.pushState({ sec: idx }, '', idx === 0 ? location.pathname + location.search : '#' + this.secSlugs[idx]);
     }
     this.suppressHash = true;
+    this.closeSig();
     this.animateTo(el.offsetTop, dur);
   };
 
@@ -1564,10 +1782,13 @@ class Component extends DCLogic {
     const closeBtn = this.needsPanelFocus && document.querySelector('.proj-panel [aria-label="Close project"]');
     if (closeBtn) { this.needsPanelFocus = false; closeBtn.focus({ preventScroll: true }); }
     const open = this.state.workOpen != null;
+    const off = !!this.state.offOpen;
     ['main', 'header', 'nav.f-index'].forEach(sel => {
       const el = document.querySelector(sel);
-      if (el) el.inert = open;
+      if (el) el.inert = open || off;
     });
+    const sp = document.querySelector('.sig-portrait');
+    if (sp) sp.inert = off;
     // focus can only go home once the page behind the dialog is no longer inert
     if (!open && this.needsTriggerFocus) {
       this.needsTriggerFocus = false;
@@ -1805,7 +2026,24 @@ class Component extends DCLogic {
       gridOp: this.state.workOpen != null ? 0 : 1,
       gridShift: this.state.workOpen != null ? -24 : 0,
       gridEvents: this.state.workOpen != null ? 'none' : 'auto',
+      pageOp: this.state.sigOpen ? 0.22 : 1,
+      openOff: this.openOff,
+      closeOff: this.closeOff,
+      offHidden: !this.state.offOpen,
+      offOp: this.state.offOpen ? 1 : 0,
+      offEvents: this.state.offOpen ? 'auto' : 'none',
+      toggleSig: this.toggleSig,
+      sigOpen: !!this.state.sigOpen,
+      sigHidden: !this.state.sigOpen,
+      sigOp: this.state.sigOpen ? 1 : 0,
+      sigY: this.state.sigOpen ? 0 : -12,
+      sigEvents: this.state.sigOpen ? 'auto' : 'none',
+      sigBlur: this.state.sigSharp ? 0 : 16,
+      sigScale: this.state.sigSharp ? 1 : 1.07,
       goHome: this.goHome,
+
+      homeOff: active === 0 && open == null,
+      homeCursor: active === 0 && open == null ? 'default' : 'pointer',
       toggleTheme: this.toggleTheme,
       wordColor: this.accent,
       heroPlain: this.word,

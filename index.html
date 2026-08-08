@@ -376,7 +376,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       --plate: oklch(0.97 0.003 260);
     }
     body { margin: 0; background: var(--bg); }
-    ::selection { background: oklch(0.585 0.245 28 / 0.24); }
+    ::selection { background: oklch(0.585 0.245 28); color: oklch(0.99 0 0); }
+    html[data-theme="dark"] ::selection { background: oklch(0.66 0.215 28); color: oklch(0.14 0.006 265); }
+    /* the off-duty room is dark whatever the page theme is */
+    .offduty ::selection { background: oklch(0.66 0.215 28); color: oklch(0.14 0.006 265); }
     a { color: var(--fg); }
     a:hover { color: oklch(0.585 0.245 28); }
     .snap::-webkit-scrollbar { width: 0; }
@@ -426,6 +429,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     @media (max-width: 760px) {
       .sig-full { display: none; }
       .sig-short { display: inline; }
+      /* the recognition list takes turns on one line rather than running six deep */
+      .recog-list { display: none !important; }
+      .recog-rotor { display: flex !important; }
 
       .snap > section { padding-right: clamp(24px,8vw,140px) !important; }
       .workgrid { grid-template-columns: minmax(0, 1fr) !important; gap: 0 !important; }
@@ -543,7 +549,6 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           <span style="font-size:12px; color:oklch(0.6 0.006 265);">A loose set, kept over years.</span>
           <a href="https://www.etsy.com/shop/SunStilled" target="_blank" rel="noopener" style="font-size:12px; color:oklch(0.6 0.006 265); text-decoration:none; border-bottom:1px solid oklch(0.38 0.006 265); padding-bottom:1px;" style-hover="color:oklch(0.95 0.004 260); border-bottom-color:oklch(0.95 0.004 260);">Prints on Etsy →</a>
         </div>
-
         <!-- rows repack themselves around however many photographs are in the set -->
         <div class="photo-stack" style="display:flex; flex-direction:column; gap:6px; box-sizing:border-box; width:100%; padding:0 40px;">
           <sc-for list="{{ photoRows }}" as="row" hint-placeholder-count="3">
@@ -767,7 +772,12 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:52ch; margin:0; text-wrap:pretty; filter:blur({{ s6Blur }}px); opacity:{{ s6Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">I came to design from electronic engineering — two years in, then out, because the logic underneath things was more interesting than the circuits. Twenty years later that's still the job: frame the problem, refine the interface, write enough code to find out whether it works.</p>
       <div style="display:flex; flex-direction:column; gap:12px; margin-top:clamp(28px,5vh,56px); filter:blur({{ s6Blur }}px); opacity:{{ s6Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
         <span style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted2);">Recognition</span>
-        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; font-size:14px; line-height:1.5; color:var(--muted); max-width:64ch;">
+        <!-- on a phone the six lines swallow the section, so they take turns on one line instead -->
+        <div class="recog-rotor" style="display:none; align-items:center; gap:12px; font-size:14px; line-height:1.5; color:var(--muted); min-height:44px;">
+          <span style="flex:1 1 auto; opacity:{{ recogOp }}; transition:opacity 0.32s ease;">{{ recogNow }}</span>
+          <span aria-hidden="true" style="flex:0 0 auto; font-size:11px; letter-spacing:0.1em; color:var(--dim2); font-variant-numeric:tabular-nums;">{{ recogCount }}</span>
+        </div>
+        <ul class="recog-list" style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; font-size:14px; line-height:1.5; color:var(--muted); max-width:64ch;">
           <li>Juror's Choice Award, Arteast Mosaic 2025, for <em style="font-style:italic;">Attitude</em> portraits</li>
           <li>1st prize, UNESCO photography</li>
           <li>1st prize, UNESCO logo competition, from 110 entries</li>
@@ -802,7 +812,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   <sc-if value="{{ isOpen }}">
     <div style="position:fixed; inset:0; z-index:28; background:var(--panel); opacity:{{ panelOp }}; transition:opacity 0.2s linear; transform:translateZ(0);"></div>
 <sc-if value="{{ openHasArt }}">
-      <div class="iso-art" style="position:fixed; z-index:29; pointer-events:none; opacity:{{ panelOp }}; transition:opacity 0.2s linear; top:178px; bottom:0; left:calc(64% - 120px); right:calc(4% + 120px); overflow:hidden;">
+      <div class="iso-art" style="position:fixed; z-index:29; pointer-events:none; opacity:{{ panelOp }}; transition:opacity 0.2s linear; top:178px; bottom:0; left:calc(64% + 16px); right:calc(4% + 120px); overflow:hidden;">
         <svg class="iso" viewBox="0 -130 623 2494" width="85%" style="display:block; margin-left:auto;" fill="none" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <g stroke="{{ wordColor }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
         <path d="M70 2322.7 L139 2362.7"></path>
@@ -1434,10 +1444,13 @@ class Component extends DCLogic {
       this.scrollEl.addEventListener('touchstart', this.onTouchStart, { passive: true });
       this.scrollEl.addEventListener('touchend', this.onTouchEnd, { passive: true });
     }
+    this.startRecog();
   }
   componentWillUnmount() {
     this.flickOn = false; clearTimeout(this.flickT); (this.flickTs || []).forEach(clearTimeout);
     clearInterval(this.timer);
+    clearInterval(this.recogT);
+    clearTimeout(this.recogFadeT);
     clearTimeout(this.closeT);
     window.removeEventListener('popstate', this.openFromHash);
     if (this.shotObs) this.shotObs.disconnect();
@@ -1849,6 +1862,29 @@ class Component extends DCLogic {
     if (!t || !t.closest) return;
     if (t.closest('.sig-portrait') || t.closest('.sig-name')) return;
     this.closeSig();
+  };
+
+  // the same six lines the desktop list carries, as plain text for the phone rotor
+  recognitions = [
+    'Juror\u2019s Choice Award, Arteast Mosaic 2025, for Attitude portraits',
+    '1st prize, UNESCO photography',
+    '1st prize, UNESCO logo competition, from 110 entries',
+    '1st prize, Golden Web Awards, Architecture category',
+    'Recognition Prize, International Wildlife and Environment Film Festival',
+    'Solo exhibition, Ferrouj Attitude, Th\u00e9\u00e2tre National Mohammed V'
+  ];
+
+  startRecog = () => {
+    clearInterval(this.recogT);
+    this.recogT = setInterval(() => {
+      // only the phone layout shows the rotor; no point re-rendering otherwise
+      if (window.matchMedia && !window.matchMedia('(max-width: 760px)').matches) return;
+      this.setState({ recogOp: 0 });
+      clearTimeout(this.recogFadeT);
+      this.recogFadeT = setTimeout(() => {
+        this.setState(s => ({ recogIdx: ((s.recogIdx || 0) + 1) % this.recognitions.length, recogOp: 1 }));
+      }, 340);
+    }, 4200);
   };
 
   // the personal photographs: cell geometry is fixed, the order is reshuffled on every visit
@@ -2358,6 +2394,9 @@ class Component extends DCLogic {
       homeOff: active === 0 && open == null,
       homeCursor: active === 0 && open == null ? 'default' : 'pointer',
       toggleTheme: this.toggleTheme,
+      recogNow: this.recognitions[(this.state.recogIdx || 0) % this.recognitions.length],
+      recogCount: ((this.state.recogIdx || 0) % this.recognitions.length + 1) + '/' + this.recognitions.length,
+      recogOp: this.state.recogOp == null ? 1 : this.state.recogOp,
       wordColor: this.accent,
       heroPlain: this.word,
       miniWord: this.scrambled(revealed),

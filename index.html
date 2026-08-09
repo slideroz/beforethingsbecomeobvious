@@ -2002,9 +2002,9 @@ class Component extends DCLogic {
   // the sound is an event, not a soundtrack: one cut when the portrait opens,
   // a slow fade away, then silence until it surfaces again at an unpredictable moment
   parkCycle = () => {
-    if (!this.flickOn || this.state.muted || (this.props.parkSound ?? true) === false) return;
+    if (!this.flickOn || this.state.offOpen || this.state.muted || (this.props.parkSound ?? true) === false) return;
     this.parkLoad(this.nextPark()).then(() => {
-      if (!this.parkBuf || !this.flickOn || this.state.muted) return;
+      if (!this.parkBuf || !this.flickOn || this.state.offOpen || this.state.muted) return;
       const ctx = this.parkCtx;
       // the ramp must be scheduled against a running clock, or it elapses while frozen
       // and the sound snaps in at full level instead of fading up
@@ -2225,7 +2225,12 @@ class Component extends DCLogic {
   };
 
   primeOff = () => { if (!this.state.offEver) this.setState({ offEver: true }); };
-  openOff = () => { this.photoOrder = null; this.setState({ offOpen: true, offEver: true }); };
+  openOff = () => {
+    this.photoOrder = null;
+    clearTimeout(this.parkNextT); clearTimeout(this.parkHoldT);
+    this.parkDown(1400);
+    this.setState({ offOpen: true, offEver: true });
+  };
   // leaving the room also puts the portrait back down — the two were opened together
   closeOff = () => { this.setState({ offOpen: false }); this.closeSig(); };
 

@@ -1464,6 +1464,7 @@ class Component extends DCLogic {
     try { if (localStorage.getItem('obv-muted') === '1') this.setState({ muted: true }); } catch (e) {}
     const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1200));
     idle(() => this.parkPrefetch());
+    if (/[?&]sounddebug=1/.test(location.search)) this.parkDebug();
   }
   componentWillUnmount() {
     this.flickOn = false; clearTimeout(this.flickT); (this.flickTs || []).forEach(clearTimeout);
@@ -1685,6 +1686,7 @@ class Component extends DCLogic {
   };
 
   toggleSig = () => {
+    this.parkUnlock();
     if (this.state.sigOpen) { this.setState({ sigOpen: false, sigSharp: false }); this.stopFlick(); return; }
     this.openSig();
   };
@@ -1937,7 +1939,7 @@ class Component extends DCLogic {
   };
 
   parkPrefetch = () => {
-    if (this.reduceMotion || (this.props.parkSound ?? true) === false) return;
+    if ((this.props.parkSound ?? true) === false) return;
     // ~17MB of audio: not something to pull down on a metered or slow connection
     const c = navigator.connection || {};
     if (c.saveData || /(^|-)2g$/.test(c.effectiveType || '')) return;
@@ -1951,7 +1953,7 @@ class Component extends DCLogic {
     this.parkUnlocked = true;
     ['pointerdown', 'touchend', 'touchstart', 'keydown', 'click'].forEach(t => window.removeEventListener(t, this.parkUnlock, true));
     window.removeEventListener('wheel', this.parkUnlock, { capture: true });
-    if (this.state.muted || this.reduceMotion || (this.props.parkSound ?? true) === false) return;
+    if (this.state.muted || (this.props.parkSound ?? true) === false) return;
     const ctx = this.parkCtxInit();
     if (!ctx) return;
     // a single silent sample, started in the gesture, is what actually opens iOS audio
@@ -1965,6 +1967,21 @@ class Component extends DCLogic {
     try { ctx.resume(); } catch (e) {}
     this.parkPrefetch();
     if (this.flickOn) { clearTimeout(this.parkNextT); this.parkNextT = setTimeout(this.parkCycle, 400); }
+  };
+
+  parkDebug = () => {
+    const box = document.createElement('div');
+    box.setAttribute('style', 'position:fixed; left:8px; bottom:8px; z-index:9999; max-width:92vw; padding:8px 10px; background:#111; color:#0f0; font:11px/1.45 ui-monospace,monospace; border-radius:4px; white-space:pre-wrap;');
+    document.body.appendChild(box);
+    setInterval(() => {
+      const g = this.parkGain ? this.parkGain.gain.value.toFixed(3) : '—';
+      box.textContent = [
+        'unlocked ' + !!this.parkUnlocked + '  muted ' + !!this.state.muted + '  reduce ' + this.reduceMotion,
+        'ctx ' + (this.parkCtx ? this.parkCtx.state : 'none') + '  gain ' + g + '  playing ' + !!this.parkSrc,
+        'file ' + (this.parkBufFile || '—') + '  buf ' + (this.parkBuf ? Math.round(this.parkBuf.duration) + 's' : 'none'),
+        'flick ' + !!this.flickOn + '  cached ' + Object.keys(this.parkRaw || {}).length
+      ].join('\n');
+    }, 500);
   };
 
   // Safari suspends the context whenever the tab goes to the background
@@ -1984,7 +2001,7 @@ class Component extends DCLogic {
   // the sound is an event, not a soundtrack: one cut when the portrait opens,
   // a slow fade away, then silence until it surfaces again at an unpredictable moment
   parkCycle = () => {
-    if (!this.flickOn || this.state.muted || this.reduceMotion || (this.props.parkSound ?? true) === false) return;
+    if (!this.flickOn || this.state.muted || (this.props.parkSound ?? true) === false) return;
     this.parkLoad(this.nextPark()).then(() => {
       if (!this.parkBuf || !this.flickOn || this.state.muted) return;
       const ctx = this.parkCtx;

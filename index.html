@@ -504,7 +504,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   <div class="sig-portrait" aria-hidden="{{ sigHidden }}" style="position:absolute; top:74px; right:96px; z-index:19; width:196px; opacity:{{ sigOp }}; transform:translateY({{ sigY }}px); pointer-events:{{ sigEvents }}; transition:opacity 130ms cubic-bezier(.2,.8,.3,1), transform 190ms cubic-bezier(.16,1,.3,1);">
     <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
       <div style="width:100%; filter:drop-shadow(0 20px 26px rgba(0,0,0,0.26)) drop-shadow(0 3px 6px rgba(0,0,0,0.10));">
-        <button type="button" onClick="{{ openOff }}" aria-label="Open off duty" style="display:block; width:100%; aspect-ratio:1; padding:0; border:none; border-radius:50%; background:var(--hatch-a); cursor:pointer; position:relative; overflow:hidden;">
+        <button type="button" onClick="{{ openOff }}" aria-label="Open off duty" style="display:block; width:100%; aspect-ratio:1; padding:0; border:none; border-radius:50%; background:var(--hatch-a); cursor:pointer; position:relative; overflow:hidden; clip-path:circle(50% at 50% 50%); -webkit-mask-image:-webkit-radial-gradient(circle, #fff 99.5%, transparent 100%); mask-image:radial-gradient(circle, #fff 99.5%, transparent 100%);">
           <div class="sig-stack" ref="{{ stackRef }}" style="position:absolute; inset:0; filter:blur({{ sigBlur }}px); transform:scale({{ sigScale }}); transition:filter 200ms cubic-bezier(.16,.84,.32,1), transform 260ms cubic-bezier(.16,.84,.32,1);">
             <img src="./assets/face-2.jpg" alt="Oussama Benbila" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; transform:scale(1.02);">
             <img src="./assets/face-4.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.02);">
@@ -1448,7 +1448,10 @@ class Component extends DCLogic {
     window.addEventListener('pointerdown', this.notePointer, true);
     window.addEventListener('pointerdown', this.parkUnlock, true);
     window.addEventListener('keydown', this.parkUnlock, true);
+    window.addEventListener('touchstart', this.parkUnlock, true);
     window.addEventListener('touchend', this.parkUnlock, true);
+    window.addEventListener('click', this.parkUnlock, true);
+    document.addEventListener('visibilitychange', this.parkWake);
     window.addEventListener('wheel', this.parkUnlock, { capture: true, passive: true });
     document.addEventListener('pointerdown', this.onDocDown);
     if (this.scrollEl) {
@@ -1464,6 +1467,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount() {
     this.flickOn = false; clearTimeout(this.flickT); (this.flickTs || []).forEach(clearTimeout);
+    document.removeEventListener('visibilitychange', this.parkWake);
     clearTimeout(this.parkStopT); clearTimeout(this.parkNextT); clearTimeout(this.parkHoldT); try { if (this.parkSrc) this.parkSrc.stop(); } catch (e) {} if (this.parkCtx) this.parkCtx.close();
     clearInterval(this.timer);
     clearInterval(this.recogT);
@@ -1887,15 +1891,21 @@ class Component extends DCLogic {
 
   // one decoded recording is held at a time — they are long, and keeping several
   // as raw samples would cost tens of megabytes for nothing
-  parkLoad = (file) => {
+  // iOS only grants audio to a context built and resumed INSIDE the gesture itself,
+  // before any await — so creation is split out and called synchronously on unlock
+  parkCtxInit = () => {
+    if (this.parkCtx) return this.parkCtx;
     const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return Promise.resolve(null);
-    if (!this.parkCtx) {
-      this.parkCtx = new AC();
-      this.parkGain = this.parkCtx.createGain();
-      this.parkGain.gain.value = 0;
-      this.parkGain.connect(this.parkCtx.destination);
-    }
+    if (!AC) return null;
+    this.parkCtx = new AC();
+    this.parkGain = this.parkCtx.createGain();
+    this.parkGain.gain.value = 0;
+    this.parkGain.connect(this.parkCtx.destination);
+    return this.parkCtx;
+  };
+
+  parkLoad = (file) => {
+    if (!this.parkCtxInit()) return Promise.resolve(null);
     const src = file || this.parkFiles[0].src;
     if (this.parkBufFile === src && this.parkBufP) return this.parkBufP;
     this.parkBufFile = src;
@@ -1939,13 +1949,28 @@ class Component extends DCLogic {
   parkUnlock = () => {
     if (this.parkUnlocked) return;
     this.parkUnlocked = true;
-    ['pointerdown', 'keydown', 'touchend'].forEach(t => window.removeEventListener(t, this.parkUnlock, true));
+    ['pointerdown', 'touchend', 'touchstart', 'keydown', 'click'].forEach(t => window.removeEventListener(t, this.parkUnlock, true));
     window.removeEventListener('wheel', this.parkUnlock, { capture: true });
     if (this.state.muted || this.reduceMotion || (this.props.parkSound ?? true) === false) return;
-    this.parkLoad().then(() => {
-      if (this.parkCtx && this.parkCtx.state === 'suspended') this.parkCtx.resume();
-      if (this.flickOn) { clearTimeout(this.parkNextT); this.parkNextT = setTimeout(this.parkCycle, 400); }
-    });
+    const ctx = this.parkCtxInit();
+    if (!ctx) return;
+    // a single silent sample, started in the gesture, is what actually opens iOS audio
+    try {
+      const b = ctx.createBuffer(1, 1, 22050);
+      const one = ctx.createBufferSource();
+      one.buffer = b;
+      one.connect(ctx.destination);
+      one.start(0);
+    } catch (e) {}
+    try { ctx.resume(); } catch (e) {}
+    this.parkPrefetch();
+    if (this.flickOn) { clearTimeout(this.parkNextT); this.parkNextT = setTimeout(this.parkCycle, 400); }
+  };
+
+  // Safari suspends the context whenever the tab goes to the background
+  parkWake = () => {
+    if (document.visibilityState !== 'visible' || !this.parkCtx) return;
+    if (this.parkCtx.state === 'suspended') this.parkCtx.resume().catch(() => {});
   };
 
   toggleMute = () => {

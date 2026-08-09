@@ -1459,6 +1459,8 @@ class Component extends DCLogic {
     }
     this.startRecog();
     try { if (localStorage.getItem('obv-muted') === '1') this.setState({ muted: true }); } catch (e) {}
+    const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1200));
+    idle(() => this.parkPrefetch());
   }
   componentWillUnmount() {
     this.flickOn = false; clearTimeout(this.flickT); (this.flickTs || []).forEach(clearTimeout);
@@ -1898,9 +1900,9 @@ class Component extends DCLogic {
     if (this.parkBufFile === src && this.parkBufP) return this.parkBufP;
     this.parkBufFile = src;
     this.parkBuf = null;
-    this.parkBufP = fetch(src)
-      .then(r => r.arrayBuffer())
-      .then(b => new Promise((res, rej) => this.parkCtx.decodeAudioData(b, res, rej)))
+    this.parkBufP = this.parkBytes(src)
+      // decodeAudioData detaches the buffer, so the cached bytes are handed a copy
+      .then(b => new Promise((res, rej) => this.parkCtx.decodeAudioData(b.slice(0), res, rej)))
       .then(buf => { if (this.parkBufFile === src) this.parkBuf = buf; return buf; })
       .catch(() => null);
     return this.parkBufP;
@@ -1914,6 +1916,22 @@ class Component extends DCLogic {
     let r = Math.random() * total;
     for (const p of pool) { r -= p.w; if (r <= 0) { this.parkFileIdx = p.i; break; } }
     return this.parkFiles[this.parkFileIdx].src;
+  };
+
+  // the recordings are fetched once the page is quiet, so the first play is instant;
+  // only the bytes are held (a few MB), never four decoded buffers
+  parkBytes = (src) => {
+    this.parkRaw = this.parkRaw || {};
+    if (!this.parkRaw[src]) this.parkRaw[src] = fetch(src).then(r => r.arrayBuffer());
+    return this.parkRaw[src];
+  };
+
+  parkPrefetch = () => {
+    if (this.reduceMotion || (this.props.parkSound ?? true) === false) return;
+    // ~17MB of audio: not something to pull down on a metered or slow connection
+    const c = navigator.connection || {};
+    if (c.saveData || /(^|-)2g$/.test(c.effectiveType || '')) return;
+    this.parkFiles.forEach((f, i) => setTimeout(() => this.parkBytes(f.src).catch(() => {}), i * 400));
   };
 
   // browsers only let a context run off a real gesture, and the portrait can open

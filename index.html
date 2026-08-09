@@ -1883,12 +1883,13 @@ class Component extends DCLogic {
   // --- park ambience -------------------------------------------------------
   // the recording carries no duration header, so the element can't be seeked;
   // it is decoded once into a buffer and each burst plays its own cut from it
-  // four recordings, drawn evenly; the short one always plays from its top
+  // five recordings, drawn evenly; the short one always plays from its top
   parkFiles = [
-    { src: './assets/park.mp3', w: 25 },                 // Festival
-    { src: './assets/park-2.mp3', w: 25, top: true },    // Didis
-    { src: './assets/park-3.mp3', w: 25 },               // At the park
-    { src: './assets/park-4.mp3', w: 25 }                // Music festival
+    { src: './assets/park.mp3', w: 20 },                 // Festival
+    { src: './assets/park-2.mp3', w: 20, top: true },    // Didis, short
+    { src: './assets/park-3.mp3', w: 20 },               // At the park
+    { src: './assets/park-4.mp3', w: 20 },               // Music festival
+    { src: './assets/park-5.mp3', w: 20 }                // Didis, long
   ];
 
   // one decoded recording is held at a time — they are long, and keeping several

@@ -499,15 +499,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     </div>
   </header>
 
+
   <!-- clicking the signature: the portrait arrives out of focus, pulls sharp, and drifts -->
-  <div class="sig-portrait" aria-hidden="{{ sigHidden }}" style="position:absolute; top:74px; right:96px; z-index:19; width:196px; opacity:{{ sigOp }}; transform:translateY({{ sigY }}px); pointer-events:{{ sigEvents }}; transition:opacity 460ms cubic-bezier(.22,.61,.36,1), transform 680ms cubic-bezier(.22,.61,.36,1);">
+  <div class="sig-portrait" aria-hidden="{{ sigHidden }}" style="position:absolute; top:74px; right:96px; z-index:19; width:196px; opacity:{{ sigOp }}; transform:translateY({{ sigY }}px); pointer-events:{{ sigEvents }}; transition:opacity 130ms cubic-bezier(.2,.8,.3,1), transform 190ms cubic-bezier(.16,1,.3,1);">
     <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
       <div style="width:100%; filter:drop-shadow(0 20px 26px rgba(0,0,0,0.26)) drop-shadow(0 3px 6px rgba(0,0,0,0.10));">
         <button type="button" onClick="{{ openOff }}" aria-label="Open off duty" style="display:block; width:100%; aspect-ratio:1; padding:0; border:none; border-radius:50%; background:var(--hatch-a); cursor:pointer; position:relative; overflow:hidden;">
-          <div class="sig-stack" ref="{{ stackRef }}" style="position:absolute; inset:0; filter:blur({{ sigBlur }}px); transform:scale({{ sigScale }}); transition:filter 760ms cubic-bezier(.16,.84,.32,1), transform 980ms cubic-bezier(.16,.84,.32,1);">
-            <img src="./assets/face-1.jpg" alt="Oussama Benbila" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; transform:scale(1.02);">
-            <img src="./assets/face-2.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.02);">
-            <img src="./assets/face-3.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.02);">
+          <div class="sig-stack" ref="{{ stackRef }}" style="position:absolute; inset:0; filter:blur({{ sigBlur }}px); transform:scale({{ sigScale }}); transition:filter 200ms cubic-bezier(.16,.84,.32,1), transform 260ms cubic-bezier(.16,.84,.32,1);">
+            <img src="./assets/face-2.jpg" alt="Oussama Benbila" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; transform:scale(1.02);">
             <img src="./assets/face-4.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.02);">
             <img src="./assets/face-5.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.02);">
             <img src="./assets/glim-1.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 90ms cubic-bezier(.4,0,.2,1); opacity:0;">
@@ -523,7 +522,17 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           </div>
         </button>
       </div>
-      <button type="button" onClick="{{ openOff }}" onMouseEnter="{{ primeOff }}" onFocus="{{ primeOff }}" style="display:flex; align-items:center; gap:7px; background:none; border:none; padding:2px 0; font:inherit; font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--dim); cursor:pointer;" style-hover="color:var(--fg);">Off duty<span aria-hidden="true" style="display:block; width:14px; height:1px; background:currentColor;"></span></button>
+      <div style="display:flex; align-items:center; gap:7px;">
+        <button type="button" onClick="{{ openOff }}" onMouseEnter="{{ primeOff }}" onFocus="{{ primeOff }}" style="display:flex; align-items:center; gap:7px; background:none; border:none; padding:2px 0; font:inherit; font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--dim); cursor:pointer;" style-hover="color:var(--fg);">Off duty</button>
+        <button type="button" onClick="{{ toggleMute }}" aria-label="{{ muteLabel }}" aria-pressed="{{ mutePressed }}" title="{{ muteLabel }}" style="display:flex; align-items:center; line-height:0; box-sizing:content-box; background:none; border:none; padding:9px; margin:-9px; cursor:pointer; color:{{ muteColor }}; transition:color 0.3s ease;" style-hover="color:var(--fg);">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display:block; overflow:visible; transform:translateY(-1.5px);">
+            <path d="M2.6 6.1h2.3L8.3 3.2v9.6L4.9 9.9H2.6z" fill="currentColor"></path>
+            <path d="M10.4 6.3c.85.95.85 2.45 0 3.4" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" opacity="{{ muteWave }}" style="transition:opacity 0.25s ease;"></path>
+            <path d="M12.4 4.5c1.75 1.95 1.75 5.05 0 7" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" opacity="{{ muteWave }}" style="transition:opacity 0.25s ease;"></path>
+            <path d="M10.8 5.9l4.2 4.2" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" opacity="{{ muteSlash }}" style="transition:opacity 0.25s ease;"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1030,7 +1039,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;landDuration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:150,&quot;max&quot;:1200,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;easing&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;snappy&quot;,&quot;options&quot;:[&quot;soft&quot;,&quot;snappy&quot;,&quot;glide&quot;,&quot;steady&quot;,&quot;overshoot&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;cooldown&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:400,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;triggerForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:8,&quot;max&quot;:300,&quot;step&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;directionLock&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:600,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:40,&quot;max&quot;:600,&quot;step&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:60,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;maxBlur&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:0,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Focus&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;landDuration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:150,&quot;max&quot;:1200,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;easing&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;snappy&quot;,&quot;options&quot;:[&quot;soft&quot;,&quot;snappy&quot;,&quot;glide&quot;,&quot;steady&quot;,&quot;overshoot&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;cooldown&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:400,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;triggerForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:8,&quot;max&quot;:300,&quot;step&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;directionLock&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:600,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:40,&quot;max&quot;:600,&quot;step&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:60,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;maxBlur&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:0,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Focus&quot;},&quot;dreamPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:400,&quot;min&quot;:400,&quot;max&quot;:2600,&quot;step&quot;:50,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamOverlap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:85,&quot;min&quot;:0,&quot;max&quot;:85,&quot;step&quot;:1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamHaze&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:24,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamDrift&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:0,&quot;max&quot;:60,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;glimpsePeak&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:40,&quot;max&quot;:100,&quot;step&quot;:2,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;burstGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4100,&quot;min&quot;:400,&quot;max&quot;:9000,&quot;step&quot;:100,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkSound&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkVolume&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkFadeIn&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:320,&quot;min&quot;:80,&quot;max&quot;:1500,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkHold&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:17000,&quot;min&quot;:3000,&quot;max&quot;:30000,&quot;step&quot;:500,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:48000,&quot;min&quot;:8000,&quot;max&quot;:180000,&quot;step&quot;:2000,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkFadeOut&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5200,&quot;min&quot;:800,&quot;max&quot;:12000,&quot;step&quot;:200,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;burstSteps&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:2,&quot;max&quot;:12,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;mirrorChance&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:50,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;portraitScale&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1.13,&quot;min&quot;:1,&quot;max&quot;:1.4,&quot;step&quot;:0.01,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;}}">
 class Component extends DCLogic {
   state = { m: Array(7).fill({ blur: 0, opacity: 1 }), activeIndex: 0, revealed: 0, tick: 0, wordIndex: 0, workHover: null, theme: 'light', workOpen: null, panelIn: false, nextHover: false, wipes: {}, offEver: false };
 
@@ -1437,6 +1446,10 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.onPhotoResize);
     window.addEventListener('keydown', this.onKey);
     window.addEventListener('pointerdown', this.notePointer, true);
+    window.addEventListener('pointerdown', this.parkUnlock, true);
+    window.addEventListener('keydown', this.parkUnlock, true);
+    window.addEventListener('touchend', this.parkUnlock, true);
+    window.addEventListener('wheel', this.parkUnlock, { capture: true, passive: true });
     document.addEventListener('pointerdown', this.onDocDown);
     if (this.scrollEl) {
       this.scrollEl.addEventListener('wheel', this.onWheel, { passive: false });
@@ -1445,9 +1458,11 @@ class Component extends DCLogic {
       this.scrollEl.addEventListener('touchend', this.onTouchEnd, { passive: true });
     }
     this.startRecog();
+    try { if (localStorage.getItem('obv-muted') === '1') this.setState({ muted: true }); } catch (e) {}
   }
   componentWillUnmount() {
     this.flickOn = false; clearTimeout(this.flickT); (this.flickTs || []).forEach(clearTimeout);
+    clearTimeout(this.parkStopT); clearTimeout(this.parkNextT); clearTimeout(this.parkHoldT); try { if (this.parkSrc) this.parkSrc.stop(); } catch (e) {} if (this.parkCtx) this.parkCtx.close();
     clearInterval(this.timer);
     clearInterval(this.recogT);
     clearTimeout(this.recogFadeT);
@@ -1659,7 +1674,7 @@ class Component extends DCLogic {
     if (this.state.sigOpen) return;
     this.setState({ sigOpen: true, sigSharp: false });
     clearTimeout(this.sigT);
-    this.sigT = setTimeout(() => this.setState({ sigSharp: true }), 90);
+    this.sigT = setTimeout(() => this.setState({ sigSharp: true }), 30);
     this.startFlick();
   };
 
@@ -1687,7 +1702,8 @@ class Component extends DCLogic {
   // then holds on whichever one it landed on
   stackRef = (el) => { this.stackEl = el; };
   faceIdx = 0;
-  faceCount = 5;   // studio portraits — one is drawn at random each time the portrait opens
+  faceFlip = 1;    // the resting portrait faces left or right, drawn afresh each time
+  faceCount = 3;   // studio portraits — one is drawn at random each time the portrait opens
   glimCount = 10;  // personal photographs, glimpsed mid-burst only
 
   // tweakables, all with the shipped values as defaults
@@ -1701,7 +1717,7 @@ class Component extends DCLogic {
       haze: this.reduceMotion ? 0 : (p.dreamHaze ?? 13),
       drift: this.reduceMotion ? 0 : (p.dreamDrift ?? 4),
       gap: (p.burstGap ?? 4100) * calm,
-      count: p.burstSteps ?? 3,
+      count: p.burstSteps ?? 8,
       peak: (p.glimpsePeak ?? 70) / 100,
       mirror: (p.mirrorChance ?? 50) / 100,
       scale: p.portraitScale ?? 1.02
@@ -1718,8 +1734,9 @@ class Component extends DCLogic {
       el.getAnimations().forEach(a => a.cancel());
       el.style.clipPath = 'none';
       if (k === this.faceIdx) {
+        this.faceFlip = Math.random() < 0.5 ? -1 : 1;
         el.style.opacity = '1'; el.style.zIndex = '1';
-        el.style.transform = 'scale(' + d.scale + ')';
+        el.style.transform = 'scale(' + (d.scale * this.faceFlip) + ',' + d.scale + ')';
       } else {
         el.style.opacity = '0'; el.style.zIndex = '0';
       }
@@ -1758,10 +1775,13 @@ class Component extends DCLogic {
     const d = this.dream;
     const el = stack.children[this.faceIdx];
     el.getAnimations().forEach(a => a.cancel());
+    const f = this.faceFlip || 1;   // whichever way this face is currently turned
+    const rest = 'scale(' + (d.scale * f) + ',' + d.scale + ')';
+    const swell = 'scale(' + (d.scale * 1.035 * f).toFixed(3) + ',' + (d.scale * 1.035).toFixed(3) + ')';
     el.animate([
-      { transform: 'scale(' + d.scale + ')', filter: 'blur(0px)' },
-      { transform: 'scale(' + (d.scale * 1.035).toFixed(3) + ')', filter: 'blur(1.2px)', offset: 0.5 },
-      { transform: 'scale(' + d.scale + ')', filter: 'blur(0px)' }
+      { transform: rest, filter: 'blur(0px)' },
+      { transform: swell, filter: 'blur(1.2px)', offset: 0.5 },
+      { transform: rest, filter: 'blur(0px)' }
     ], { duration: total, easing: 'cubic-bezier(.45,0,.4,1)', fill: 'none' });
   };
 
@@ -1776,7 +1796,8 @@ class Component extends DCLogic {
     this.faceIdx = next;
     to.getAnimations().forEach(a => a.cancel());
     to.style.zIndex = '1';
-    to.style.transform = 'scale(' + d.scale + ')';
+    this.faceFlip = Math.random() < 0.5 ? -1 : 1;
+    to.style.transform = 'scale(' + (d.scale * this.faceFlip) + ',' + d.scale + ')';
     to.animate([{ opacity: 0 }, { opacity: 1 }], { duration: dur, easing: 'cubic-bezier(.4,0,.3,1)', fill: 'none' });
     to.style.opacity = '1';
     from.getAnimations().forEach(a => a.cancel());
@@ -1825,6 +1846,8 @@ class Component extends DCLogic {
     this.primeFaces().then(() => {
       if (this.flickOn) this.flickT = setTimeout(this.dreamRun, this.dream.gap * 0.35);
     });
+    clearTimeout(this.parkNextT);
+    this.parkNextT = setTimeout(this.parkCycle, 900 + Math.random() * 1600);
   };
 
   // a sequence: three to five images drifting through, each dissolving into the next,
@@ -1832,7 +1855,9 @@ class Component extends DCLogic {
   dreamRun = () => {
     if (!this.flickOn) return;
     const d = this.dream;
-    const n = Math.max(2, Math.round(d.count * (0.75 + Math.random() * 0.7)));
+    // each burst draws its own length, 2 up to the configured ceiling
+    const hi = Math.max(2, Math.round(d.count));
+    const n = 2 + Math.floor(Math.random() * (hi - 1));
     const step = Math.max(120, d.pass * (1 - d.overlap));
     for (let i = 0; i < n; i++) {
       const k = this.nextGlimpse();
@@ -1847,8 +1872,148 @@ class Component extends DCLogic {
     this.flickT = setTimeout(this.dreamRun, total + d.gap * (0.7 + Math.random() * 0.9));
   };
 
+  // --- park ambience -------------------------------------------------------
+  // the recording carries no duration header, so the element can't be seeked;
+  // it is decoded once into a buffer and each burst plays its own cut from it
+  // four recordings, drawn evenly; the short one always plays from its top
+  parkFiles = [
+    { src: './assets/park.mp3', w: 25 },                 // Festival
+    { src: './assets/park-2.mp3', w: 25, top: true },    // Didis
+    { src: './assets/park-3.mp3', w: 25 },               // At the park
+    { src: './assets/park-4.mp3', w: 25 }                // Music festival
+  ];
+
+  // one decoded recording is held at a time — they are long, and keeping several
+  // as raw samples would cost tens of megabytes for nothing
+  parkLoad = (file) => {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return Promise.resolve(null);
+    if (!this.parkCtx) {
+      this.parkCtx = new AC();
+      this.parkGain = this.parkCtx.createGain();
+      this.parkGain.gain.value = 0;
+      this.parkGain.connect(this.parkCtx.destination);
+    }
+    const src = file || this.parkFiles[0].src;
+    if (this.parkBufFile === src && this.parkBufP) return this.parkBufP;
+    this.parkBufFile = src;
+    this.parkBuf = null;
+    this.parkBufP = fetch(src)
+      .then(r => r.arrayBuffer())
+      .then(b => new Promise((res, rej) => this.parkCtx.decodeAudioData(b, res, rej)))
+      .then(buf => { if (this.parkBufFile === src) this.parkBuf = buf; return buf; })
+      .catch(() => null);
+    return this.parkBufP;
+  };
+
+  // weighted draw, with the previous recording held out so nothing repeats back to back
+  nextPark = () => {
+    const pool = this.parkFiles.map((f, i) => ({ i, w: i === this.parkFileIdx ? 0 : f.w }));
+    let total = pool.reduce((a, b) => a + b.w, 0);
+    if (total <= 0) return this.parkFiles[this.parkFileIdx ?? 0].src;
+    let r = Math.random() * total;
+    for (const p of pool) { r -= p.w; if (r <= 0) { this.parkFileIdx = p.i; break; } }
+    return this.parkFiles[this.parkFileIdx].src;
+  };
+
+  // browsers only let a context run off a real gesture, and the portrait can open
+  // on hover alone — so the first pointer, key, or scroll anywhere unlocks the sound
+  parkUnlock = () => {
+    if (this.parkUnlocked) return;
+    this.parkUnlocked = true;
+    ['pointerdown', 'keydown', 'touchend'].forEach(t => window.removeEventListener(t, this.parkUnlock, true));
+    window.removeEventListener('wheel', this.parkUnlock, { capture: true });
+    if (this.state.muted || this.reduceMotion || (this.props.parkSound ?? true) === false) return;
+    this.parkLoad().then(() => {
+      if (this.parkCtx && this.parkCtx.state === 'suspended') this.parkCtx.resume();
+      if (this.flickOn) { clearTimeout(this.parkNextT); this.parkNextT = setTimeout(this.parkCycle, 400); }
+    });
+  };
+
+  toggleMute = () => {
+    const next = !this.state.muted;
+    this.setState({ muted: next });
+    try { localStorage.setItem('obv-muted', next ? '1' : '0'); } catch (e) {}
+    if (next) { clearTimeout(this.parkHoldT); clearTimeout(this.parkNextT); this.parkDown(420); }
+    else if (this.flickOn) { clearTimeout(this.parkNextT); this.parkNextT = setTimeout(this.parkCycle, 600); }
+  };
+
+  // the sound is an event, not a soundtrack: one cut when the portrait opens,
+  // a slow fade away, then silence until it surfaces again at an unpredictable moment
+  parkCycle = () => {
+    if (!this.flickOn || this.state.muted || this.reduceMotion || (this.props.parkSound ?? true) === false) return;
+    this.parkLoad(this.nextPark()).then(() => {
+      if (!this.parkBuf || !this.flickOn || this.state.muted) return;
+      const ctx = this.parkCtx;
+      // the ramp must be scheduled against a running clock, or it elapses while frozen
+      // and the sound snaps in at full level instead of fading up
+      // still locked: try to resume, and keep checking back so a later gesture picks it up
+      if (ctx.state !== 'running') {
+        ctx.resume().then(() => { if (this.flickOn) this.parkPlay(); }).catch(() => {});
+        clearTimeout(this.parkNextT);
+        this.parkNextT = setTimeout(this.parkCycle, 1500);
+        return;
+      }
+      this.parkPlay();
+    });
+  };
+
+  parkPlay = () => {
+    if (!this.parkBuf || this.state.muted) return;
+    const ctx = this.parkCtx;
+    const dur = this.parkBuf.duration;
+    // a different stretch of the crowd every time, never near the last one —
+    // except the short recording, which only makes sense from its opening
+    let at = 0, tries = 0;
+    if (!(this.parkFiles[this.parkFileIdx ?? 0] || {}).top) {
+      do { at = Math.random() * Math.max(0.01, dur - 2); tries++; }
+      while (tries < 8 && Math.abs(at - (this.parkLastCut ?? -99)) < dur / 5 && dur > 20);
+    }
+    this.parkLastCut = at;
+    try { if (this.parkSrc) this.parkSrc.stop(); } catch (e) {}
+    const file = this.parkFiles[this.parkFileIdx ?? 0] || {};
+    const src = ctx.createBufferSource();
+    src.buffer = this.parkBuf;
+    src.loop = !file.top;   // the short one plays once and is gone
+    src.connect(this.parkGain);
+    src.start(0, at);
+    this.parkSrc = src;
+    const peak = Math.min(1, Math.max(0, (this.props.parkVolume ?? 40) / 100));
+    const g = this.parkGain.gain, now = ctx.currentTime;
+    g.cancelScheduledValues(now);
+    g.setValueAtTime(0.0001, now);
+    g.exponentialRampToValueAtTime(Math.max(0.001, peak), now + (this.props.parkFadeIn ?? 320) / 1000);
+    // hold, then let it thin out; the next one comes back at an unpredictable moment
+    let hold = (this.props.parkHold ?? 17000) * (0.8 + Math.random() * 0.4);
+    let out = this.props.parkFadeOut ?? 5200;
+    // a one-shot must finish fading before its last sample, or it just stops dead
+    if (!src.loop) {
+      const room = Math.max(1200, (dur - at) * 1000);
+      if (hold + out > room) { out = Math.min(out, room * 0.45); hold = room - out; }
+    }
+    clearTimeout(this.parkHoldT); clearTimeout(this.parkNextT);
+    this.parkHoldT = setTimeout(() => this.parkDown(out), hold);
+    const gap = (this.props.parkGap ?? 48000) * (0.6 + Math.random() * 0.9);
+    this.parkNextT = setTimeout(this.parkCycle, hold + out + gap);
+  };
+
+  parkDown = (ms) => {
+    if (!this.parkCtx || !this.parkSrc) return;
+    const ctx = this.parkCtx, g = this.parkGain.gain, now = ctx.currentTime;
+    const secs = (ms ?? (this.props.parkFadeOut ?? 5200)) / 1000;
+    g.cancelScheduledValues(now);
+    g.setValueAtTime(Math.max(0.0001, g.value), now);
+    g.exponentialRampToValueAtTime(0.0001, now + secs);
+    const src = this.parkSrc;
+    this.parkSrc = null;
+    clearTimeout(this.parkStopT);
+    this.parkStopT = setTimeout(() => { try { src.stop(); } catch (e) {} }, secs * 1000 + 120);
+  };
+
   stopFlick = () => {
     this.flickOn = false;
+    clearTimeout(this.parkNextT); clearTimeout(this.parkHoldT);
+    this.parkDown(900);
     clearTimeout(this.flickT);
     (this.flickTs || []).forEach(clearTimeout);
     this.flickTs = [];
@@ -2386,14 +2551,20 @@ class Component extends DCLogic {
       sigOpen: !!this.state.sigOpen,
       sigHidden: !this.state.sigOpen,
       sigOp: this.state.sigOpen ? 1 : 0,
-      sigY: this.state.sigOpen ? 0 : -12,
+      sigY: this.state.sigOpen ? 0 : -7,
       sigEvents: this.state.sigOpen ? 'auto' : 'none',
-      sigBlur: this.state.sigSharp ? 0 : 16,
+      sigBlur: this.state.sigSharp ? 0 : 11,
       sigScale: this.state.sigSharp ? 1 : 1.07,
       goHome: this.goHome,
       homeOff: active === 0 && open == null,
       homeCursor: active === 0 && open == null ? 'default' : 'pointer',
       toggleTheme: this.toggleTheme,
+      toggleMute: this.toggleMute,
+      mutePressed: this.state.muted ? 'true' : 'false',
+      muteLabel: this.state.muted ? 'Unmute park sound' : 'Mute park sound',
+      muteColor: this.state.muted ? 'var(--dim2)' : 'var(--dim)',
+      muteWave: this.state.muted ? 0 : 1,
+      muteSlash: this.state.muted ? 1 : 0,
       recogNow: this.recognitions[(this.state.recogIdx || 0) % this.recognitions.length],
       recogCount: ((this.state.recogIdx || 0) % this.recognitions.length + 1) + '/' + this.recognitions.length,
       recogOp: this.state.recogOp == null ? 1 : this.state.recogOp,

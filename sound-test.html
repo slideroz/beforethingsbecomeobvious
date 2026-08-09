@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sound test</title>
+</head>
+<body style="margin:0; padding:40px 28px; font:16px/1.5 -apple-system,BlinkMacSystemFont,sans-serif; background:#f4f4f2; color:#111;">
+  <h1 style="font-size:20px; margin:0 0 6px;">Sound test</h1>
+  <p style="margin:0 0 26px; color:#666;">Tap each button and say what you hear.</p>
+
+  <div style="display:flex; flex-direction:column; gap:14px; max-width:420px;">
+    <button id="b1" style="font:inherit; padding:16px; border:1px solid #111; background:#fff; border-radius:6px;">1 — Web Audio test tone</button>
+    <button id="b2" style="font:inherit; padding:16px; border:1px solid #111; background:#fff; border-radius:6px;">2 — Web Audio, the real recording</button>
+    <button id="b3" style="font:inherit; padding:16px; border:1px solid #111; background:#fff; border-radius:6px;">3 — Plain &lt;audio&gt; element</button>
+  </div>
+
+  <pre id="log" style="margin:26px 0 0; padding:14px; background:#fff; border:1px solid #ddd; border-radius:6px; font-size:13px; white-space:pre-wrap; min-height:120px;"></pre>
+
+  <audio id="el" src="./assets/park-2.mp3" playsinline></audio>
+
+<script>
+const log = (m) => { document.getElementById('log').textContent += m + '\n'; };
+let ctx, gain;
+const init = () => {
+  if (ctx) return ctx;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  ctx = new AC();
+  gain = ctx.createGain();
+  gain.gain.value = 0.4;
+  gain.connect(ctx.destination);
+  log('context created, state=' + ctx.state + ', rate=' + ctx.sampleRate);
+  return ctx;
+};
+
+document.getElementById('b1').onclick = () => {
+  const c = init();
+  c.resume();
+  const o = c.createOscillator();
+  o.frequency.value = 440;
+  o.connect(gain);
+  o.start();
+  setTimeout(() => o.stop(), 1200);
+  log('tone started, state=' + c.state + ', gain=' + gain.gain.value);
+  setTimeout(() => log('  after 1s state=' + c.state), 1000);
+};
+
+document.getElementById('b2').onclick = () => {
+  const c = init();
+  c.resume();
+  log('fetching park-2.mp3 …');
+  fetch('./assets/park-2.mp3').then(r => r.arrayBuffer()).then(b => new Promise((res, rej) => c.decodeAudioData(b, res, rej)))
+    .then(buf => {
+      log('decoded ' + Math.round(buf.duration) + 's, state=' + c.state);
+      const s = c.createBufferSource();
+      s.buffer = buf; s.connect(gain); s.start(0);
+      setTimeout(() => { try { s.stop(); } catch (e) {} }, 6000);
+    })
+    .catch(e => log('FAILED: ' + e));
+};
+
+document.getElementById('b3').onclick = () => {
+  const a = document.getElementById('el');
+  a.volume = 1;
+  a.play().then(() => log('element playing, paused=' + a.paused)).catch(e => log('element blocked: ' + e));
+};
+
+log('ua: ' + navigator.userAgent);
+</script>
+</body>
+</html>

@@ -455,7 +455,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       .snap > section h1 { font-size: min(8.2vw, 11.5vh, 130px) !important; }
       .snap > section h2 { font-size: clamp(22px, min(5.4vw, 7.4vh), 76px) !important; margin-bottom: 18px !important; }
       .snap > section p { font-size: clamp(14px, 3.4vh, 22px) !important; line-height: 1.45 !important; max-width: 80ch !important; }
-      .snap > section { padding-top: 68px !important; }
+      .snap > section.sec-tall { padding-top: 68px !important; }
     }
     html, body { overflow: hidden; overscroll-behavior: none; }
 
@@ -718,7 +718,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   <main style="display:contents;"><div class="snap" ref="{{ scrollRef }}" onScroll="{{ onScroll }}" style="height:100vh; overflow:hidden; scrollbar-width:none; opacity:{{ pageOp }}; transition:opacity 620ms cubic-bezier(.22,.61,.36,1);">
 
     <!-- 1: hero -->
-    <section data-screen-label="Hero" aria-label="Hero" tabIndex="0" ref="{{ secRef0 }}" style="position:relative; min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(56px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
+    <section class="sec-tall" data-screen-label="Hero" aria-label="Hero" tabIndex="0" ref="{{ secRef0 }}" style="position:relative; min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(56px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
       <h1 style="font-weight: 700; font-size: min(8.2vw, 13.2vh, 130px); line-height: 0.92; letter-spacing: -0.035em; margin: 0 0 0 -0.055em; max-width: 18ch"><span style="display:block; white-space:nowrap;">Before <button type="button" tabIndex="-1" aria-hidden="true" onClick="{{ wordClick }}" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:pointer; position:relative; display:inline-block; color:{{ wordColor }}; letter-spacing:inherit; vertical-align:baseline;"><span style="visibility:hidden;">{{ heroPlain }}</span><span style="position:absolute; left:0; top:0; white-space:nowrap; display:flex;"><sc-for list="{{ heroChars }}" as="c" hint-placeholder-count="6"><span style="color:{{ c.color }}; filter:blur({{ c.blur }}px); opacity:{{ c.op }}; transform:translateY({{ c.dy }}px); display:inline-block; transition:color 55ms linear; white-space:pre;">{{ c.ch }}</span></sc-for></span></button></span>Become Obvious</h1>
       <div style="display:flex; flex-direction:column; gap:clamp(18px,2.4vh,26px); margin-top:clamp(28px,5vh,60px); max-width:72ch;">
         <p style="font-size: clamp(20px,min(2.15vw,3.1vh),33px); line-height: 1.25; letter-spacing: -0.012em; color: var(--fg); margin: 0; font-weight: 400; text-wrap: pretty;">I design and build digital products, from framing what gets made to the thing that ships. Brand and broadcast came first — they taught me to make things that hold up under a close look.</p>
@@ -749,7 +749,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     </section>
 
     <!-- 2 -->
-    <section data-screen-label="Clarity" aria-label="Clarity" tabIndex="0" ref="{{ secRef1 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
+    <section data-screen-label="Clarity" aria-label="Clarity" tabIndex="0" ref="{{ secRef1 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:clamp(28px,5vh,56px) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
 
       <div style="filter:blur({{ s2Blur }}px); opacity:{{ s2Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
         <h2 style="font-weight:700; font-size:clamp(32px,min(5.4vw,9vh),76px); line-height:1; letter-spacing:-0.03em; margin:0 0 28px; max-width:22ch;" aria-label="Clarity doesn't come for free.">{{ tw.s2.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s2.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s2.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s2.tail }}</span></h2>
@@ -758,21 +758,21 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     </section>
 
     <!-- 3 -->
-    <section data-screen-label="Craft" aria-label="Craft" tabIndex="0" ref="{{ secRef2 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
+    <section data-screen-label="Craft" aria-label="Craft" tabIndex="0" ref="{{ secRef2 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:clamp(28px,5vh,56px) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
 
       <h2 style="font-weight:700; font-size:clamp(32px,min(5.4vw,9vh),76px); line-height:1; letter-spacing:-0.03em; margin:0 0 28px; max-width:22ch; filter:blur({{ s3Blur }}px); opacity:{{ s3Op }}; transition:filter 0.12s linear, opacity 0.12s linear;" aria-label="Craft is the thinking, not the finish.">{{ tw.s3.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s3.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s3.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s3.tail }}</span></h2>
       <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:52ch; margin:0; filter:blur({{ s3Blur }}px); opacity:{{ s3Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">Craft is attention to the parts nobody names — continuity, rhythm, the detail that makes something feel intuitive instead of explained. Mostly it's invisible until it's missing. I still build things with my own hands, which keeps me honest about what's actually possible.</p>
     </section>
 
     <!-- 4 -->
-    <section data-screen-label="Scrutiny" aria-label="Scrutiny" tabIndex="0" ref="{{ secRef3 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
+    <section data-screen-label="Scrutiny" aria-label="Scrutiny" tabIndex="0" ref="{{ secRef3 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:clamp(28px,5vh,56px) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
 
       <h2 style="font-weight:700; font-size:clamp(32px,min(5.4vw,9vh),76px); line-height:1; letter-spacing:-0.03em; margin:0 0 28px; max-width:22ch; filter:blur({{ s4Blur }}px); opacity:{{ s4Op }}; transition:filter 0.12s linear, opacity 0.12s linear;" aria-label="I design for the person looking for the flaw.">{{ tw.s4.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s4.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s4.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s4.tail }}</span></h2>
       <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:52ch; margin:0; filter:blur({{ s4Blur }}px); opacity:{{ s4Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">Most of my work is deciding — what to build, what to leave out, what the interface is allowed to imply. In regulated work those decisions get read back to me by legal, privacy, security and the people who have to live with them. So I design them to hold up when they're read.</p>
     </section>
 
     <!-- 5: work -->
-    <section data-screen-label="Work" aria-label="Work" tabIndex="0" ref="{{ secRef4 }}" style="position:relative; min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
+    <section class="sec-tall" data-screen-label="Work" aria-label="Work" tabIndex="0" ref="{{ secRef4 }}" style="position:relative; min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
       <div style="opacity:{{ gridOp }}; transform:translateY({{ gridShift }}px); transition:opacity 0.26s cubic-bezier(0.33,0,0.2,1), transform 0.26s cubic-bezier(0.33,0,0.2,1); pointer-events:{{ gridEvents }};">
         <div style="display:flex; align-items:baseline; gap:20px; margin-bottom:clamp(18px,2.6vh,26px); filter:blur({{ s5Blur }}px); opacity:{{ s5Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
           <h2 style="font-weight:700; font-size:clamp(32px,min(5.4vw,9vh),76px); line-height:1; letter-spacing:-0.03em; margin:0;" aria-label="Selected work">{{ tw.s5.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s5.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s5.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s5.tail }}</span></h2>
@@ -794,7 +794,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     </section>
 
     <!-- 6 -->
-    <section data-screen-label="Practice" aria-label="Practice" tabIndex="0" ref="{{ secRef5 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
+    <section data-screen-label="Practice" aria-label="Practice" tabIndex="0" ref="{{ secRef5 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:clamp(28px,5vh,56px) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
       <h2 style="font-weight:700; font-size:clamp(32px,min(5.4vw,9vh),76px); line-height:1; letter-spacing:-0.03em; margin:0 0 28px; max-width:22ch; filter:blur({{ s6Blur }}px); opacity:{{ s6Op }}; transition:filter 0.12s linear, opacity 0.12s linear;" aria-label="I make what I design.">{{ tw.s6.head }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ tw.s6.caret }}; transition:opacity 0.45s ease-out; animation:{{ tw.s6.anim }};"></span></span><span style="visibility:hidden;">{{ tw.s6.tail }}</span></h2>
       <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:52ch; margin:0; text-wrap:pretty; filter:blur({{ s6Blur }}px); opacity:{{ s6Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">I came to design from electronic engineering — two years in, then out, because the logic underneath things was more interesting than the circuits. Twenty years later that's still the job: frame the problem, refine the interface, write enough code to find out whether it works.</p>
       <div style="display:flex; flex-direction:column; gap:12px; margin-top:clamp(28px,5vh,56px); filter:blur({{ s6Blur }}px); opacity:{{ s6Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
@@ -815,7 +815,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     </section>
 
     <!-- 7: closing -->
-    <section data-screen-label="Closing" aria-label="Closing" tabIndex="0" ref="{{ secRef6 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
+    <section data-screen-label="Closing" aria-label="Closing" tabIndex="0" ref="{{ secRef6 }}" style="min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:clamp(28px,5vh,56px) clamp(80px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
       <h2 style="font-weight:700; font-size:clamp(38px,min(8vw,12.5vh),120px); line-height:0.94; letter-spacing:-0.035em; margin:0 0 32px; max-width:16ch; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">Before <span style="color:{{ wordColor }};">Things</span> Become Obvious</h2>
       <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:46ch; margin:0 0 36px; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">The best time to bring me in is while the problem is still unclear. If that's where you are, write to me.</p>
       <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:14px 38px; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">

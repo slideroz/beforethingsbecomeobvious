@@ -1433,6 +1433,14 @@ class Component extends DCLogic {
     document.documentElement.dataset.theme = theme;
     window.addEventListener('popstate', this.openFromHash);
     this.initialHash = location.hash;
+    // the jump must land in this same frame — a timeout lets the hero paint first,
+    // which reads as the intro flicking past before the real section arrives
+    const jump = (this.initialHash || '').replace(/^#/, '');
+    if (jump && this.scrollEl) {
+      const si = this.slugs.indexOf(jump) !== -1 ? 4 : this.secSlugs.indexOf(jump);
+      const jel = si > 0 ? this.secEls[si] : null;
+      if (jel) { this.scrollEl.scrollTop = jel.offsetTop; this.settledIdx = si; this.compute(); }
+    }
     if (this.initialHash) {
       this.suppressHash = true;
       setTimeout(() => this.openFromHash(true), 60);

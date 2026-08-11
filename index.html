@@ -456,6 +456,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       .snap > section h2 { font-size: clamp(22px, min(5.4vw, 7.4vh), 76px) !important; margin-bottom: 18px !important; }
       .snap > section p { font-size: clamp(14px, 3.4vh, 22px) !important; line-height: 1.45 !important; max-width: 80ch !important; }
       .snap > section.sec-tall { padding-top: 68px !important; }
+      /* the only visitors here squeezed the window to get here, so this page has to
+         fit a short one — the contact line is the payoff and cannot fall past the fold */
+      .seams-body { padding: clamp(52px,8vh,96px) clamp(24px,8vw,140px) clamp(26px,5vh,48px) !important; gap: 18px !important; }
+      .seams-body h2 { font-size: clamp(24px,5.6vh,44px) !important; }
+      .seams-body p { font-size: clamp(13px,2.6vh,16px) !important; line-height: 1.4 !important; }
+      .seams-body li { font-size: clamp(12px,2.4vh,15px) !important; line-height: 1.4 !important; }
+      .seams-body ul { gap: 8px !important; }
     }
     html, body { overflow: hidden; overscroll-behavior: none; }
 
@@ -504,7 +511,40 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   <div role="status" aria-live="polite" style="position:fixed; inset:0; z-index:80; display:flex; flex-direction:column; justify-content:center; gap:14px; padding:0 clamp(18px,6vw,64px); background:{{ wordColor }}; opacity:{{ probeOp }}; pointer-events:{{ probePe }}; transition:opacity {{ probeDur }} cubic-bezier(0.33,0,0.2,1);">
     <div style="font-size:11px; letter-spacing:0.14em; font-variant-numeric:tabular-nums; color:var(--bg); opacity:0.7;">{{ probeSize }}</div>
     <p style="margin:0; font-size:clamp(21px,min(4.4vw,7vh),44px); line-height:1.05; font-weight:700; letter-spacing:-0.03em; max-width:20ch; text-wrap:pretty; color:var(--bg);">You’re looking for the seams. So am I.</p>
+    <a href="#seams" onClick="{{ openSeams }}" style="align-self:flex-start; margin-top:6px; font-size:clamp(13px,min(1.5vw,2.4vh),16px); font-weight:500; color:var(--bg); text-decoration:none; border-bottom:1px solid currentColor; padding-bottom:2px; opacity:0.85;" style-hover="{{ seamsHover }}">There is a page for people who do that</a>
   </div>
+  <!-- no link points here from anywhere on the page; the only door is the seams message -->
+  <div role="dialog" aria-label="The seams" style="position:fixed; inset:0; z-index:90; background:var(--bg); color:var(--fg); overflow-y:auto; opacity:{{ seamsOp }}; pointer-events:{{ seamsPe }}; transition:opacity 0.34s cubic-bezier(0.33,0,0.2,1);">
+    <div class="seams-body" style="min-height:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; gap:30px; padding:max(88px,9vh) clamp(24px,8vw,140px) clamp(44px,7vh,88px);">
+
+      <button type="button" onClick="{{ closeSeams }}" aria-label="Close" style="position:absolute; top:40px; right:40px; background:none; border-radius:50%; position:absolute; width:39px; height:39px; border:none; padding:0; cursor:pointer; transition:transform 0.35s cubic-bezier(0.33,0,0.2,1)" style-hover="transform:rotate(90deg) scale(1.15);">
+        <span style="position:absolute; left:0; top:19px; width:39px; height:2px; background:{{ wordColor }}; transform:rotate(45deg);"></span>
+        <span style="position:absolute; left:0; top:19px; width:39px; height:2px; background:{{ wordColor }}; transform:rotate(-45deg);"></span>
+      </button>
+
+      <div style="display:flex; flex-direction:column; gap:18px; max-width:46ch;">
+        <h2 style="margin:0; font-size:clamp(30px,min(5.4vw,9vh),64px); line-height:0.98; font-weight:700; letter-spacing:-0.035em; text-wrap:pretty;">You found the seams.</h2>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:22px; max-width:58ch; font-size:clamp(15px,min(1.5vw,2.6vh),20px); line-height:1.5; color:var(--muted);">
+        <p style="margin:0;">You got here by pulling at the edges of a page instead of reading it. That is the same instinct the rest of this site argues for: not accepting the shape you were handed.</p>
+        <p style="margin:0;">So, in that spirit — the things still wrong with this site, before anyone else points them out:</p>
+      </div>
+
+      <ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:14px; max-width:58ch; font-size:clamp(14px,min(1.35vw,2.3vh),18px); line-height:1.5; color:var(--muted);">
+        <li style="display:flex; gap:14px;"><span aria-hidden="true" style="flex:0 0 auto; color:{{ wordColor }}; font-variant-numeric:tabular-nums;">01</span><span>The soundscapes will not start on iOS until you touch something. A browser rule, not a decision.</span></li>
+        <li style="display:flex; gap:14px;"><span aria-hidden="true" style="flex:0 0 auto; color:{{ wordColor }}; font-variant-numeric:tabular-nums;">02</span><span>Below 320px the layout gives up. So does every device that exists.</span></li>
+        <li style="display:flex; gap:14px;"><span aria-hidden="true" style="flex:0 0 auto; color:{{ wordColor }}; font-variant-numeric:tabular-nums;">03</span><span>Two sections scroll inside themselves. Every other one was built to fit the screen exactly once.</span></li>
+      </ul>
+
+      <div style="display:flex; flex-direction:column; gap:14px; max-width:58ch; padding-top:8px; border-top:1px solid var(--rule);">
+        <p style="margin:0; font-size:clamp(15px,min(1.5vw,2.6vh),20px); line-height:1.5; color:var(--fg);">If that is how you work too, I would rather hear from you than from a recruiter.</p>
+        <a href="mailto:oussama.benbila@gmail.com?subject=I%20found%20the%20seams" style="align-self:flex-start; font-size:clamp(15px,min(1.6vw,2.7vh),21px); font-weight:500; color:{{ wordColor }}; text-decoration:none; border-bottom:1px solid currentColor; padding-bottom:2px;">oussama.benbila@gmail.com</a>
+      </div>
+
+    </div>
+  </div>
+
 
   <header class="pagehead" style="position:absolute; top:0; left:0; right:0; z-index:20; display:flex; align-items:baseline; justify-content:space-between; padding:26px 40px; pointer-events:none; background:var(--bg);">
     <button type="button" onClick="{{ goHome }}" disabled="{{ homeOff }}" aria-label="Back to top" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:{{ homeCursor }}; flex:1 1 auto; min-width:0; font-size:13px; font-weight:700; letter-spacing:-0.01em; pointer-events:auto;"><span aria-hidden="true">Before <span style="color:{{ wordColor }};">{{ miniWord }}</span> Become Obvious</span></button>
@@ -1057,7 +1097,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;landDuration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:150,&quot;max&quot;:1200,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;easing&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;snappy&quot;,&quot;options&quot;:[&quot;soft&quot;,&quot;snappy&quot;,&quot;glide&quot;,&quot;steady&quot;,&quot;overshoot&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;cooldown&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:400,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;triggerForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:8,&quot;max&quot;:300,&quot;step&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;directionLock&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:600,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:40,&quot;max&quot;:600,&quot;step&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:60,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;maxBlur&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:0,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Focus&quot;},&quot;dreamPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:400,&quot;min&quot;:400,&quot;max&quot;:2600,&quot;step&quot;:50,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamOverlap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:85,&quot;min&quot;:0,&quot;max&quot;:85,&quot;step&quot;:1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamHaze&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:24,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamDrift&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:0,&quot;max&quot;:60,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;glimpsePeak&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:40,&quot;max&quot;:100,&quot;step&quot;:2,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;burstGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4100,&quot;min&quot;:400,&quot;max&quot;:9000,&quot;step&quot;:100,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkSound&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkVolume&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkFadeIn&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:320,&quot;min&quot;:80,&quot;max&quot;:1500,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkHold&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:17000,&quot;min&quot;:3000,&quot;max&quot;:30000,&quot;step&quot;:500,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:48000,&quot;min&quot;:8000,&quot;max&quot;:180000,&quot;step&quot;:2000,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkFadeOut&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5200,&quot;min&quot;:800,&quot;max&quot;:12000,&quot;step&quot;:200,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;burstSteps&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:2,&quot;max&quot;:12,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;mirrorChance&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:50,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;portraitScale&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1.13,&quot;min&quot;:1,&quot;max&quot;:1.4,&quot;step&quot;:0.01,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;}}">
 class Component extends DCLogic {
-  state = { probe: false, m: Array(7).fill({ blur: 0, opacity: 1 }), activeIndex: 0, revealed: 0, tick: 0, wordIndex: 0, workHover: null, theme: 'light', workOpen: null, panelIn: false, nextHover: false, wipes: {}, offEver: false };
+  state = { seams: false, probe: false, m: Array(7).fill({ blur: 0, opacity: 1 }), activeIndex: 0, revealed: 0, tick: 0, wordIndex: 0, workHover: null, theme: 'light', workOpen: null, panelIn: false, nextHover: false, wipes: {}, offEver: false };
 
   secEls = [];
   secRefs = [0,1,2,3,4,5,6].map(i => (el) => { this.secEls[i] = el; });
@@ -1435,6 +1475,7 @@ class Component extends DCLogic {
     // the jump must land in this same frame — a timeout lets the hero paint first,
     // which reads as the intro flicking past before the real section arrives
     const jump = (this.initialHash || '').replace(/^#/, '');
+    if (jump === 'seams') this.setState({ seams: true });
     if (jump && this.scrollEl) {
       const si = this.slugs.indexOf(jump) !== -1 ? 4 : this.secSlugs.indexOf(jump);
       const jel = si > 0 ? this.secEls[si] : null;
@@ -1578,6 +1619,7 @@ class Component extends DCLogic {
   notePointer = () => { this.pointerInput = true; };
   onKey = (e) => {
     this.pointerInput = false;
+    if (this.state.seams) { if (e.key === 'Escape') this.closeSeams(); return; }
     if (this.state.offOpen) { if (e.key === 'Escape') this.closeOff(); return; }
     if (this.state.sigOpen && e.key === 'Escape') { this.closeSig(); return; }
     if (this.state.workOpen != null) {
@@ -2605,6 +2647,21 @@ class Component extends DCLogic {
 
   // the shapes below belong to no device — a slit, a tower, or a window smaller
   // than any phone. Someone hunting responsiveness bugs gets noticed
+  // the hidden page stays up once opened, even after the window returns to a real
+  // shape — otherwise it would only ever be readable inside a slit
+  seamsHover = { opacity: 1 };
+  openSeams = (e) => {
+    if (e) e.preventDefault();
+    this.setState({ seams: true, probe: false });
+    if (location.hash !== '#seams') history.pushState(history.state, '', '#seams');
+  };
+  closeSeams = (e) => {
+    if (e) e.preventDefault();
+    this.setState({ seams: false });
+    const s = this.secSlugs[this.settledIdx] || 'top';
+    if (location.hash !== '#' + s) history.replaceState(history.state, '', '#' + s);
+  };
+
   probeOn = true;
   probeShape = () => {
     const w = window.innerWidth, h = window.innerHeight;
@@ -2614,7 +2671,7 @@ class Component extends DCLogic {
   };
   onProbe = () => {
     if (!this.probeOn) return;
-    const weird = this.probeShape();
+    const weird = this.probeShape() && !this.state.seams;
     // no timers either way: the message tracks the window as it is dragged
     if (weird !== this.state.probe) this.setState({ probe: weird });
     else if (weird) this.forceUpdate();
@@ -2728,6 +2785,11 @@ class Component extends DCLogic {
       recogNow: this.recognitions[(this.state.recogIdx || 0) % this.recognitions.length],
       recogOp: this.state.recogOp == null ? 1 : this.state.recogOp,
       wordColor: this.accent,
+      seamsOp: this.state.seams ? 1 : 0,
+      openSeams: this.openSeams,
+      closeSeams: this.closeSeams,
+      seamsHover: this.seamsHover,
+      seamsPe: this.state.seams ? 'auto' : 'none',
       probeOp: this.state.probe ? 1 : 0,
       // in gently, out quickly — a fade lingering over returning content reads as a bug
       probeDur: this.state.probe ? '0.28s' : '0.09s',

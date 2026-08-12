@@ -507,6 +507,56 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
 <div style="position:relative; height:100vh; background:var(--bg); color:var(--fg); font-family:'Geist','Helvetica Neue',Helvetica,Arial,sans-serif; overflow:hidden;">
 
+  <!-- the one piece of writing on the site: linked from the closing section, and the
+       thing the LinkedIn post points at -->
+  <div role="dialog" aria-label="Three signs you have been briefed on the wrong thing" style="position:fixed; inset:0; z-index:88; background:var(--bg); color:var(--fg); overflow-y:auto; opacity:{{ notesOp }}; pointer-events:{{ notesPe }}; transition:opacity 0.34s cubic-bezier(0.33,0,0.2,1);">
+    <div class="notes-body" style="min-height:100%; box-sizing:border-box; display:flex; flex-direction:column; gap:34px; padding:max(96px,10vh) clamp(24px,8vw,140px) clamp(56px,9vh,110px);">
+
+      <button type="button" onClick="{{ closeNotes }}" aria-label="Close" style="position:absolute; top:40px; right:40px; background:none; border-radius:50%; width:39px; height:39px; border:none; padding:0; cursor:pointer; transition:transform 0.35s cubic-bezier(0.33,0,0.2,1)" style-hover="transform:rotate(90deg) scale(1.15);">
+        <span style="position:absolute; left:0; top:19px; width:39px; height:2px; background:{{ wordColor }}; transform:rotate(45deg);"></span>
+        <span style="position:absolute; left:0; top:19px; width:39px; height:2px; background:{{ wordColor }}; transform:rotate(-45deg);"></span>
+      </button>
+
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <h2 style="margin:0 0 0 -0.045em; font-size:clamp(34px,min(6.6vw,11vh),92px); line-height:0.88; font-weight:800; letter-spacing:-0.045em;"><span style="display:block;">Three signs</span><span style="display:block;">you've been briefed</span><span style="display:block; color:#E01235;">on the wrong thing</span></h2>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:20px; max-width:58ch; font-size:clamp(15px,min(1.5vw,2.6vh),20px); line-height:1.55; color:var(--muted);">
+        <p style="margin:0;">Every brief is a description of a problem somebody has already solved in their head. Most of the time the description is close enough to work from. Sometimes it isn't, and the project quietly becomes the wrong project — delivered on time, on budget, and unused.</p>
+        <p style="margin:0;">Three things that tell you early, while changing course is still cheap.</p>
+      </div>
+
+      <ol style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:34px; max-width:58ch; counter-reset:sign;">
+        <li style="display:flex; gap:18px;">
+          <span aria-hidden="true" style="flex:0 0 auto; font-size:clamp(14px,min(1.35vw,2.3vh),18px); font-weight:700; font-variant-numeric:tabular-nums; color:#E01235; padding-top:0.25em;">01</span>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <h3 style="margin:0; font-size:clamp(19px,min(2vw,3.4vh),27px); font-weight:700; letter-spacing:-0.02em; line-height:1.2; text-wrap:pretty;">The brief names a thing, not a condition</h3>
+            <p style="margin:0; font-size:clamp(14px,min(1.35vw,2.3vh),18px); line-height:1.55; color:var(--muted);">“We need a dashboard.” “We need to redo onboarding.” A brief written as a noun has skipped the sentence where somebody says what is going wrong. Ask what would be different the week after it ships. If nobody can answer in one sentence, the noun is standing in for a problem that has not been stated yet.</p>
+          </div>
+        </li>
+        <li style="display:flex; gap:18px;">
+          <span aria-hidden="true" style="flex:0 0 auto; font-size:clamp(14px,min(1.35vw,2.3vh),18px); font-weight:700; font-variant-numeric:tabular-nums; color:#E01235; padding-top:0.25em;">02</span>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <h3 style="margin:0; font-size:clamp(19px,min(2vw,3.4vh),27px); font-weight:700; letter-spacing:-0.02em; line-height:1.2; text-wrap:pretty;">Everybody agrees, immediately</h3>
+            <p style="margin:0; font-size:clamp(14px,min(1.35vw,2.3vh),18px); line-height:1.55; color:var(--muted);">Early agreement is usually agreement about words. Three people say “simplify the process” and mean three different processes. Real scope produces argument. If the first meeting is smooth, the disagreement has not happened yet — it is waiting in the build, where it costs the most.</p>
+          </div>
+        </li>
+        <li style="display:flex; gap:18px;">
+          <span aria-hidden="true" style="flex:0 0 auto; font-size:clamp(14px,min(1.35vw,2.3vh),18px); font-weight:700; font-variant-numeric:tabular-nums; color:#E01235; padding-top:0.25em;">03</span>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <h3 style="margin:0; font-size:clamp(19px,min(2vw,3.4vh),27px); font-weight:700; letter-spacing:-0.02em; line-height:1.2; text-wrap:pretty;">Success is defined as delivery</h3>
+            <p style="margin:0; font-size:clamp(14px,min(1.35vw,2.3vh),18px); line-height:1.55; color:var(--muted);">When done means “it exists”, the brief has no account of what changes. Ask what people are doing today because the thing does not exist — the workaround, the spreadsheet, the phone call at 4pm. That behaviour is the actual subject, and it is usually more specific than anything in the document.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div style="display:flex; flex-direction:column; gap:14px; max-width:58ch; padding-top:14px; border-top:1px solid var(--rule);">
+        <p style="margin:0; font-size:clamp(15px,min(1.5vw,2.6vh),20px); line-height:1.55; color:var(--fg);">None of this means refusing the brief. It means spending the first week finding out whether it describes the thing. That week is the cheapest part of any project, and the first one cut.</p>
+      </div>
+
+    </div>
+  </div>
+
   <!-- squeeze the window into a shape no screen has and the page notices -->
   <div role="status" aria-live="polite" style="position:fixed; inset:0; z-index:80; display:flex; flex-direction:column; justify-content:center; gap:14px; padding:0 clamp(18px,6vw,64px); background:{{ wordColor }}; opacity:{{ probeOp }}; pointer-events:{{ probePe }}; transition:opacity {{ probeDur }} cubic-bezier(0.33,0,0.2,1);">
     <div style="font-size:11px; letter-spacing:0.14em; font-variant-numeric:tabular-nums; color:var(--bg); opacity:0.7;">{{ probeSize }}</div>
@@ -858,10 +908,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       <h2 style="font-weight:700; font-size:clamp(38px,min(8vw,12.5vh),120px); line-height:0.94; letter-spacing:-0.035em; margin:0 0 32px; max-width:16ch; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">Before <span style="color:{{ wordColor }};">Things</span> Become Obvious</h2>
       <p style="font-size:clamp(18px,1.65vw,26px); line-height:1.6; color:var(--muted); max-width:46ch; margin:0 0 36px; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">The best time to bring me in is while the problem is still unclear. If that's where you are, write to me.</p>
       <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:14px 38px; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
-        <a href="mailto:oussama.benbila@gmail.com" style="font-size:clamp(18px,2.2vw,30px); font-weight:700; letter-spacing:-0.02em; text-decoration:none; color:var(--fg); border-bottom:3px solid {{ wordColor }}; padding-bottom:2px;" style-hover="color:{{ wordColor }};">oussama.benbila@gmail.com</a>
+        <a href="mailto:oussama.benbila@gmail.com" style="font-size:clamp(15px,1.35vw,19px); font-weight:700; letter-spacing:-0.01em; text-decoration:none; color:{{ wordColor }}; border-bottom:2px solid {{ wordColor }}; padding-bottom:2px;" style-hover="color:var(--fg);">Write me</a>
         <a href="https://www.linkedin.com/in/obenbila/" target="_blank" rel="noopener" style="font-size:clamp(15px,1.35vw,19px); font-weight:700; letter-spacing:-0.01em; text-decoration:none; color:var(--muted2); border-bottom:2px solid var(--rule2); padding-bottom:2px;" style-hover="color:{{ wordColor }};">LinkedIn</a>
         <a href="https://www.instagram.com/oussamabenbila/" target="_blank" rel="noopener" style="font-size:clamp(15px,1.35vw,19px); font-weight:700; letter-spacing:-0.01em; text-decoration:none; color:var(--muted2); border-bottom:2px solid var(--rule2); padding-bottom:2px;" style-hover="color:{{ wordColor }};">Instagram</a>
       </div>
+      <a href="#briefed" onClick="{{ openNotes }}" style="align-self:flex-start; margin-top:clamp(26px,4vh,44px); display:flex; align-items:baseline; gap:12px; text-decoration:none; filter:blur({{ s7Blur }}px); opacity:{{ s7Op }}; transition:filter 0.12s linear, opacity 0.12s linear;">
+        <span style="font-size:clamp(19px,2vw,29px); font-weight:800; letter-spacing:-0.035em; line-height:1.02; color:var(--fg); transition:color 0.14s linear;" style-hover="color:#E01235;"><span style="display:block;">Three signs</span><span style="display:block;">you've been briefed</span><span style="display:block; color:#E01235;">on the wrong thing</span></span>
+      </a>
     </section>
 
   </div></main>
@@ -1097,7 +1150,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;landDuration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:150,&quot;max&quot;:1200,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;easing&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;snappy&quot;,&quot;options&quot;:[&quot;soft&quot;,&quot;snappy&quot;,&quot;glide&quot;,&quot;steady&quot;,&quot;overshoot&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;cooldown&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:400,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;triggerForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:8,&quot;max&quot;:300,&quot;step&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;directionLock&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:600,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:40,&quot;max&quot;:600,&quot;step&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:60,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;maxBlur&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:0,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Focus&quot;},&quot;dreamPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:400,&quot;min&quot;:400,&quot;max&quot;:2600,&quot;step&quot;:50,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamOverlap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:85,&quot;min&quot;:0,&quot;max&quot;:85,&quot;step&quot;:1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamHaze&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:24,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamDrift&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:0,&quot;max&quot;:60,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;glimpsePeak&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:40,&quot;max&quot;:100,&quot;step&quot;:2,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;burstGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4100,&quot;min&quot;:400,&quot;max&quot;:9000,&quot;step&quot;:100,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkSound&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkVolume&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkFadeIn&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:320,&quot;min&quot;:80,&quot;max&quot;:1500,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkHold&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:17000,&quot;min&quot;:3000,&quot;max&quot;:30000,&quot;step&quot;:500,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:48000,&quot;min&quot;:8000,&quot;max&quot;:180000,&quot;step&quot;:2000,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkFadeOut&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5200,&quot;min&quot;:800,&quot;max&quot;:12000,&quot;step&quot;:200,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;burstSteps&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:2,&quot;max&quot;:12,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;mirrorChance&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:50,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;portraitScale&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1.13,&quot;min&quot;:1,&quot;max&quot;:1.4,&quot;step&quot;:0.01,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;}}">
 class Component extends DCLogic {
-  state = { seams: false, probe: false, m: Array(7).fill({ blur: 0, opacity: 1 }), activeIndex: 0, revealed: 0, tick: 0, wordIndex: 0, workHover: null, theme: 'light', workOpen: null, panelIn: false, nextHover: false, wipes: {}, offEver: false };
+  state = { seams: false, notes: false, probe: false, m: Array(7).fill({ blur: 0, opacity: 1 }), activeIndex: 0, revealed: 0, tick: 0, wordIndex: 0, workHover: null, theme: 'light', workOpen: null, panelIn: false, nextHover: false, wipes: {}, offEver: false };
 
   secEls = [];
   secRefs = [0,1,2,3,4,5,6].map(i => (el) => { this.secEls[i] = el; });
@@ -1293,6 +1346,8 @@ class Component extends DCLogic {
       return;
     }
     if (this.state.workOpen != null) this.hideWork();
+    // back and forward move in and out of the notes page like any other location
+    if ((s === 'briefed') !== !!this.state.notes) this.setState({ notes: s === 'briefed' });
     const sec = s === '' ? 0 : this.secSlugs.indexOf(s);
     if (sec >= 0 && (initial === true || sec !== this.state.activeIndex)) {
       this.hashIndex = sec;
@@ -1476,6 +1531,7 @@ class Component extends DCLogic {
     // which reads as the intro flicking past before the real section arrives
     const jump = (this.initialHash || '').replace(/^#/, '');
     if (jump === 'seams') this.setState({ seams: true });
+    if (jump === 'briefed') this.setState({ notes: true });
     if (jump && this.scrollEl) {
       const si = this.slugs.indexOf(jump) !== -1 ? 4 : this.secSlugs.indexOf(jump);
       const jel = si > 0 ? this.secEls[si] : null;
@@ -1620,6 +1676,7 @@ class Component extends DCLogic {
   onKey = (e) => {
     this.pointerInput = false;
     if (this.state.seams) { if (e.key === 'Escape') this.closeSeams(); return; }
+    if (this.state.notes) { if (e.key === 'Escape') this.closeNotes(); return; }
     if (this.state.offOpen) { if (e.key === 'Escape') this.closeOff(); return; }
     if (this.state.sigOpen && e.key === 'Escape') { this.closeSig(); return; }
     if (this.state.workOpen != null) {
@@ -2645,10 +2702,25 @@ class Component extends DCLogic {
     return out;
   };
 
+  // a window folded into a shape no real screen has, or shaken hard enough that
+  // the resize events pile up, reads as someone poking at the edges on purpose
   // the shapes below belong to no device — a slit, a tower, or a window smaller
   // than any phone. Someone hunting responsiveness bugs gets noticed
   // the hidden page stays up once opened, even after the window returns to a real
   // shape — otherwise it would only ever be readable inside a slit
+  // the notes page is a real location too — linked, unlike the seams page
+  openNotes = (e) => {
+    if (e) e.preventDefault();
+    this.setState({ notes: true });
+    if (location.hash !== '#briefed') history.pushState(history.state, '', '#briefed');
+  };
+  closeNotes = (e) => {
+    if (e) e.preventDefault();
+    this.setState({ notes: false });
+    const s = this.secSlugs[this.settledIdx] || 'contact';
+    if (location.hash !== '#' + s) history.replaceState(history.state, '', '#' + s);
+  };
+
   seamsHover = { opacity: 1 };
   openSeams = (e) => {
     if (e) e.preventDefault();
@@ -2785,6 +2857,12 @@ class Component extends DCLogic {
       recogNow: this.recognitions[(this.state.recogIdx || 0) % this.recognitions.length],
       recogOp: this.state.recogOp == null ? 1 : this.state.recogOp,
       wordColor: this.accent,
+      hlOn: () => this.setState({ hl: true }),
+      hlOff: () => this.setState({ hl: false }),
+      notesOp: this.state.notes ? 1 : 0,
+      notesPe: this.state.notes ? 'auto' : 'none',
+      openNotes: this.openNotes,
+      closeNotes: this.closeNotes,
       seamsOp: this.state.seams ? 1 : 0,
       openSeams: this.openSeams,
       closeSeams: this.closeSeams,

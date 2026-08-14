@@ -596,6 +596,11 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   </div>
 
 
+  <!-- the breather: a plain sheet of the page's own ground, held until the page is
+       actually loaded, so the writing and the animation start together instead of
+       assembling in front of the visitor -->
+  <div aria-hidden="true" style="position:fixed; inset:0; z-index:95; background:var(--bg); opacity:{{ veilOp }}; pointer-events:{{ veilPe }}; transition:opacity 640ms cubic-bezier(0.22,0.61,0.36,1);"></div>
+
   <header class="pagehead" style="position:absolute; top:0; left:0; right:0; z-index:20; display:flex; align-items:baseline; justify-content:space-between; padding:26px 40px; pointer-events:none; background:var(--bg);">
     <button type="button" onClick="{{ goHome }}" disabled="{{ homeOff }}" aria-label="Back to top" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:{{ homeCursor }}; flex:1 1 auto; min-width:0; font-size:13px; font-weight:700; letter-spacing:-0.01em; pointer-events:auto;"><span aria-hidden="true">Before <span style="color:{{ wordColor }};">{{ miniWord }}</span> Become Obvious</span></button>
     <div style="display:flex; align-items:center; gap:12px; flex:none;">
@@ -808,7 +813,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
     <!-- 1: hero -->
     <section class="sec-tall" data-screen-label="Hero" aria-label="Hero" tabIndex="0" ref="{{ secRef0 }}" style="position:relative; min-height:100vh; box-sizing:border-box; scroll-snap-align:start; display:flex; flex-direction:column; padding:max(76px,5vh) clamp(56px,9vw,170px) clamp(28px,5vh,56px) clamp(24px,8vw,140px);">
-      <h1 style="font-weight: 700; font-size: min(8.2vw, 13.2vh, 130px); line-height: 0.92; letter-spacing: -0.035em; margin: 0 0 0 -0.055em; max-width: 18ch"><span style="display:block; white-space:nowrap;">Before <button type="button" tabIndex="-1" aria-hidden="true" onClick="{{ wordClick }}" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:pointer; position:relative; display:inline-block; color:{{ wordColor }}; letter-spacing:inherit; vertical-align:baseline;"><span style="visibility:hidden;">{{ heroPlain }}</span><span style="position:absolute; left:0; top:0; white-space:nowrap; display:flex;"><sc-for list="{{ heroChars }}" as="c" hint-placeholder-count="6"><span style="color:{{ c.color }}; filter:blur({{ c.blur }}px); opacity:{{ c.op }}; transform:translateY({{ c.dy }}px); display:inline-block; transition:color 55ms linear; white-space:pre;">{{ c.ch }}</span></sc-for></span></button></span>Become Obvious</h1>
+      <h1 aria-label="Before Things Become Obvious" style="font-weight: 700; font-size: min(8.2vw, 13.2vh, 130px); line-height: 0.92; letter-spacing: -0.035em; margin: 0 0 0 -0.055em; max-width: 18ch"><sc-if value="{{ heroTyping }}" hint-placeholder-val="{{ true }}"><span style="display:block; white-space:nowrap;">{{ hw.pre }}<span style="color:{{ wordColor }};">{{ hw.mid }}</span><span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ hw.caret1 }}; transition:opacity 0.45s ease-out; animation:{{ hw.anim1 }};"></span></span><span style="visibility:hidden;">{{ hw.tail1 }}</span></span><span style="display:block; white-space:nowrap;">{{ hw.l2 }}<span style="position:relative; display:inline;"><span style="position:absolute; left:0.04em; bottom:0.24em; width:0.055em; height:0.72em; background:currentColor; opacity:{{ hw.caret2 }}; transition:opacity 0.45s ease-out; animation:{{ hw.anim2 }};"></span></span><span style="visibility:hidden;">{{ hw.tail2 }}</span></span></sc-if><sc-if value="{{ heroLive }}" hint-placeholder-val="{{ false }}"><span style="display:block; white-space:nowrap;">Before <button type="button" tabIndex="-1" aria-hidden="true" onClick="{{ wordClick }}" style="background:none; border:none; padding:0; margin:0; font:inherit; color:inherit; text-align:left; cursor:pointer; position:relative; display:inline-block; color:{{ wordColor }}; letter-spacing:inherit; vertical-align:baseline;"><span style="visibility:hidden;">{{ heroPlain }}</span><span style="position:absolute; left:0; top:0; white-space:nowrap; display:flex;"><sc-for list="{{ heroChars }}" as="c" hint-placeholder-count="6"><span style="color:{{ c.color }}; filter:blur({{ c.blur }}px); opacity:{{ c.op }}; transform:translateY({{ c.dy }}px); display:inline-block; transition:color 55ms linear; white-space:pre;">{{ c.ch }}</span></sc-for></span></button></span><span style="display:block; white-space:nowrap;">Become Obvious</span></sc-if></h1>
       <div style="display:flex; flex-direction:column; gap:clamp(18px,2.4vh,26px); margin-top:clamp(28px,5vh,60px); max-width:72ch;">
         <p style="font-size: clamp(20px,min(2.15vw,3.1vh),33px); line-height: 1.25; letter-spacing: -0.012em; color: var(--fg); margin: 0; font-weight: 400; text-wrap: pretty;">I design and build digital products, from framing what gets made to the thing that ships. Brand and broadcast came first — they taught me to make things that hold up under a close look.</p>
         <a href="./assets/nng-certificate.pdf" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:14px; text-decoration:none; color:inherit; align-self:flex-start; margin-top:clamp(6px,1.4vh,14px);">
@@ -1150,7 +1155,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;landDuration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:150,&quot;max&quot;:1200,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;easing&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;snappy&quot;,&quot;options&quot;:[&quot;soft&quot;,&quot;snappy&quot;,&quot;glide&quot;,&quot;steady&quot;,&quot;overshoot&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;cooldown&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:400,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Scroll&quot;},&quot;triggerForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:8,&quot;max&quot;:300,&quot;step&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;directionLock&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:600,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastForce&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:40,&quot;max&quot;:600,&quot;step&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;fastPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:60,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Wheel stability&quot;},&quot;maxBlur&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:0,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Focus&quot;},&quot;dreamPass&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:400,&quot;min&quot;:400,&quot;max&quot;:2600,&quot;step&quot;:50,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamOverlap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:85,&quot;min&quot;:0,&quot;max&quot;:85,&quot;step&quot;:1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamHaze&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:24,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;dreamDrift&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:0,&quot;max&quot;:60,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;glimpsePeak&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:40,&quot;max&quot;:100,&quot;step&quot;:2,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;burstGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4100,&quot;min&quot;:400,&quot;max&quot;:9000,&quot;step&quot;:100,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkSound&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkVolume&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkFadeIn&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:320,&quot;min&quot;:80,&quot;max&quot;:1500,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkHold&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:17000,&quot;min&quot;:3000,&quot;max&quot;:30000,&quot;step&quot;:500,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:48000,&quot;min&quot;:8000,&quot;max&quot;:180000,&quot;step&quot;:2000,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;parkFadeOut&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5200,&quot;min&quot;:800,&quot;max&quot;:12000,&quot;step&quot;:200,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;burstSteps&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:2,&quot;max&quot;:12,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;mirrorChance&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:50,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;},&quot;portraitScale&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1.13,&quot;min&quot;:1,&quot;max&quot;:1.4,&quot;step&quot;:0.01,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Portrait dream&quot;}}">
 class Component extends DCLogic {
-  state = { seams: false, notes: false, probe: false, m: Array(7).fill({ blur: 0, opacity: 1 }), activeIndex: 0, revealed: 0, tick: 0, wordIndex: 0, workHover: null, theme: 'light', workOpen: null, panelIn: false, nextHover: false, wipes: {}, offEver: false };
+  state = { ready: false, seams: false, notes: false, probe: false, m: Array(7).fill({ blur: 0, opacity: 1 }), activeIndex: 0, revealed: 0, tick: 0, wordIndex: 0, workHover: null, theme: 'light', workOpen: null, panelIn: false, nextHover: false, wipes: {}, offEver: false };
 
   secEls = [];
   secRefs = [0,1,2,3,4,5,6].map(i => (el) => { this.secEls[i] = el; });
@@ -1547,7 +1552,17 @@ class Component extends DCLogic {
     this.shuffleTail();
     this.t0 = Date.now();
     this.plan(this.word.length);
+    this.waitForPage();
     this.timer = setInterval(() => {
+      if (!this.state.ready) return;
+      // the title types itself out first; the word only starts changing after it lands
+      if ((this.typed[0] || 0) < this.typeTexts[0].length) return;
+      if (!this.wordLive) {
+        this.wordLive = true;
+        this.t0 = Date.now();
+        this.hold = 2200 + Math.random() * 9000;
+        this.plan(this.word.length);
+      }
       if (this.state.workOpen != null) return;
       this.stepHue();
       const len = this.word.length;
@@ -1592,6 +1607,7 @@ class Component extends DCLogic {
     if (/[?&]sounddebug=1/.test(location.search)) this.parkDebug();
   }
   componentWillUnmount() {
+    clearTimeout(this.readyCap); clearTimeout(this.readyT);
     clearInterval(this.clientT); clearTimeout(this.clientFadeT);
     window.removeEventListener('resize', this.onResizeSnap); clearTimeout(this.resnapT); clearTimeout(this.resnapT2);
     window.removeEventListener('resize', this.onProbe);
@@ -2549,6 +2565,7 @@ class Component extends DCLogic {
   }
   // section index -> heading text typed out when that section first becomes active
   typeTexts = {
+    0: 'Before Things Become Obvious',
     1: "Clarity doesn't come for free.",
     2: 'Craft is the thinking, not the finish.',
     3: 'I design for the person looking for the flaw.',
@@ -2556,10 +2573,34 @@ class Component extends DCLogic {
     5: 'I make what I design.'
   };
   typed = {}; caretStop = {}; caretOff = {}; typeTimers = {};
+  // the page holds its breath until the fonts are in and the load has finished:
+  // nothing types, the word does not start cycling, and the ground stays plain until
+  // there is a whole page behind it. one slow asset can't hold it hostage past the cap.
+  markReady = () => {
+    if (this.ready) return;
+    this.ready = true;
+    clearTimeout(this.readyCap);
+    this.t0 = Date.now();
+    this.hold = 2200 + Math.random() * 9000;
+    requestAnimationFrame(() => {
+      this.setState({ ready: true }, () => { this.plan(this.word.length); this.syncType(); });
+    });
+  };
+  waitForPage = () => {
+    const settle = () => { this.readyT = setTimeout(this.markReady, 180); };
+    const onLoaded = () => {
+      if (document.readyState === 'complete') settle();
+      else window.addEventListener('load', settle, { once: true });
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(onLoaded, onLoaded);
+    else onLoaded();
+    this.readyCap = setTimeout(this.markReady, 2600);
+  };
   get reduceMotion() {
     return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
   syncType = () => {
+    if (!this.state.ready) return;
     const i = this.state.activeIndex;
     const text = this.typeTexts[i];
     if (!text || this.typeTimers[i] || (this.typed[i] || 0) >= text.length) return;
@@ -2766,6 +2807,8 @@ class Component extends DCLogic {
     }));
     return {
       s2Blur: m[1].blur, s2Op: m[1].opacity,
+      veilOp: this.state.ready ? 0 : 1,
+      veilPe: this.state.ready ? 'none' : 'auto',
       tw: this.tw,
       s3Blur: m[2].blur, s3Op: m[2].opacity,
       s4Blur: m[3].blur, s4Op: m[3].opacity,
@@ -2874,7 +2917,28 @@ class Component extends DCLogic {
       probePe: this.state.probe ? 'auto' : 'none',
       probeSize: (typeof window === 'undefined' ? 0 : window.innerWidth) + ' × ' + (typeof window === 'undefined' ? 0 : window.innerHeight),
       heroPlain: this.word,
-      miniWord: this.scrambled(revealed),
+      heroTyping: !this.wordLive,
+      heroLive: !!this.wordLive,
+      hw: (() => {
+        const t = this.typeTexts[0];
+        const n = this.typed[0] || 0;
+        const l1 = 'Before Things', l2 = 'Become Obvious';
+        const on1 = n <= l1.length;
+        return {
+          pre: t.slice(0, Math.min(n, 7)),
+          mid: n > 7 ? t.slice(7, Math.min(n, 13)) : '',
+          tail1: n < l1.length ? l1.slice(n) : '',
+          l2: n > 14 ? t.slice(14, n) : '',
+          tail2: n > 14 ? l2.slice(n - 14) : l2,
+          caret1: this.caretOff[0] || !on1 ? 0 : 1,
+          caret2: this.caretOff[0] || on1 ? 0 : 1,
+          // the blink animation would override a zero opacity, so the caret that is not
+          // in play gets no animation at all rather than a hidden one
+          anim1: this.caretStop[0] || !on1 ? 'none' : 'caretBlink 1s steps(1,end) infinite',
+          anim2: this.caretStop[0] || on1 ? 'none' : 'caretBlink 1s steps(1,end) infinite'
+        };
+      })(),
+      miniWord: this.wordLive ? this.scrambled(revealed) : this.word,
       wordClick: this.wordClick,
       ticks,
       scrollRef: this.scrollRef,

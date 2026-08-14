@@ -3,8 +3,8 @@
 Static site. No build step, no external requests.
 
 ## Files
-- `index.html` — the site. Self-contained: React and the Geist font are embedded, so it renders on networks that block CDNs and works offline.
-- `support.js` — runtime
+- `index.html` — the site. Same markup as the Design Component, with the SEO head (canonical, Open Graph, JSON-LD) added.
+- `support.js` — runtime, loaded by `index.html`
 - `assets/` — project images and video loops
 - `favicon.svg` — light/dark aware
 - `.nojekyll` — tells GitHub Pages to serve files as-is
@@ -29,4 +29,6 @@ Every section and project has its own URL — `#work`, `#accessible-report`, `#p
 - ~66MB total, mostly the project imagery. Well inside the 1GB Pages limit.
 - The heaviest single asset is `assets/jooj2-campaign2.mp4` (18MB). Re-encode it smaller if first load feels slow.
 - File names are case-sensitive on GitHub Pages but not on macOS. If an image 404s after upload, check its capitalisation.
-- `index.html` is generated from the Design Component and then has React and the font inlined. Regenerating from source means redoing that inlining step.
+- `index.html` is generated from `Portfolio v1.dc.html`: the head here stays, and everything from `<x-dc>` to the end of the component script is replaced with the current version. Redo that splice after any design change.
+- The Geist font is requested from Google Fonts; on a network that blocks it the site falls back to Helvetica/Arial and still lays out correctly.
+- The page holds behind a plain sheet until fonts and load finish, then types the title out before the word starts cycling. Nothing to configure.
